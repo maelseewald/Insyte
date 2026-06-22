@@ -25,7 +25,7 @@ export default function ProjektZeitstrahl() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-jakarta font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl"
           >
-            Arbeiten für lokale Unternehmen – Jahr für Jahr.
+            Was ich bisher gebaut habe.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}

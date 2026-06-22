@@ -132,9 +132,11 @@ function DetailBlock({
         {project.description}
       </p>
 
-      <p className="mt-5 max-w-xl font-jakarta font-bold text-wald leading-snug">
-        {project.result}
-      </p>
+      {project.result && (
+        <p className="mt-5 max-w-xl font-jakarta font-bold text-wald leading-snug">
+          {project.result}
+        </p>
+      )}
 
       <div className="mt-7">
         <span className="text-[11px] uppercase tracking-[0.16em] text-erde/50">
