@@ -6,22 +6,22 @@ import { fadeInUp, staggerContainer } from '@/lib/motion'
 
 const PROJECTS = [
   {
-    title: 'Restaurant Adria – Website Relaunch',
+    name: 'Restaurant Adria',
+    type: 'Website Relaunch',
     tags: ['Next.js', 'Design'],
-    thumbClass: 'from-wald to-[#2d4a2a]',
-    thumbLabel: 'RESTAURANT ADRIA',
+    year: '2024',
   },
   {
-    title: 'Schreinerei Brunner – Auftragsmanagement',
+    name: 'Schreinerei Brunner',
+    type: 'Auftragsmanagement',
     tags: ['Software', 'React'],
-    thumbClass: 'from-[#2e4a3e] to-gruen',
-    thumbLabel: 'SCHREINEREI BRUNNER',
+    year: '2024',
   },
   {
-    title: 'Blumenatelier Lea – Online-Präsenz',
+    name: 'Blumenatelier Lea',
+    type: 'Online-Präsenz',
     tags: ['Website', 'CMS'],
-    thumbClass: 'from-[#3a3228] to-erde',
-    thumbLabel: 'BLUMENATELIER LEA',
+    year: '2023',
   },
 ]
 
@@ -30,75 +30,78 @@ export default function Portfolio() {
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section
-      id="portfolio"
-      className="bg-white py-24 px-6 border-t border-leinen"
-    >
+    <section id="portfolio" className="scroll-mt-16 bg-white py-28 px-6 border-t border-leinen">
       <motion.div
         ref={ref}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
         variants={staggerContainer}
-        className="mx-auto max-w-6xl"
+        className="mx-auto max-w-5xl"
       >
-        <motion.p
+        <motion.div
           variants={fadeInUp}
-          className="text-gruen text-xs font-semibold uppercase tracking-widest mb-3"
+          className="flex items-end justify-between mb-16"
         >
-          Referenzen
-        </motion.p>
-        <motion.h2
-          variants={fadeInUp}
-          className="font-jakarta font-bold text-[40px] leading-tight tracking-tight text-wald mb-14"
-        >
-          Ausgewählte Projekte
-        </motion.h2>
+          <div>
+            <p className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-4">
+              Ausgewählte Projekte
+            </p>
+            <h2 className="font-jakarta font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald">
+              Werk-Index
+            </h2>
+          </div>
+          <span className="hidden sm:block font-jakarta font-bold text-leinen text-sm tabular-nums">
+            03 Projekte
+          </span>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5">
-          {PROJECTS.map((project) => (
-            <motion.div
-              key={project.title}
+        <ol>
+          {PROJECTS.map((project, i) => (
+            <motion.li
+              key={project.name}
               variants={fadeInUp}
-              whileHover={{ y: -6 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-              className="group bg-white border border-leinen rounded-xl overflow-hidden hover:border-gruen/30 hover:shadow-[0_12px_32px_-12px_rgba(26,38,22,0.22)] transition-[border-color,box-shadow] duration-200"
+              className="group relative border-t border-leinen last:border-b"
             >
-              {/* Placeholder thumb */}
-              <div className="h-44 overflow-hidden">
-                <div
-                  className={`h-full w-full bg-gradient-to-br ${project.thumbClass} flex items-center justify-center transition-transform duration-500 ease-out group-hover:scale-105`}
-                >
-                  <span className="text-white/50 text-xs font-semibold tracking-widest font-jakarta">
-                    {project.thumbLabel}
+              {/* hover wash */}
+              <span
+                className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-salbei/40 transition-transform duration-500 ease-out group-hover:scale-x-100"
+                aria-hidden="true"
+              />
+              <div className="relative grid grid-cols-[auto_1fr] md:grid-cols-[auto_1fr_auto] items-baseline gap-x-5 md:gap-x-10 gap-y-1 py-8 md:py-9">
+                {/* index */}
+                <span className="font-jakarta font-bold text-lg tabular-nums text-leinen transition-colors duration-300 group-hover:text-gruen">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+
+                {/* name + type */}
+                <div className="md:flex md:items-baseline md:gap-4">
+                  <h3 className="font-jakarta font-bold text-[clamp(22px,2.8vw,32px)] leading-tight tracking-tight text-wald">
+                    {project.name}
+                  </h3>
+                  <span className="block md:inline text-erde text-sm mt-0.5 md:mt-0">
+                    {project.type}
+                  </span>
+                </div>
+
+                {/* meta */}
+                <div className="col-start-2 md:col-start-3 flex items-center gap-3 mt-2 md:mt-0">
+                  <span className="text-[11px] uppercase tracking-[0.16em] text-erde/60">
+                    {project.tags.join(' · ')}
+                  </span>
+                  <span className="text-leinen text-sm tabular-nums">
+                    {project.year}
                   </span>
                 </div>
               </div>
-              <div className="p-5">
-                <h3 className="font-jakarta font-bold text-[15px] text-wald mb-3 leading-snug">
-                  {project.title}
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="bg-salbei text-gruen text-[11px] font-semibold px-2.5 py-0.5 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ol>
 
-        <motion.p variants={fadeInUp} className="mt-8">
-          <span className="group inline-flex items-center gap-1.5 text-leinen text-sm cursor-default">
-            Alle Projekte
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </span>
+        <motion.p
+          variants={fadeInUp}
+          className="mt-10 text-sm text-erde/50"
+        >
+          Weitere Projekte auf Anfrage.
         </motion.p>
       </motion.div>
     </section>

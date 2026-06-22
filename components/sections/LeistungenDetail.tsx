@@ -17,22 +17,6 @@ const SERVICES = [
       'Schnelle Ladezeiten dank moderner Technik',
       'Einfache Pflege – oder ich übernehme sie für dich',
     ],
-    icon: (
-      <svg
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#2E7D4F"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M8 21h8M12 17v4" />
-      </svg>
-    ),
   },
   {
     id: 'software',
@@ -45,22 +29,6 @@ const SERVICES = [
       'Automatisierung wiederkehrender Aufgaben',
       'Anbindung an deine bestehenden Systeme',
     ],
-    icon: (
-      <svg
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#2E7D4F"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-      </svg>
-    ),
   },
   {
     id: 'wartung',
@@ -73,40 +41,17 @@ const SERVICES = [
       'Schnelle Hilfe bei Problemen',
       'Fester Ansprechpartner – kein anonymes Ticketsystem',
     ],
-    icon: (
-      <svg
-        width="28"
-        height="28"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#2E7D4F"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
   },
 ]
 
-function CheckIcon() {
+function FeatureMarker() {
   return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#2E7D4F"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+    <span
+      className="mt-[7px] flex h-3 w-3 shrink-0 items-center justify-center rounded-full border border-gruen"
       aria-hidden="true"
-      className="mt-0.5 shrink-0"
     >
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
+      <span className="h-1 w-1 rounded-full bg-gruen" />
+    </span>
   )
 }
 
@@ -117,64 +62,61 @@ export default function LeistungenDetail() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-sand pt-36 pb-16 px-6">
-        <div className="mx-auto max-w-6xl">
+      <section className="bg-sand pt-40 pb-20 px-6">
+        <div className="mx-auto max-w-5xl">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-gruen text-xs font-semibold uppercase tracking-widest mb-4"
+            className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-5"
           >
-            Web & Software · Schweiz
+            Leistungen · Insyte
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-jakarta font-bold text-[clamp(36px,5vw,56px)] leading-[1.05] tracking-tight text-wald mb-6 max-w-3xl"
+            className="font-jakarta font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl"
           >
-            Was ich für dein Unternehmen tun kann.
+            Drei Wege, dein Geschäft digital weiterzubringen.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-erde text-lg leading-relaxed max-w-2xl"
+            className="text-erde text-lg leading-relaxed max-w-xl"
           >
-            Drei Leistungen, ein Ansprechpartner. Vom ersten Konzept bis zur
-            laufenden Betreuung – alles aus einer Hand, erklärt in einfacher
-            Sprache.
+            Ein Ansprechpartner, vom ersten Konzept bis zur laufenden Betreuung.
+            Alles aus einer Hand, erklärt in einfacher Sprache.
           </motion.p>
         </div>
       </section>
 
-      {/* Service blocks */}
+      {/* Service rows */}
       <motion.section
         ref={ref}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
         variants={staggerContainer}
-        className="bg-sand pb-24 px-6"
+        className="bg-sand pb-8 px-6"
       >
-        <div className="mx-auto max-w-6xl flex flex-col gap-5">
+        <div className="mx-auto max-w-5xl">
           {SERVICES.map((service, i) => (
             <motion.article
               key={service.id}
               id={service.id}
               variants={fadeInUp}
-              className="scroll-mt-24 bg-white border border-leinen rounded-xl p-8 md:p-10 grid md:grid-cols-2 gap-10"
+              className="scroll-mt-28 grid md:grid-cols-12 gap-x-12 gap-y-8 border-t border-leinen py-16 md:py-20"
             >
-              {/* Left: intro */}
-              <div>
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="w-14 h-14 rounded-xl bg-salbei flex items-center justify-center shrink-0">
-                    {service.icon}
-                  </div>
-                  <span className="font-jakarta font-bold text-leinen text-3xl">
-                    0{i + 1}
+              {/* Left: title block */}
+              <div className="md:col-span-5">
+                <div className="flex items-baseline gap-4 mb-6">
+                  <span className="font-jakarta font-bold text-leinen text-sm tabular-nums tracking-tight">
+                    {String(i + 1).padStart(2, '0')}
                   </span>
+                  <span className="h-px flex-1 bg-leinen" aria-hidden="true" />
                 </div>
-                <h2 className="font-jakarta font-bold text-[28px] leading-tight tracking-tight text-wald mb-4">
+                <h2 className="font-jakarta font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-wald mb-5">
                   {service.title}
                 </h2>
                 <p className="text-erde text-base leading-relaxed">
@@ -182,18 +124,18 @@ export default function LeistungenDetail() {
                 </p>
               </div>
 
-              {/* Right: features */}
-              <div className="md:border-l md:border-leinen md:pl-10">
-                <p className="text-gruen text-xs font-semibold uppercase tracking-widest mb-5">
+              {/* Right: feature list */}
+              <div className="md:col-span-6 md:col-start-7">
+                <p className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-6">
                   Das ist dabei
                 </p>
-                <ul className="space-y-3.5">
+                <ul>
                   {service.features.map((feature) => (
                     <li
                       key={feature}
-                      className="flex items-start gap-3 text-erde text-sm leading-relaxed"
+                      className="flex items-start gap-4 border-b border-leinen py-4 text-erde text-[15px] leading-relaxed first:border-t"
                     >
-                      <CheckIcon />
+                      <FeatureMarker />
                       {feature}
                     </li>
                   ))}
@@ -205,12 +147,12 @@ export default function LeistungenDetail() {
       </motion.section>
 
       {/* CTA */}
-      <section className="bg-wald py-20 px-6">
+      <section className="bg-wald py-24 px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-jakarta font-bold text-[32px] leading-tight tracking-tight text-white mb-4">
+          <h2 className="font-jakarta font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-white mb-5">
             Klingt nach dem, was du suchst?
           </h2>
-          <p className="text-sand/70 text-base mb-8">
+          <p className="text-sand/70 text-base mb-9">
             Erzähl mir von deinem Vorhaben – ich melde mich innerhalb von 24
             Stunden.
           </p>
