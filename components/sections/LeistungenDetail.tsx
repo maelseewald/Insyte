@@ -10,48 +10,103 @@ const SERVICES = [
     id: 'websites',
     title: 'Websites',
     description:
-      'Professionelle, schnelle Webauftritte für lokale Unternehmen. Von der einfachen Landingpage bis zur umfassenden Unternehmenswebsite – immer massgeschneidert und auf deine Ziele ausgerichtet.',
+      'Professionelle, schnelle Webauftritte für lokale Unternehmen – von der Landingpage bis zur Unternehmenswebsite.',
     features: [
       'Individuelles Design, passend zu deiner Marke',
       'Optimiert für Google (SEO) und Mobilgeräte',
       'Schnelle Ladezeiten dank moderner Technik',
-      'Einfache Pflege – oder ich übernehme sie für dich',
+      'Einfache Pflege – oder ich übernehme sie',
     ],
+    icon: (
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2E7D4F"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+      </svg>
+    ),
   },
   {
     id: 'software',
     title: 'Software & Apps',
     description:
-      'Individuelle Webanwendungen und Tools, die deinen Geschäftsprozess automatisieren. Keine Standardlösung von der Stange, sondern genau das, was dein Betrieb wirklich braucht.',
+      'Individuelle Webanwendungen und Tools, die deinen Geschäftsprozess automatisieren – keine Standardlösung von der Stange.',
     features: [
       'Analyse deiner Abläufe und Anforderungen',
       'Massgeschneiderte Web-Tools statt Standardsoftware',
       'Automatisierung wiederkehrender Aufgaben',
       'Anbindung an deine bestehenden Systeme',
     ],
+    icon: (
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2E7D4F"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
   },
   {
     id: 'wartung',
     title: 'Wartung & Support',
     description:
-      'Monatliche Betreuung deiner digitalen Infrastruktur – damit du dich auf dein Kerngeschäft konzentrieren kannst. Ich kümmere mich darum, dass alles läuft.',
+      'Monatliche Betreuung deiner digitalen Infrastruktur – damit du dich auf dein Kerngeschäft konzentrieren kannst.',
     features: [
       'Regelmässige Updates und Sicherheitschecks',
       'Backups und laufendes Monitoring',
       'Schnelle Hilfe bei Problemen',
-      'Fester Ansprechpartner – kein anonymes Ticketsystem',
+      'Fester Ansprechpartner – kein Ticketsystem',
     ],
+    icon: (
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2E7D4F"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
   },
 ]
 
-function FeatureMarker() {
+function CheckIcon() {
   return (
-    <span
-      className="mt-[7px] flex h-3 w-3 shrink-0 items-center justify-center rounded-full border border-gruen"
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#2E7D4F"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden="true"
+      className="mt-[3px] shrink-0"
     >
-      <span className="h-1 w-1 rounded-full bg-gruen" />
-    </span>
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
   )
 }
 
@@ -62,8 +117,8 @@ export default function LeistungenDetail() {
   return (
     <>
       {/* Page header */}
-      <section className="bg-sand pt-40 pb-20 px-6">
-        <div className="mx-auto max-w-5xl">
+      <section className="bg-sand pt-40 pb-16 px-6">
+        <div className="mx-auto max-w-6xl">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -92,59 +147,51 @@ export default function LeistungenDetail() {
         </div>
       </section>
 
-      {/* Service rows */}
-      <motion.section
-        ref={ref}
-        initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
-        variants={staggerContainer}
-        className="bg-sand pb-8 px-6"
-      >
-        <div className="mx-auto max-w-5xl">
-          {SERVICES.map((service, i) => (
-            <motion.article
+      {/* Three columns */}
+      <section className="bg-sand pb-8 px-6">
+        <motion.div
+          ref={ref}
+          initial="hidden"
+          animate={isInView ? 'visible' : 'hidden'}
+          variants={staggerContainer}
+          className="mx-auto max-w-6xl grid md:grid-cols-3 border-y border-leinen divide-y md:divide-y-0 md:divide-x divide-leinen"
+        >
+          {SERVICES.map((service) => (
+            <motion.div
               key={service.id}
               id={service.id}
               variants={fadeInUp}
-              className="scroll-mt-28 grid md:grid-cols-12 gap-x-12 gap-y-8 border-t border-leinen py-16 md:py-20"
+              className="scroll-mt-28 flex flex-col py-12 md:px-10 md:first:pl-0 md:last:pr-0"
             >
-              {/* Left: title block */}
-              <div className="md:col-span-5">
-                <div className="flex items-baseline gap-4 mb-6">
-                  <span className="font-jakarta font-bold text-leinen text-sm tabular-nums tracking-tight">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="h-px flex-1 bg-leinen" aria-hidden="true" />
-                </div>
-                <h2 className="font-jakarta font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-wald mb-5">
-                  {service.title}
-                </h2>
-                <p className="text-erde text-base leading-relaxed">
-                  {service.description}
-                </p>
+              <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-full bg-salbei">
+                {service.icon}
               </div>
 
-              {/* Right: feature list */}
-              <div className="md:col-span-6 md:col-start-7">
-                <p className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-6">
-                  Das ist dabei
-                </p>
-                <ul>
-                  {service.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-start gap-4 border-b border-leinen py-4 text-erde text-[15px] leading-relaxed first:border-t"
-                    >
-                      <FeatureMarker />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.article>
+              <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald mb-4">
+                {service.title}
+              </h2>
+              <p className="text-erde text-[15px] leading-relaxed mb-8">
+                {service.description}
+              </p>
+
+              <p className="text-gruen text-[11px] font-semibold uppercase tracking-[0.18em] mb-4">
+                Das ist dabei
+              </p>
+              <ul className="space-y-3">
+                {service.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-3 text-erde text-[15px] leading-relaxed"
+                  >
+                    <CheckIcon />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           ))}
-        </div>
-      </motion.section>
+        </motion.div>
+      </section>
 
       {/* CTA */}
       <section className="bg-wald py-24 px-6">
