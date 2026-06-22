@@ -89,17 +89,11 @@ export default function Anwendungsfaelle() {
         variants={staggerContainer}
         className="mx-auto max-w-6xl"
       >
-        <motion.p
-          variants={fadeInUp}
-          className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-4"
-        >
-          Wann du uns brauchst
-        </motion.p>
         <motion.h2
           variants={fadeInUp}
           className="font-jakarta font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald mb-16 max-w-2xl"
         >
-          Kommt dir eines davon bekannt vor?
+          Wann du uns brauchst
         </motion.h2>
 
         <div className="grid md:grid-cols-3 border-y border-leinen divide-y md:divide-y-0 md:divide-x divide-leinen">
