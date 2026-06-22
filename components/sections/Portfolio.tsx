@@ -4,27 +4,9 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
+import { latestProjects } from '@/lib/projects'
 
-const PROJECTS = [
-  {
-    name: 'Restaurant Adria',
-    type: 'Website Relaunch',
-    tags: ['Next.js', 'Design'],
-    year: '2024',
-  },
-  {
-    name: 'Schreinerei Brunner',
-    type: 'Auftragsmanagement',
-    tags: ['Software', 'React'],
-    year: '2024',
-  },
-  {
-    name: 'Blumenatelier Lea',
-    type: 'Online-Präsenz',
-    tags: ['Website', 'CMS'],
-    year: '2023',
-  },
-]
+const PROJECTS = latestProjects(3)
 
 export default function Portfolio() {
   const ref = useRef(null)
@@ -45,7 +27,7 @@ export default function Portfolio() {
         >
           <div>
             <p className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-4">
-              Ausgewählte Projekte
+              Neueste Projekte
             </p>
             <h2 className="font-jakarta font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald">
               Werk-Index

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Navbar from '@/components/layout/Navbar'
 import ScrollProgress from '@/components/layout/ScrollProgress'
 import Footer from '@/components/layout/Footer'
-import ProjekteListe from '@/components/sections/ProjekteListe'
+import ProjektZeitstrahl from '@/components/sections/ProjektZeitstrahl'
 
 export const metadata: Metadata = {
   title: 'Projekte – Insyte',
@@ -26,7 +26,7 @@ export default function ProjektePage() {
       <ScrollProgress />
       <Navbar />
       <main>
-        <ProjekteListe />
+        <ProjektZeitstrahl />
       </main>
       <Footer />
     </>
