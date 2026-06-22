@@ -8,42 +8,70 @@ import { fadeInUp, staggerContainer } from '@/lib/motion'
 const CASES = [
   {
     problem: 'Deine Website ist veraltet.',
-    description:
-      'Ein Auftritt von gestern schreckt Kunden ab. Ein moderner, schneller Webauftritt gewinnt Vertrauen – und neue Aufträge.',
+    description: 'Ein Auftritt von gestern schreckt Kunden ab.',
     leistung: 'Websites',
     href: '/leistungen#websites',
+    icon: (
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2E7D4F"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+      </svg>
+    ),
   },
   {
-    problem: 'Zu viel läuft noch von Hand.',
-    description:
-      'Wiederkehrende Aufgaben kosten dich jeden Tag Stunden. Massgeschneiderte Software übernimmt sie – zuverlässig und ohne Fehler.',
+    problem: 'Zu viel läuft von Hand.',
+    description: 'Wiederkehrende Aufgaben kosten dich täglich Stunden.',
     leistung: 'Software & Apps',
     href: '/leistungen#software',
+    icon: (
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2E7D4F"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    ),
   },
   {
     problem: 'Niemand kümmert sich um Updates.',
-    description:
-      'Sicherheitslücken, Ausfälle, veraltete Technik? Mit laufender Betreuung bleibt deine digitale Infrastruktur sicher und aktuell.',
+    description: 'Sicherheitslücken und Ausfälle bleiben unbemerkt.',
     leistung: 'Wartung & Support',
     href: '/leistungen#wartung',
+    icon: (
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#2E7D4F"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
   },
 ]
-
-function FocusMarker() {
-  return (
-    <span
-      className="absolute left-0 top-1 flex h-4 w-4 items-center justify-center"
-      aria-hidden="true"
-    >
-      {/* focus pulse ring */}
-      <span className="absolute inset-0 rounded-full border border-gruen opacity-0 transition-all duration-500 group-hover:scale-[2.2] group-hover:opacity-100" />
-      {/* lens */}
-      <span className="flex h-4 w-4 items-center justify-center rounded-full border border-leinen bg-sand transition-colors duration-300 group-hover:border-gruen">
-        <span className="h-[6px] w-[6px] rounded-full bg-gruen transition-transform duration-300 group-hover:scale-[1.4]" />
-      </span>
-    </span>
-  )
-}
 
 export default function Anwendungsfaelle() {
   const ref = useRef(null)
@@ -59,7 +87,7 @@ export default function Anwendungsfaelle() {
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
         variants={staggerContainer}
-        className="mx-auto max-w-5xl"
+        className="mx-auto max-w-6xl"
       >
         <motion.p
           variants={fadeInUp}
@@ -74,51 +102,41 @@ export default function Anwendungsfaelle() {
           Kommt dir eines davon bekannt vor?
         </motion.h2>
 
-        {/* Focus axis */}
-        <div className="relative">
-          <span
-            className="absolute left-2 top-3 bottom-3 w-px bg-leinen"
-            aria-hidden="true"
-          />
-          <ul>
-            {CASES.map((item) => (
-              <motion.li
-                key={item.leistung}
-                variants={fadeInUp}
-                className="group relative pl-10 md:pl-16 py-9 border-b border-leinen first:border-t"
+        <div className="grid md:grid-cols-3 border-y border-leinen divide-y md:divide-y-0 md:divide-x divide-leinen">
+          {CASES.map((item) => (
+            <motion.div
+              key={item.leistung}
+              variants={fadeInUp}
+              className="group flex flex-col py-10 md:py-12 md:px-10 md:first:pl-0 md:last:pr-0"
+            >
+              <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-full bg-salbei">
+                {item.icon}
+              </div>
+
+              <h3 className="font-jakarta font-bold text-[22px] leading-snug tracking-tight text-wald mb-3">
+                {item.problem}
+              </h3>
+              <p className="text-erde text-[15px] leading-relaxed mb-8">
+                {item.description}
+              </p>
+
+              <Link
+                href={item.href}
+                className="mt-auto inline-flex items-center gap-2 font-jakarta font-bold text-gruen hover:brightness-110 transition"
               >
-                <FocusMarker />
-                <div className="md:flex md:items-baseline md:justify-between md:gap-10">
-                  <div className="md:max-w-xl">
-                    <h3 className="font-jakarta font-bold text-[clamp(22px,2.6vw,30px)] leading-snug tracking-tight text-wald transition-colors duration-300 group-hover:text-gruen">
-                      {item.problem}
-                    </h3>
-                    <p className="text-erde text-base leading-relaxed mt-3">
-                      {item.description}
-                    </p>
-                  </div>
-                  <Link
-                    href={item.href}
-                    className="mt-5 md:mt-0 inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-wald transition-colors hover:text-gruen"
-                  >
-                    <span className="text-[11px] uppercase tracking-[0.18em] text-erde/50 transition-colors group-hover:text-gruen">
-                      Lösung
-                    </span>
-                    {item.leistung}
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">
-                      →
-                    </span>
-                  </Link>
-                </div>
-              </motion.li>
-            ))}
-          </ul>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+                {item.leistung}
+              </Link>
+            </motion.div>
+          ))}
         </div>
 
-        <motion.div variants={fadeInUp} className="mt-14">
+        <motion.div variants={fadeInUp} className="mt-12">
           <Link
             href="/leistungen"
-            className="group inline-flex items-center gap-2 font-jakarta font-bold text-wald hover:text-gruen transition-colors"
+            className="group inline-flex items-center gap-2 text-sm font-semibold text-erde hover:text-gruen transition-colors"
           >
             Alle Leistungen im Detail
             <span className="transition-transform duration-300 group-hover:translate-x-1">
