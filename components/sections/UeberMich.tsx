@@ -1,32 +1,11 @@
 'use client'
 
 import { useRef } from 'react'
+import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 
 const STATS = ['10+ Projekte', 'Schweizweit', '1 Ansprechpartner']
-
-function DecorativeSVG() {
-  return (
-    <svg
-      width="280"
-      height="280"
-      viewBox="0 0 280 280"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <circle cx="140" cy="140" r="130" stroke="#DDD8CF" strokeWidth="1" />
-      <circle cx="140" cy="140" r="90" stroke="#DDD8CF" strokeWidth="1" />
-      <circle cx="140" cy="140" r="50" fill="#D6EDE0" />
-      <circle cx="140" cy="140" r="18" fill="#2E7D4F" />
-      <line x1="10" y1="140" x2="270" y2="140" stroke="#DDD8CF" strokeWidth="0.5" />
-      <line x1="140" y1="10" x2="140" y2="270" stroke="#DDD8CF" strokeWidth="0.5" />
-      <line x1="48" y1="48" x2="232" y2="232" stroke="#DDD8CF" strokeWidth="0.5" />
-      <line x1="232" y1="48" x2="48" y2="232" stroke="#DDD8CF" strokeWidth="0.5" />
-    </svg>
-  )
-}
 
 export default function UeberMich() {
   const ref = useRef(null)
@@ -35,7 +14,7 @@ export default function UeberMich() {
   return (
     <section
       id="ueber-mich"
-      className="bg-white py-24 px-6 border-t border-leinen"
+      className="bg-sand py-24 px-6 border-t border-leinen"
     >
       <motion.div
         ref={ref}
@@ -54,7 +33,7 @@ export default function UeberMich() {
           </motion.p>
           <motion.h2
             variants={fadeInUp}
-            className="font-jakarta font-bold text-[40px] leading-tight tracking-tight text-wald mb-6"
+            className="font-jakarta font-bold text-[clamp(32px,4vw,40px)] leading-tight tracking-tight text-wald mb-6"
           >
             Technologie, die wirklich hilft.
           </motion.h2>
@@ -84,13 +63,34 @@ export default function UeberMich() {
           </motion.div>
         </div>
 
-        {/* Decorative SVG */}
-        <motion.div
+        {/* Portrait */}
+        <motion.figure
           variants={fadeInUp}
-          className="flex items-center justify-center"
+          className="relative mx-auto w-full max-w-sm md:ml-auto"
         >
-          <DecorativeSVG />
-        </motion.div>
+          <div className="relative">
+            {/* offset accent panel */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl bg-salbei"
+            />
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-leinen bg-sand">
+              <Image
+                src="/portrait.png"
+                alt="Mael Seewald, Gründer von Insyte"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover object-top"
+              />
+            </div>
+          </div>
+          <figcaption className="relative mt-5 text-sm">
+            <span className="font-jakarta font-bold text-wald">
+              Mael Seewald
+            </span>
+            <span className="text-erde/60"> — Gründer &amp; Entwickler</span>
+          </figcaption>
+        </motion.figure>
       </motion.div>
     </section>
   )
