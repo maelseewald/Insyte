@@ -199,7 +199,7 @@ export default function Kontakt() {
                   type="text"
                   required
                   autoComplete="name"
-                  placeholder="Max Muster"
+                  placeholder="Dein Name"
                   value={form.name}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, name: e.target.value }))
@@ -220,7 +220,7 @@ export default function Kontakt() {
                   type="email"
                   required
                   autoComplete="email"
-                  placeholder="max@beispiel.ch"
+                  placeholder="deine@email.ch"
                   value={form.email}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, email: e.target.value }))
@@ -240,7 +240,7 @@ export default function Kontakt() {
                   id="message"
                   required
                   rows={5}
-                  placeholder="Erzähl mir von deinem Projekt..."
+                  placeholder="Worum geht es bei deinem Projekt?"
                   value={form.message}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, message: e.target.value }))
