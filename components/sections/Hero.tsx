@@ -1,22 +1,14 @@
 'use client'
 
 import Link from 'next/link'
-import { motion, type Variants } from 'framer-motion'
-import { fadeInUp, staggerContainer } from '@/lib/motion'
+import { motion } from 'framer-motion'
 
-const axisLine: Variants = {
-  hidden: { scaleY: 0 },
-  visible: { scaleY: 1, transition: { duration: 0.9, ease: 'easeOut' } },
-}
-
-const markerPop: Variants = {
-  hidden: { scale: 0, opacity: 0 },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    transition: { duration: 0.4, ease: 'easeOut', delay: 0.35 },
-  },
-}
+// Independent, self-completing reveal — no fragile variant propagation.
+const reveal = (delay: number) => ({
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, ease: 'easeOut' as const, delay },
+})
 
 const CREDENTIALS = [
   { label: 'Projekte', value: '10+' },
@@ -68,24 +60,23 @@ export default function Hero() {
     >
       <AmbientLens />
 
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={staggerContainer}
-        className="relative z-10 mx-auto w-full max-w-5xl"
-      >
+      <div className="relative z-10 mx-auto w-full max-w-5xl">
         {/* Headline on the focus axis */}
         <div className="relative pl-10 md:pl-16">
           {/* axis line */}
           <motion.span
-            variants={axisLine}
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: 1 }}
+            transition={{ duration: 0.9, ease: 'easeOut' }}
             style={{ originY: 0 }}
             className="absolute left-2 top-2 h-[calc(100%-0.5rem)] w-px bg-leinen"
             aria-hidden="true"
           />
           {/* lens marker at the top of the axis */}
           <motion.span
-            variants={markerPop}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut', delay: 0.2 }}
             className="absolute left-0 top-[6px] flex h-4 w-4 items-center justify-center rounded-full border border-gruen bg-sand"
             aria-hidden="true"
           >
@@ -93,28 +84,28 @@ export default function Hero() {
           </motion.span>
 
           <motion.p
-            variants={fadeInUp}
+            {...reveal(0.05)}
             className="text-gruen text-xs font-semibold uppercase tracking-[0.22em] mb-7"
           >
             Web &amp; Software · Schweiz
           </motion.p>
 
           <motion.h1
-            variants={fadeInUp}
+            {...reveal(0.12)}
             className="font-jakarta font-bold text-[clamp(38px,7vw,68px)] leading-[1.02] tracking-[-0.03em] text-wald mb-8 max-w-3xl"
           >
             Wir bringen lokale Unternehmen ins digitale Zeitalter.
           </motion.h1>
 
           <motion.p
-            variants={fadeInUp}
+            {...reveal(0.22)}
             className="text-erde text-lg leading-relaxed mb-10 max-w-xl"
           >
             Massgeschneiderte Websites und Softwarelösungen für KMUs –
             entwickelt mit Sorgfalt, erklärt in einfacher Sprache.
           </motion.p>
 
-          <motion.div variants={fadeInUp} className="flex flex-wrap gap-3">
+          <motion.div {...reveal(0.32)} className="flex flex-wrap gap-3">
             <Link href="/leistungen" className="btn-primary">
               Leistungen entdecken
             </Link>
@@ -126,7 +117,7 @@ export default function Hero() {
 
         {/* Credential index strip */}
         <motion.dl
-          variants={fadeInUp}
+          {...reveal(0.42)}
           className="mt-20 flex flex-wrap items-end gap-x-12 gap-y-6 border-t border-leinen pt-7"
         >
           {CREDENTIALS.map((item) => (
@@ -154,7 +145,7 @@ export default function Hero() {
             </motion.span>
           </a>
         </motion.dl>
-      </motion.div>
+      </div>
     </section>
   )
 }
