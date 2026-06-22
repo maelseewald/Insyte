@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 
@@ -90,6 +91,39 @@ export default function UeberMich() {
             </span>
             <span className="text-erde/60"> — Gründer &amp; Entwickler</span>
           </figcaption>
+
+          <div className="relative mt-4 flex items-center gap-5">
+            <a
+              href="https://www.linkedin.com/company/insyte"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-wald hover:text-gruen transition-colors"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
+            </a>
+            <span className="text-leinen select-none" aria-hidden="true">
+              ·
+            </span>
+            <Link
+              href="/projekte"
+              className="group inline-flex items-center gap-1.5 text-sm font-semibold text-wald hover:text-gruen transition-colors"
+            >
+              Portfolio
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </div>
         </motion.figure>
       </motion.div>
     </section>
