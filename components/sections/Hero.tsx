@@ -17,20 +17,19 @@ const CREDENTIALS = [
 ]
 
 function AmbientLens() {
+  // The lens echoes the logo / the focus-axis markers — the right-hand
+  // counterpart to the axis on the left. Concentric, so no rotation
+  // (it would show no motion); it only fades in once on load.
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none absolute -right-32 top-1/2 hidden -translate-y-1/2 md:block lg:-right-20"
-      initial={{ opacity: 0, scale: 0.92 }}
-      animate={{ opacity: 1, scale: 1, rotate: 360 }}
-      transition={{
-        opacity: { duration: 1.2, ease: 'easeOut' },
-        scale: { duration: 1.2, ease: 'easeOut' },
-        rotate: { duration: 90, repeat: Infinity, ease: 'linear' },
-      }}
+      className="pointer-events-none absolute right-[-16%] top-[38%] hidden -translate-y-1/2 md:block lg:right-[-7%]"
+      initial={{ opacity: 0, scale: 0.94 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.4, ease: 'easeOut' }}
     >
-      <div className="relative h-[560px] w-[560px]">
-        {[560, 440, 320, 200].map((size, i) => (
+      <div className="relative h-[600px] w-[600px]">
+        {[600, 460, 320, 180].map((size, i) => (
           <span
             key={size}
             className="absolute rounded-full border border-gruen"
@@ -40,13 +39,13 @@ function AmbientLens() {
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              opacity: 0.06 + i * 0.04,
+              opacity: 0.05 + i * 0.025,
             }}
           />
         ))}
         {/* focal point */}
-        <span className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full border border-gruen/30 bg-salbei/40" />
-        <span className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gruen/80" />
+        <span className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border border-gruen/20 bg-salbei/25" />
+        <span className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gruen/50" />
       </div>
     </motion.div>
   )
@@ -130,20 +129,6 @@ export default function Hero() {
               </dd>
             </div>
           ))}
-          <a
-            href="#anwendungsfaelle"
-            aria-label="Nach unten scrollen"
-            className="group ml-auto hidden items-center gap-2 self-center text-erde/50 transition-colors hover:text-gruen sm:flex"
-          >
-            <span className="text-[11px] uppercase tracking-[0.18em]">Scroll</span>
-            <motion.span
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-              aria-hidden="true"
-            >
-              ↓
-            </motion.span>
-          </a>
         </motion.dl>
       </div>
     </section>
