@@ -9,6 +9,10 @@ export type Project = {
   tags: string[]
   description: string
   result: string
+  /** Live-Website des Projekts (optional) */
+  liveUrl?: string
+  /** Öffentliches GitHub-Repo (optional) */
+  repoUrl?: string
 }
 
 const ALL: Project[] = [
@@ -23,6 +27,8 @@ const ALL: Project[] = [
     description:
       'Neuer Webauftritt mit digitaler Speisekarte und Tischreservation – mobil-optimiert und in zwei Sprachen.',
     result: 'Online-Reservationen verdoppelt, Telefonaufkommen spürbar gesunken.',
+    liveUrl: 'https://restaurant-adria.ch',
+    repoUrl: 'https://github.com/maelseewald/restaurant-adria',
   },
   {
     id: 'garage-steffen',
@@ -35,6 +41,7 @@ const ALL: Project[] = [
     description:
       'Kunden buchen Service-Termine online, das Team erstellt Offerten in wenigen Minuten.',
     result: 'Offerten in Minuten statt Stunden – mehr Zeit für die Werkstatt.',
+    liveUrl: 'https://termine.garage-steffen.ch',
   },
   {
     id: 'schreinerei-brunner',
@@ -59,6 +66,7 @@ const ALL: Project[] = [
     description:
       'Vorbestellung von Brot und Patisserie mit Abholzeiten, angebunden an die bestehende Kasse.',
     result: 'Vorbestellungen ab Tag eins, weniger Wartezeit am Tresen.',
+    liveUrl: 'https://baeckerei-wyss.ch',
   },
   {
     id: 'physiopraxis-aare',
@@ -71,6 +79,7 @@ const ALL: Project[] = [
     description:
       'Selbstständige Terminbuchung mit automatischen Erinnerungen direkt für die Patienten.',
     result: 'Deutlich weniger verpasste Termine dank Erinnerungen.',
+    liveUrl: 'https://termine.physio-aare.ch',
   },
   {
     id: 'blumenatelier-lea',
@@ -83,6 +92,8 @@ const ALL: Project[] = [
     description:
       'Ein ruhiger, bildstarker Auftritt mit Pflege-Tipps, gepflegt über ein einfaches CMS.',
     result: 'Lea pflegt die Seite selbst – ganz ohne Entwickler.',
+    liveUrl: 'https://blumenatelier-lea.ch',
+    repoUrl: 'https://github.com/maelseewald/blumenatelier-lea',
   },
   {
     id: 'hofladen-buehler',
@@ -95,6 +106,7 @@ const ALL: Project[] = [
     description:
       'Saisonales Sortiment mit Selbstbedienungs-Shop und Wochen-Abo direkt vom Hof.',
     result: 'Wochen-Abo bringt planbaren, wiederkehrenden Umsatz.',
+    liveUrl: 'https://hofladen-buehler.ch',
   },
   {
     id: 'treuhand-meier',

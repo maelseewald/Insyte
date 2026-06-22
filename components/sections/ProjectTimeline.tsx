@@ -4,6 +4,43 @@ import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'framer-motion'
 import { type Project } from '@/lib/projects'
 
+const LINK_PILL =
+  'inline-flex items-center gap-2 rounded-full border border-leinen bg-white px-4 py-2 text-sm font-semibold text-wald transition-colors hover:border-gruen/40 hover:text-gruen'
+
+function ExternalIcon() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#2E7D4F"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M15 3h6v6" />
+      <path d="M10 14 21 3" />
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    </svg>
+  )
+}
+
+function GithubIcon() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="#2E7D4F"
+      aria-hidden="true"
+    >
+      <path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 2.5-.34c.85 0 1.71.12 2.5.34 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+    </svg>
+  )
+}
+
 function TimelineNav({
   projects,
   activeId,
@@ -104,6 +141,33 @@ function DetailBlock({
           {project.tags.join(' · ')}
         </span>
       </div>
+
+      {(project.liveUrl || project.repoUrl) && (
+        <div className="mt-7 flex flex-wrap gap-3">
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={LINK_PILL}
+            >
+              <ExternalIcon />
+              Website ansehen
+            </a>
+          )}
+          {project.repoUrl && (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={LINK_PILL}
+            >
+              <GithubIcon />
+              GitHub
+            </a>
+          )}
+        </div>
+      )}
     </article>
   )
 }
