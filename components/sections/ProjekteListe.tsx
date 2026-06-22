@@ -90,62 +90,56 @@ const GROUPS: { title: string; projects: Project[] }[] = [
   },
 ]
 
-function ProjectIndex({ projects }: { projects: Project[] }) {
+function ProjectCards({ projects }: { projects: Project[] }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <motion.ol
+    <motion.div
       ref={ref}
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
       variants={staggerContainer}
+      className="grid sm:grid-cols-2 gap-5"
     >
-      {projects.map((project, i) => (
-        <motion.li
+      {projects.map((project) => (
+        <motion.article
           key={project.name}
           variants={fadeInUp}
-          className="group relative border-t border-leinen last:border-b"
+          whileHover={{ y: -6 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+          className="group relative flex flex-col overflow-hidden bg-white border border-leinen rounded-xl p-7 hover:border-gruen/30 hover:shadow-[0_14px_36px_-14px_rgba(26,38,22,0.2)] transition-[border-color,box-shadow] duration-200"
         >
-          {/* hover wash */}
+          {/* top accent on hover */}
           <span
-            className="pointer-events-none absolute inset-0 origin-left scale-x-0 bg-salbei/40 transition-transform duration-500 ease-out group-hover:scale-x-100"
+            className="absolute top-0 left-0 h-0.5 w-0 bg-gruen transition-all duration-500 ease-out group-hover:w-full"
             aria-hidden="true"
           />
-          <div className="relative grid grid-cols-[auto_1fr] md:grid-cols-[auto_1fr_auto] items-baseline gap-x-5 md:gap-x-10 gap-y-2 py-8 md:py-9">
-            {/* index */}
-            <span className="font-jakarta font-bold text-lg tabular-nums text-leinen transition-colors duration-300 group-hover:text-gruen">
-              {String(i + 1).padStart(2, '0')}
-            </span>
 
-            {/* name + type + description */}
+          <div className="flex items-start justify-between gap-4 mb-4">
             <div>
-              <div className="md:flex md:items-baseline md:gap-4">
-                <h3 className="font-jakarta font-bold text-[clamp(22px,2.6vw,30px)] leading-tight tracking-tight text-wald">
-                  {project.name}
-                </h3>
-                <span className="block md:inline text-erde text-sm mt-0.5 md:mt-0">
-                  {project.type}
-                </span>
-              </div>
-              <p className="text-erde/80 text-sm leading-relaxed mt-2 max-w-xl">
-                {project.description}
+              <h3 className="font-jakarta font-bold text-[22px] leading-tight tracking-tight text-wald mb-1.5">
+                {project.name}
+              </h3>
+              <p className="text-gruen text-[11px] font-semibold uppercase tracking-[0.16em]">
+                {project.type}
               </p>
             </div>
-
-            {/* meta */}
-            <div className="col-start-2 md:col-start-3 flex items-center gap-3 md:flex-col md:items-end md:gap-1.5">
-              <span className="text-[11px] uppercase tracking-[0.16em] text-erde/60">
-                {project.tags.join(' · ')}
-              </span>
-              <span className="text-leinen text-sm tabular-nums">
-                {project.year}
-              </span>
-            </div>
+            <span className="shrink-0 text-leinen text-sm tabular-nums">
+              {project.year}
+            </span>
           </div>
-        </motion.li>
+
+          <p className="text-erde/80 text-sm leading-relaxed mb-6">
+            {project.description}
+          </p>
+
+          <span className="mt-auto text-[11px] uppercase tracking-[0.16em] text-erde/50">
+            {project.tags.join(' · ')}
+          </span>
+        </motion.article>
       ))}
-    </motion.ol>
+    </motion.div>
   )
 }
 
@@ -197,7 +191,7 @@ export default function ProjekteListe() {
                   {String(group.projects.length).padStart(2, '0')}
                 </span>
               </div>
-              <ProjectIndex projects={group.projects} />
+              <ProjectCards projects={group.projects} />
             </div>
           ))}
         </div>
