@@ -16,49 +16,12 @@ const CREDENTIALS = [
   { label: 'Ansprechpartner', value: '1' },
 ]
 
-function AmbientLens() {
-  // The lens echoes the logo / the focus-axis markers — the right-hand
-  // counterpart to the axis on the left. Concentric, so no rotation
-  // (it would show no motion); it only fades in once on load.
-  return (
-    <motion.div
-      aria-hidden="true"
-      className="pointer-events-none absolute right-[-16%] top-[38%] hidden -translate-y-1/2 md:block lg:right-[-7%]"
-      initial={{ opacity: 0, scale: 0.94 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1.4, ease: 'easeOut' }}
-    >
-      <div className="relative h-[600px] w-[600px]">
-        {[600, 460, 320, 180].map((size, i) => (
-          <span
-            key={size}
-            className="absolute rounded-full border border-gruen"
-            style={{
-              width: size,
-              height: size,
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              opacity: 0.05 + i * 0.025,
-            }}
-          />
-        ))}
-        {/* focal point */}
-        <span className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border border-gruen/20 bg-salbei/25" />
-        <span className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gruen/50" />
-      </div>
-    </motion.div>
-  )
-}
-
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen overflow-hidden bg-sand flex flex-col justify-center px-6 pt-28 pb-16"
+      className="relative min-h-screen bg-sand flex flex-col justify-center px-6 pt-28 pb-16"
     >
-      <AmbientLens />
-
       <div className="relative z-10 mx-auto w-full max-w-5xl">
         {/* Headline on the focus axis */}
         <div className="relative pl-10 md:pl-16">
