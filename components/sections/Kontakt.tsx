@@ -1,0 +1,182 @@
+'use client'
+
+import { useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { fadeInUp, staggerContainer } from '@/lib/motion'
+
+type FormState = 'idle' | 'loading' | 'success' | 'error'
+
+const INPUT_CLASS =
+  'w-full bg-sand/10 border border-sand/20 rounded-lg px-4 py-3 text-sand placeholder:text-sand/40 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gruen transition-colors'
+
+export default function Kontakt() {
+  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [state, setState] = useState<FormState>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
+
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setState('loading')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      const data = await res.json() as { success?: boolean; error?: string }
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error ?? 'Unbekannter Fehler.')
+      }
+
+      setState('success')
+      setForm({ name: '', email: '', message: '' })
+    } catch (err) {
+      setState('error')
+      setErrorMsg(
+        err instanceof Error ? err.message : 'Fehler beim Senden.'
+      )
+    }
+  }
+
+  return (
+    <section id="kontakt" className="bg-wald py-24 px-6">
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+        variants={staggerContainer}
+        className="mx-auto max-w-xl"
+      >
+        <motion.p
+          variants={fadeInUp}
+          className="text-salbei/60 text-xs font-semibold uppercase tracking-widest mb-3"
+        >
+          Kontakt
+        </motion.p>
+        <motion.h2
+          variants={fadeInUp}
+          className="font-jakarta font-bold text-[40px] leading-tight tracking-tight text-white mb-3"
+        >
+          Projekt starten
+        </motion.h2>
+        <motion.p
+          variants={fadeInUp}
+          className="text-sand/70 text-base mb-10"
+        >
+          Schreib mir – ich melde mich innerhalb von 24 Stunden.
+        </motion.p>
+
+        {state === 'success' ? (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-12 text-salbei"
+          >
+            <p className="font-jakarta font-bold text-2xl mb-2 text-white">
+              Danke!
+            </p>
+            <p>Deine Nachricht ist angekommen. Ich melde mich bald.</p>
+          </motion.div>
+        ) : (
+          <motion.form
+            variants={fadeInUp}
+            onSubmit={handleSubmit}
+            className="space-y-4"
+            noValidate
+          >
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-xs font-semibold text-sand/60 mb-1.5"
+              >
+                Name
+              </label>
+              <input
+                id="name"
+                type="text"
+                required
+                autoComplete="name"
+                placeholder="Max Muster"
+                value={form.name}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, name: e.target.value }))
+                }
+                className={INPUT_CLASS}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-xs font-semibold text-sand/60 mb-1.5"
+              >
+                E-Mail
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                autoComplete="email"
+                placeholder="max@beispiel.ch"
+                value={form.email}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, email: e.target.value }))
+                }
+                className={INPUT_CLASS}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="message"
+                className="block text-xs font-semibold text-sand/60 mb-1.5"
+              >
+                Nachricht
+              </label>
+              <textarea
+                id="message"
+                required
+                rows={5}
+                placeholder="Erzähl mir von deinem Projekt..."
+                value={form.message}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, message: e.target.value }))
+                }
+                className={`${INPUT_CLASS} resize-none`}
+              />
+            </div>
+
+            {state === 'error' && (
+              <p className="text-red-400 text-sm" role="alert">
+                {errorMsg || 'Fehler beim Senden. Bitte versuche es später erneut.'}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={state === 'loading'}
+              className="btn-primary w-full text-center py-3.5 disabled:opacity-60"
+            >
+              {state === 'loading' ? 'Wird gesendet…' : 'Nachricht senden'}
+            </button>
+          </motion.form>
+        )}
+
+        <motion.p variants={fadeInUp} className="mt-7 text-center">
+          <a
+            href="mailto:info@insyte.ch"
+            className="text-gruen text-sm hover:brightness-110 transition-all"
+          >
+            info@insyte.ch
+          </a>
+        </motion.p>
+      </motion.div>
+    </section>
+  )
+}
