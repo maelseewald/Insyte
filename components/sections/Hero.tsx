@@ -1,90 +1,111 @@
 'use client'
 
-import { useRef } from 'react'
 import Link from 'next/link'
-import { motion, useInView } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 
-function PulseIllustration() {
-  const rings = [
-    { size: '100%', opacity: 0.12, delay: 0 },
-    { size: '75%', opacity: 0.25, delay: 0.6 },
-    { size: '50%', opacity: 0.4, delay: 1.2 },
-  ]
+const axisLine: Variants = {
+  hidden: { scaleY: 0 },
+  visible: { scaleY: 1, transition: { duration: 0.9, ease: 'easeOut' } },
+}
 
+const markerPop: Variants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { duration: 0.4, ease: 'easeOut', delay: 0.35 },
+  },
+}
+
+const CREDENTIALS = [
+  { label: 'Projekte', value: '10+' },
+  { label: 'Reichweite', value: 'Schweizweit' },
+  { label: 'Ansprechpartner', value: '1' },
+]
+
+function AmbientLens() {
   return (
     <motion.div
-      className="relative flex items-center justify-center w-72 h-72 md:w-96 md:h-96"
-      animate={{ rotate: 360 }}
-      transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
       aria-hidden="true"
+      className="pointer-events-none absolute -right-32 top-1/2 hidden -translate-y-1/2 md:block lg:-right-20"
+      initial={{ opacity: 0, scale: 0.92 }}
+      animate={{ opacity: 1, scale: 1, rotate: 360 }}
+      transition={{
+        opacity: { duration: 1.2, ease: 'easeOut' },
+        scale: { duration: 1.2, ease: 'easeOut' },
+        rotate: { duration: 90, repeat: Infinity, ease: 'linear' },
+      }}
     >
-      {/* Radar-style emitting ring */}
-      <motion.div
-        className="absolute rounded-full border border-gruen"
-        style={{ width: '50%', height: '50%' }}
-        animate={{ scale: [1, 2, 2], opacity: [0.5, 0, 0] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: 'easeOut' }}
-      />
-
-      {/* Breathing concentric rings */}
-      {rings.map((ring) => (
-        <motion.div
-          key={ring.size}
-          className="absolute rounded-full border border-gruen"
-          style={{ width: ring.size, height: ring.size, opacity: ring.opacity }}
-          animate={{ scale: [1, 1.04, 1] }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: ring.delay,
-          }}
-        />
-      ))}
-
-      {/* Center — breathing */}
-      <motion.div
-        className="w-16 h-16 rounded-full bg-salbei border-2 border-gruen flex items-center justify-center z-10"
-        animate={{ scale: [1, 1.08, 1] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <div className="w-5 h-5 rounded-full bg-gruen" />
-      </motion.div>
+      <div className="relative h-[560px] w-[560px]">
+        {[560, 440, 320, 200].map((size, i) => (
+          <span
+            key={size}
+            className="absolute rounded-full border border-gruen"
+            style={{
+              width: size,
+              height: size,
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              opacity: 0.06 + i * 0.04,
+            }}
+          />
+        ))}
+        {/* focal point */}
+        <span className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full border border-gruen/30 bg-salbei/40" />
+        <span className="absolute left-1/2 top-1/2 h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gruen/80" />
+      </div>
     </motion.div>
   )
 }
 
 export default function Hero() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-60px' })
-
   return (
     <section
       id="hero"
-      className="relative bg-sand min-h-screen flex items-center pt-16"
+      className="relative min-h-screen overflow-hidden bg-sand flex flex-col justify-center px-6 pt-28 pb-16"
     >
+      <AmbientLens />
+
       <motion.div
-        ref={ref}
         initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
+        animate="visible"
         variants={staggerContainer}
-        className="mx-auto max-w-6xl px-6 py-20 md:py-28 grid md:grid-cols-2 gap-16 items-center w-full"
+        className="relative z-10 mx-auto w-full max-w-5xl"
       >
-        {/* Text */}
-        <div>
+        {/* Headline on the focus axis */}
+        <div className="relative pl-10 md:pl-16">
+          {/* axis line */}
+          <motion.span
+            variants={axisLine}
+            style={{ originY: 0 }}
+            className="absolute left-2 top-2 h-[calc(100%-0.5rem)] w-px bg-leinen"
+            aria-hidden="true"
+          />
+          {/* lens marker at the top of the axis */}
+          <motion.span
+            variants={markerPop}
+            className="absolute left-0 top-[6px] flex h-4 w-4 items-center justify-center rounded-full border border-gruen bg-sand"
+            aria-hidden="true"
+          >
+            <span className="h-[6px] w-[6px] rounded-full bg-gruen" />
+          </motion.span>
+
           <motion.p
             variants={fadeInUp}
-            className="text-gruen text-xs font-semibold uppercase tracking-widest mb-5"
+            className="text-gruen text-xs font-semibold uppercase tracking-[0.22em] mb-7"
           >
-            Web & Software · Schweiz
+            Web &amp; Software · Schweiz
           </motion.p>
+
           <motion.h1
             variants={fadeInUp}
-            className="font-jakarta font-bold text-[clamp(36px,5vw,56px)] leading-[1.05] tracking-tight text-wald mb-6"
+            className="font-jakarta font-bold text-[clamp(38px,7vw,68px)] leading-[1.02] tracking-[-0.03em] text-wald mb-8 max-w-3xl"
           >
             Wir bringen lokale Unternehmen ins digitale Zeitalter.
           </motion.h1>
+
           <motion.p
             variants={fadeInUp}
             className="text-erde text-lg leading-relaxed mb-10 max-w-xl"
@@ -92,6 +113,7 @@ export default function Hero() {
             Massgeschneiderte Websites und Softwarelösungen für KMUs –
             entwickelt mit Sorgfalt, erklärt in einfacher Sprache.
           </motion.p>
+
           <motion.div variants={fadeInUp} className="flex flex-wrap gap-3">
             <Link href="/leistungen" className="btn-primary">
               Leistungen entdecken
@@ -102,43 +124,37 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Illustration */}
-        <motion.div
+        {/* Credential index strip */}
+        <motion.dl
           variants={fadeInUp}
-          className="flex items-center justify-center"
+          className="mt-20 flex flex-wrap items-end gap-x-12 gap-y-6 border-t border-leinen pt-7"
         >
-          <PulseIllustration />
-        </motion.div>
+          {CREDENTIALS.map((item) => (
+            <div key={item.label}>
+              <dt className="text-[11px] uppercase tracking-[0.18em] text-erde/50 mb-1">
+                {item.label}
+              </dt>
+              <dd className="font-jakarta font-bold text-wald text-lg leading-none">
+                {item.value}
+              </dd>
+            </div>
+          ))}
+          <a
+            href="#anwendungsfaelle"
+            aria-label="Nach unten scrollen"
+            className="group ml-auto hidden items-center gap-2 self-center text-erde/50 transition-colors hover:text-gruen sm:flex"
+          >
+            <span className="text-[11px] uppercase tracking-[0.18em]">Scroll</span>
+            <motion.span
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+              aria-hidden="true"
+            >
+              ↓
+            </motion.span>
+          </a>
+        </motion.dl>
       </motion.div>
-
-      {/* Scroll-down indicator */}
-      <motion.a
-        href="#anwendungsfaelle"
-        aria-label="Nach unten scrollen"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-erde/50 hover:text-gruen transition-colors"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-      >
-        <span className="text-[10px] uppercase tracking-widest font-semibold">
-          Scroll
-        </span>
-        <motion.svg
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <polyline points="6 9 12 15 18 9" />
-        </motion.svg>
-      </motion.a>
     </section>
   )
 }
