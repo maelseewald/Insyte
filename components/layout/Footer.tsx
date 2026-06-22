@@ -35,7 +35,7 @@ export default function Footer() {
             href="/projekte"
             className="text-sand/50 text-xs hover:text-sand/80 transition-colors"
           >
-            Portfolio
+            Projekte
           </Link>
           <a
             href="/impressum"
