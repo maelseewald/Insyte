@@ -9,10 +9,14 @@ html {
 @layer components {
   .btn-primary {
     @apply bg-gruen text-white font-bold font-jakarta rounded-lg px-5 py-2.5 text-sm
-           hover:brightness-110 transition-all duration-200 inline-block;
+           hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]
+           transition-all duration-200 inline-block
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gruen focus-visible:ring-offset-2 focus-visible:ring-offset-sand;
   }
   .btn-secondary {
     @apply bg-wald text-sand font-semibold font-jakarta rounded-lg px-5 py-2.5 text-sm
-           hover:brightness-125 transition-all duration-200 inline-block;
+           hover:brightness-125 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]
+           transition-all duration-200 inline-block
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wald focus-visible:ring-offset-2 focus-visible:ring-offset-sand;
   }
 }

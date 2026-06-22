@@ -30,13 +30,14 @@ export default function Navbar() {
     >
       <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
+        <Link href="/" className="group flex items-center gap-2 shrink-0">
           <svg
             width="22"
             height="22"
             viewBox="0 0 22 22"
             fill="none"
             aria-hidden="true"
+            className="transition-transform duration-500 ease-out group-hover:rotate-180"
           >
             <circle cx="11" cy="11" r="9.5" stroke="#2E7D4F" strokeWidth="2.2" />
             <circle cx="11" cy="11" r="3.5" fill="#2E7D4F" />
@@ -55,9 +56,10 @@ export default function Navbar() {
             <a
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-erde hover:text-gruen transition-colors duration-200"
+              className="group relative text-sm font-medium text-erde hover:text-gruen transition-colors duration-200"
             >
               {item.label}
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gruen transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </nav>

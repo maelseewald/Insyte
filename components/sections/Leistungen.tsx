@@ -100,9 +100,11 @@ export default function Leistungen() {
             <motion.div
               key={service.title}
               variants={fadeInUp}
-              className="bg-white border border-leinen rounded-xl p-7 hover:border-gruen/30 transition-colors duration-200"
+              whileHover={{ y: -6 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+              className="group bg-white border border-leinen rounded-xl p-7 hover:border-gruen/30 hover:shadow-[0_12px_32px_-12px_rgba(46,125,79,0.18)] transition-[border-color,box-shadow] duration-200"
             >
-              <div className="w-12 h-12 rounded-xl bg-salbei flex items-center justify-center mb-5">
+              <div className="w-12 h-12 rounded-xl bg-salbei flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
                 {service.icon}
               </div>
               <h3 className="font-jakarta font-bold text-xl text-wald mb-3">

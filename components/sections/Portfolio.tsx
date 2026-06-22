@@ -59,15 +59,19 @@ export default function Portfolio() {
             <motion.div
               key={project.title}
               variants={fadeInUp}
-              className="bg-white border border-leinen rounded-xl overflow-hidden hover:border-gruen/30 transition-colors duration-200"
+              whileHover={{ y: -6 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+              className="group bg-white border border-leinen rounded-xl overflow-hidden hover:border-gruen/30 hover:shadow-[0_12px_32px_-12px_rgba(26,38,22,0.22)] transition-[border-color,box-shadow] duration-200"
             >
               {/* Placeholder thumb */}
-              <div
-                className={`h-44 bg-gradient-to-br ${project.thumbClass} flex items-center justify-center`}
-              >
-                <span className="text-white/50 text-xs font-semibold tracking-widest font-jakarta">
-                  {project.thumbLabel}
-                </span>
+              <div className="h-44 overflow-hidden">
+                <div
+                  className={`h-full w-full bg-gradient-to-br ${project.thumbClass} flex items-center justify-center transition-transform duration-500 ease-out group-hover:scale-105`}
+                >
+                  <span className="text-white/50 text-xs font-semibold tracking-widest font-jakarta">
+                    {project.thumbLabel}
+                  </span>
+                </div>
               </div>
               <div className="p-5">
                 <h3 className="font-jakarta font-bold text-[15px] text-wald mb-3 leading-snug">
@@ -88,11 +92,13 @@ export default function Portfolio() {
           ))}
         </div>
 
-        <motion.p
-          variants={fadeInUp}
-          className="mt-8 text-leinen text-sm"
-        >
-          Alle Projekte →
+        <motion.p variants={fadeInUp} className="mt-8">
+          <span className="group inline-flex items-center gap-1.5 text-leinen text-sm cursor-default">
+            Alle Projekte
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </span>
         </motion.p>
       </motion.div>
     </section>
