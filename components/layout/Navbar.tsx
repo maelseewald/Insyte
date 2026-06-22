@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const NAV_ITEMS = [
-  { label: 'Leistungen', href: '#leistungen' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Über mich', href: '#ueber-mich' },
-  { label: 'Kontakt', href: '#kontakt' },
+  { label: 'Leistungen', href: '/leistungen' },
+  { label: 'Portfolio', href: '/#portfolio' },
+  { label: 'Über mich', href: '/#ueber-mich' },
+  { label: 'Kontakt', href: '/#kontakt' },
 ]
 
 export default function Navbar() {
@@ -53,21 +53,21 @@ export default function Navbar() {
           aria-label="Hauptnavigation"
         >
           {NAV_ITEMS.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="group relative text-sm font-medium text-erde hover:text-gruen transition-colors duration-200"
             >
               {item.label}
               <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gruen transition-all duration-300 group-hover:w-full" />
-            </a>
+            </Link>
           ))}
         </nav>
 
         {/* Desktop CTA */}
-        <a href="#kontakt" className="hidden md:inline-block btn-primary">
+        <Link href="/#kontakt" className="hidden md:inline-block btn-primary">
           Projekt starten
-        </a>
+        </Link>
 
         {/* Mobile hamburger */}
         <button
@@ -115,22 +115,22 @@ export default function Navbar() {
           aria-label="Mobile Navigation"
         >
           {NAV_ITEMS.map((item) => (
-            <a
+            <Link
               key={item.href}
               href={item.href}
               className="text-sm font-medium text-erde py-1 hover:text-gruen transition-colors"
               onClick={() => setMenuOpen(false)}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#kontakt"
+          <Link
+            href="/#kontakt"
             className="btn-primary text-center mt-2"
             onClick={() => setMenuOpen(false)}
           >
             Projekt starten
-          </a>
+          </Link>
         </nav>
       )}
     </header>

@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 
@@ -92,9 +93,9 @@ export default function Hero() {
             entwickelt mit Sorgfalt, erklärt in einfacher Sprache.
           </motion.p>
           <motion.div variants={fadeInUp} className="flex flex-wrap gap-3">
-            <a href="#leistungen" className="btn-primary">
+            <Link href="/leistungen" className="btn-primary">
               Leistungen entdecken
-            </a>
+            </Link>
             <a href="#kontakt" className="btn-secondary">
               Kontakt aufnehmen
             </a>
@@ -112,7 +113,7 @@ export default function Hero() {
 
       {/* Scroll-down indicator */}
       <motion.a
-        href="#leistungen"
+        href="#anwendungsfaelle"
         aria-label="Nach unten scrollen"
         className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-erde/50 hover:text-gruen transition-colors"
         initial={{ opacity: 0 }}
