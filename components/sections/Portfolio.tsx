@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 
@@ -97,12 +98,17 @@ export default function Portfolio() {
           ))}
         </ol>
 
-        <motion.p
-          variants={fadeInUp}
-          className="mt-10 text-sm text-erde/50"
-        >
-          Weitere Projekte auf Anfrage.
-        </motion.p>
+        <motion.div variants={fadeInUp} className="mt-10">
+          <Link
+            href="/projekte"
+            className="group inline-flex items-center gap-2 font-jakarta font-bold text-wald hover:text-gruen transition-colors"
+          >
+            Alle Projekte ansehen
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+        </motion.div>
       </motion.div>
     </section>
   )

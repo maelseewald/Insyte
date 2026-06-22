@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const NAV_ITEMS = [
   { label: 'Leistungen', href: '/leistungen' },
-  { label: 'Portfolio', href: '/#portfolio' },
+  { label: 'Portfolio', href: '/projekte' },
   { label: 'Über mich', href: '/#ueber-mich' },
   { label: 'Kontakt', href: '/#kontakt' },
 ]
