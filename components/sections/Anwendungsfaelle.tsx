@@ -96,7 +96,7 @@ export default function Anwendungsfaelle() {
           variants={fadeInUp}
           className="font-jakarta font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald mb-16 max-w-2xl"
         >
-          Wann ich helfen kann
+          Wann wir helfen können
         </motion.h2>
 
         <div className="grid md:grid-cols-3 border-y border-leinen divide-y md:divide-y-0 md:divide-x divide-leinen">

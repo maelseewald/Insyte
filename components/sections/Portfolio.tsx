@@ -31,13 +31,13 @@ export default function Portfolio() {
               variants={fadeInUp}
               className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-4"
             >
-              Eigene Projekte
+              Unsere Projekte
             </motion.p>
             <motion.h2
               variants={fadeInUp}
               className="font-jakarta font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald"
             >
-              Was ich bisher gebaut habe
+              Was wir gebaut haben
             </motion.h2>
           </div>
           <motion.span

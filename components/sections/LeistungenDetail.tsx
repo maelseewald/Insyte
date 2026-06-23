@@ -15,7 +15,7 @@ const SERVICES = [
       'Individuelles Design passend zu deiner Marke',
       'Optimiert für Mobilgeräte und Suchmaschinen (SEO)',
       'Schnelle Ladezeiten dank moderner Technologie',
-      'Einfache Pflege – oder ich übernehme sie',
+      'Einfache Pflege – oder wir übernehmen sie',
     ],
     icon: (
       <svg
@@ -66,12 +66,12 @@ const SERVICES = [
     id: 'wartung',
     title: 'Wartung & Support',
     description:
-      'Deine Website oder App läuft – aber wer kümmert sich um Updates, Backups und Sicherheit? Ich übernehme das.',
+      'Deine Website oder App läuft – aber wer kümmert sich um Updates, Backups und Sicherheit? Wir übernehmen das.',
     features: [
       'Regelmässige Updates und Sicherheitschecks',
       'Automatische Backups und Monitoring',
       'Schnelle Hilfe bei Problemen und Ausfällen',
-      'Fester Ansprechpartner – ich kenne dein Projekt',
+      'Fester Ansprechpartner – wir kennen dein Projekt',
     ],
     icon: (
       <svg
@@ -125,7 +125,7 @@ export default function LeistungenDetail() {
             transition={{ duration: 0.5 }}
             className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-5"
           >
-            Was ich anbiete
+            Was wir anbieten
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -141,8 +141,9 @@ export default function LeistungenDetail() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-erde text-lg leading-relaxed max-w-xl"
           >
-            Ich arbeite direkt mit dir – vom ersten Gespräch bis zur fertigen
-            Lösung. Kein Ticketsystem, kein Callcenter, eine Ansprechperson.
+            Wir arbeiten direkt mit dir – vom ersten Gespräch bis zur fertigen
+            Lösung. Kein Ticketsystem, kein Callcenter, eine feste
+            Ansprechperson.
           </motion.p>
         </div>
       </section>
@@ -200,7 +201,7 @@ export default function LeistungenDetail() {
             Klingt nach dem, was du suchst?
           </h2>
           <p className="text-sand/70 text-base mb-9">
-            Erzähl mir von deinem Vorhaben – ich melde mich innerhalb von 24
+            Erzähl uns von deinem Vorhaben – wir melden uns innerhalb von 24
             Stunden.
           </p>
           <Link href="/kontakt" className="btn-primary">

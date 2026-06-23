@@ -36,9 +36,9 @@ export default function KontaktPage() {
               Lass uns über dein Projekt reden.
             </h1>
             <p className="text-erde text-lg leading-relaxed max-w-xl">
-              Schreib mir – ich melde mich innerhalb von 24 Stunden. Kein
+              Schreib uns – wir melden uns innerhalb von 24 Stunden. Kein
               Verkaufsgespräch, kein Druck. Nur ein ehrliches Gespräch darüber,
-              ob und wie ich helfen kann.
+              ob und wie wir helfen können.
             </p>
           </div>
         </section>

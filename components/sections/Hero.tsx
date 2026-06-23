@@ -10,7 +10,7 @@ const reveal = (delay: number) => ({
   transition: { duration: 0.5, ease: 'easeOut' as const, delay },
 })
 
-const STATS = ['2 Projekte', '24h Antwortzeit', '1 Ansprechpartner']
+const STATS = ['2 Projekte', '24h Antwortzeit', 'Aus Zürich']
 
 export default function Hero() {
   return (
@@ -23,22 +23,22 @@ export default function Hero() {
           {...reveal(0.05)}
           className="text-gruen text-xs font-semibold uppercase tracking-[0.24em] mb-7"
         >
-          Entwickler aus Zürich
+          Web &amp; Software · Zürich
         </motion.p>
 
         <motion.h1
           {...reveal(0.12)}
           className="font-jakarta font-bold text-[clamp(38px,7vw,68px)] leading-[1.04] tracking-[-0.03em] text-wald text-balance mb-8"
         >
-          Ich baue Websites und Software – für eigene Ideen und dein Unternehmen.
+          Wir bauen Websites und Software – für eigene Ideen und dein Unternehmen.
         </motion.h1>
 
         <motion.p
           {...reveal(0.22)}
           className="mx-auto max-w-xl text-erde text-lg leading-relaxed mb-10"
         >
-          Lernender Informatiker bei Adnovum, aktiv an eigenen Projekten – und
-          offen für Aufträge, bei denen ich wirklich helfen kann.
+          Ein junges Digitalstudio aus Zürich. Wir entwickeln eigene Produkte –
+          und helfen Unternehmen, ihre Ideen digital umzusetzen.
         </motion.p>
 
         <motion.div
@@ -46,7 +46,7 @@ export default function Hero() {
           className="flex flex-wrap justify-center gap-3"
         >
           <Link href="/projekte" className="btn-primary">
-            Meine Projekte
+            Unsere Projekte
           </Link>
           <Link href="/kontakt" className="btn-secondary">
             Kontakt aufnehmen

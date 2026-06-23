@@ -25,7 +25,7 @@ export default function ProjektZeitstrahl() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-jakarta font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl"
           >
-            Was ich bisher gebaut habe.
+            Was wir bisher gebaut haben.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -33,8 +33,8 @@ export default function ProjektZeitstrahl() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-erde text-lg leading-relaxed max-w-xl"
           >
-            Eigene Ideen, Lehrprojekte und erste Aufträge – hier siehst du,
-            womit ich mich beschäftige.
+            Eigene Produkte und erste Aufträge – hier siehst du, woran wir
+            arbeiten.
           </motion.p>
         </div>
       </section>
@@ -53,7 +53,7 @@ export default function ProjektZeitstrahl() {
             Dein Projekt als Nächstes?
           </h2>
           <p className="text-sand/70 text-base mb-9">
-            Ich bin offen für Aufträge – schreib mir und wir schauen gemeinsam,
+            Wir sind offen für Aufträge – schreib uns und wir schauen gemeinsam,
             was möglich ist.
           </p>
           <Link href="/kontakt" className="btn-primary">

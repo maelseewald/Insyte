@@ -53,7 +53,7 @@ const CONTACTS = [
   },
   {
     label: 'Ansprechpartner',
-    value: 'Direkt mit mir – kein Callcenter',
+    value: 'Persönlich – kein Callcenter',
     icon: (
       <svg
         width="18"
@@ -166,7 +166,7 @@ export default function Kontakt() {
                 Danke!
               </p>
               <p>
-                Deine Nachricht ist angekommen! Ich melde mich innerhalb von 24
+                Deine Nachricht ist angekommen! Wir melden uns innerhalb von 24
                 Stunden.
               </p>
             </motion.div>
@@ -242,7 +242,7 @@ export default function Kontakt() {
               {state === 'error' && (
                 <p className="text-red-400 text-sm" role="alert">
                   {errorMsg ||
-                    'Etwas hat nicht geklappt – schreib mir direkt an info@insyte.ch'}
+                    'Etwas hat nicht geklappt – schreib uns direkt an info@insyte.ch'}
                 </p>
               )}
 

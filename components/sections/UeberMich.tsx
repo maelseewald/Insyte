@@ -48,16 +48,16 @@ export default function UeberMich() {
             variants={fadeInUp}
             className="font-jakarta font-bold text-[clamp(22px,2.8vw,30px)] leading-snug tracking-tight text-wald mb-5 max-w-xl"
           >
-            Kein anonymer Anbieter – ich bin Mael, Lernender Informatiker aus
-            Zürich. Ich höre zu, denke mit und erkläre Technik in einfacher
-            Sprache.
+            Kein anonymer Anbieter – bei Insyte arbeitest du direkt mit den
+            Menschen, die dein Projekt bauen. Wir hören zu, denken mit und
+            erklären Technik in einfacher Sprache.
           </motion.p>
           <motion.div variants={fadeInUp}>
             <Link
               href="/team"
               className="group inline-flex items-center gap-2 font-jakarta font-bold text-wald hover:text-gruen transition-colors"
             >
-              Mehr über mich
+              Unser Team
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>
