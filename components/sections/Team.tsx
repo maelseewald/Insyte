@@ -137,10 +137,11 @@ export default function Team() {
               variants={fadeInUp}
               className="text-erde text-base leading-relaxed mb-8 max-w-md"
             >
-              Ich bin Entwickler mit Leidenschaft für sauberen Code und
-              durchdachtes Design. Mein Fokus liegt auf lokalen KMUs, die einen
-              verlässlichen digitalen Partner suchen – jemanden, der zuhört,
-              mitdenkt und die Technik in einfacher Sprache erklärt.
+              Ich bin Mael, Lernender Informatiker mit Fachrichtung
+              Applikationsentwicklung – aktuell bei Adnovum. Mit viel Neugier
+              sammle ich Erfahrung und Wissen und stecke meine Energie in
+              sauberen Code und durchdachte Lösungen. Und wenn ich nicht am Code
+              sitze, findet man mich auf dem Fussballplatz.
             </motion.p>
 
             <motion.dl
