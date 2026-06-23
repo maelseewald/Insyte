@@ -28,18 +28,7 @@ const ALL: Project[] = [
     description:
       'Web-App rund um Panini-Sammelbilder – behalte den Überblick über deine Sammlung, fehlende Bilder und Doppelte.',
     liveUrl: 'https://paninicheck.insyte.ch/login',
-  },
-  {
-    id: 'portfolio',
-    name: 'Persönliches Portfolio',
-    type: 'Portfolio-Website',
-    category: 'Website',
-    year: '2025',
-    date: '2025-03',
-    tags: ['Website', 'Design'],
-    description:
-      'Meine persönliche Portfolio-Website – ein Überblick über mich und meine Arbeit.',
-    liveUrl: 'https://mael.5eewald.ch',
+    repoUrl: 'https://github.com/maelseewald/paninicheck',
   },
 ]
 
