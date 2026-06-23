@@ -7,9 +7,10 @@ import { fadeInUp, staggerContainer } from '@/lib/motion'
 
 const CASES = [
   {
-    problem: 'Deine Website ist veraltet.',
-    description: 'Ein Auftritt von gestern schreckt Kunden ab.',
-    leistung: 'Websites',
+    problem: 'Dein Webauftritt ist veraltet.',
+    description:
+      'Ein alter Auftritt wirkt unprofessionell und kostet dich potenzielle Kunden.',
+    leistung: 'Website',
     href: '/leistungen#websites',
     icon: (
       <svg
@@ -29,9 +30,10 @@ const CASES = [
     ),
   },
   {
-    problem: 'Zu viel läuft von Hand.',
-    description: 'Wiederkehrende Aufgaben kosten dich täglich Stunden.',
-    leistung: 'Software & Apps',
+    problem: 'Du erledigst zu viel von Hand.',
+    description:
+      'Wiederkehrende Aufgaben lassen sich mit den richtigen Tools automatisieren.',
+    leistung: 'Web-App / Software',
     href: '/leistungen#software',
     icon: (
       <svg
@@ -51,8 +53,9 @@ const CASES = [
     ),
   },
   {
-    problem: 'Niemand kümmert sich um Updates.',
-    description: 'Sicherheitslücken und Ausfälle bleiben unbemerkt.',
+    problem: 'Niemand kümmert sich um Updates und Sicherheit.',
+    description:
+      'Veraltete Software und fehlende Backups sind ein unnötiges Risiko.',
     leistung: 'Wartung & Support',
     href: '/leistungen#wartung',
     icon: (
@@ -93,7 +96,7 @@ export default function Anwendungsfaelle() {
           variants={fadeInUp}
           className="font-jakarta font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald mb-16 max-w-2xl"
         >
-          Wann du uns brauchst
+          Wann ich helfen kann
         </motion.h2>
 
         <div className="grid md:grid-cols-3 border-y border-leinen divide-y md:divide-y-0 md:divide-x divide-leinen">

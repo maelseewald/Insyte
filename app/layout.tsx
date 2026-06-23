@@ -17,14 +17,14 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Insyte – Digitale Lösungen. Lokale Wirkung.',
+  title: 'Insyte – Web & Software von Mael Seewald',
   description:
-    'Massgeschneiderte Websites und Softwarelösungen für KMUs in der Schweiz – entwickelt mit Sorgfalt, erklärt in einfacher Sprache.',
+    'Ich baue Websites, Web-Apps und digitale Lösungen – eigene Projekte und auf Anfrage auch für dein Unternehmen. Aus Zürich.',
   metadataBase: new URL('https://insyte.ch'),
   openGraph: {
-    title: 'Insyte – Web & Software für KMUs in der Schweiz',
+    title: 'Insyte – Web & Software von Mael Seewald',
     description:
-      'Massgeschneiderte Websites und Softwarelösungen für KMUs – entwickelt mit Sorgfalt, erklärt in einfacher Sprache.',
+      'Websites, Web-Apps und Software – eigene Projekte und offen für Aufträge. Zürich.',
     url: 'https://insyte.ch',
     siteName: 'Insyte',
     locale: 'de_CH',

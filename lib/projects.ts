@@ -24,11 +24,23 @@ const ALL: Project[] = [
     category: 'Software',
     year: '2025',
     date: '2025-06',
-    tags: ['Next.js', 'Web-App'],
+    tags: ['Next.js', 'Web-App', 'TypeScript'],
     description:
-      'Web-App rund um Panini-Sammelbilder – behalte den Überblick über deine Sammlung, fehlende Bilder und Doppelte.',
+      'Web-App rund um Panini-Sammelbilder – damit behältst du den Überblick über deine Sammlung und siehst, welche Bilder dir noch fehlen.',
     liveUrl: 'https://paninicheck.insyte.ch/login',
     repoUrl: 'https://github.com/maelseewald/paninicheck',
+  },
+  {
+    id: 'portfolio',
+    name: 'Persönliches Portfolio',
+    type: 'Portfolio-Website',
+    category: 'Website',
+    year: '2025',
+    date: '2025-03',
+    tags: ['Website', 'Design'],
+    description:
+      'Meine persönliche Portfolio-Website – ein Überblick über mich, meine Projekte und meinen Weg als Entwickler.',
+    liveUrl: 'https://mael.5eewald.ch',
   },
 ]
 

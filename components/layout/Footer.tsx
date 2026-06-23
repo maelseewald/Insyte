@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 export default function Footer() {
   return (
     <footer className="bg-wald border-t border-white/5 px-6 py-10">
@@ -22,7 +20,7 @@ export default function Footer() {
             </span>
           </div>
           <p className="text-sand/50 text-xs">
-            Digitale Lösungen. Lokale Wirkung.
+            Code. Projekte. Lösungen.
           </p>
         </div>
 
@@ -31,12 +29,6 @@ export default function Footer() {
           className="flex items-center gap-5"
           aria-label="Footer Navigation"
         >
-          <Link
-            href="/projekte"
-            className="text-sand/50 text-xs hover:text-sand/80 transition-colors"
-          >
-            Projekte
-          </Link>
           <a
             href="/impressum"
             className="text-sand/50 text-xs hover:text-sand/80 transition-colors"
@@ -88,7 +80,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-sand/40 text-xs">
-          © 2025 Insyte – Alle Rechte vorbehalten
+          © 2026 Insyte – Mael Seewald. Alle Rechte vorbehalten.
         </p>
       </div>
     </footer>

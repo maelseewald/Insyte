@@ -22,10 +22,11 @@ export default function Home() {
         <section className="bg-wald py-24 px-6">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-jakarta font-bold text-[clamp(30px,4vw,46px)] leading-tight tracking-tight text-white mb-5">
-              Bereit, dein Projekt zu starten?
+              Hast du ein Projekt im Kopf?
             </h2>
             <p className="text-sand/70 text-base mb-9">
-              Schreib mir – ich melde mich innerhalb von 24 Stunden.
+              Schreib mir – ich schaue es mir an und melde mich innerhalb von 24
+              Stunden.
             </p>
             <Link href="/kontakt" className="btn-primary">
               Projekt starten

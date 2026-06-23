@@ -20,12 +20,15 @@ export default function Impressum() {
           Impressum
         </h1>
         <div className="text-erde text-base leading-relaxed space-y-4">
+          <p>Verantwortlich für den Inhalt dieser Website:</p>
           <p>
-            <strong>Insyte</strong>
+            <strong>Mael Seewald</strong>
             <br />
-            [Strasse und Hausnummer]
+            Segantinistrasse 200
             <br />
-            [PLZ Ort], Schweiz
+            8049 Zürich
+            <br />
+            Schweiz
           </p>
           <p>
             E-Mail:{' '}
@@ -34,7 +37,8 @@ export default function Impressum() {
             </a>
           </p>
           <p className="text-sm text-erde/60">
-            [Weitere Angaben gemäss Schweizer Recht]
+            Diese Website ist ein privates Angebot von Mael Seewald. Es besteht
+            kein Handelsregistereintrag.
           </p>
         </div>
       </div>

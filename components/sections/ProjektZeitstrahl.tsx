@@ -17,7 +17,7 @@ export default function ProjektZeitstrahl() {
             transition={{ duration: 0.5 }}
             className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-5"
           >
-            Projekte · Insyte
+            Projekte
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -33,8 +33,8 @@ export default function ProjektZeitstrahl() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-erde text-lg leading-relaxed max-w-xl"
           >
-            Scroll dich durch die Zeitachse – links die Projekte, rechts die
-            Details zu jedem einzelnen.
+            Eigene Ideen, Lehrprojekte und erste Aufträge – hier siehst du,
+            womit ich mich beschäftige.
           </motion.p>
         </div>
       </section>
@@ -53,8 +53,8 @@ export default function ProjektZeitstrahl() {
             Dein Projekt als Nächstes?
           </h2>
           <p className="text-sand/70 text-base mb-9">
-            Erzähl mir von deinem Vorhaben – ich melde mich innerhalb von 24
-            Stunden.
+            Ich bin offen für Aufträge – schreib mir und wir schauen gemeinsam,
+            was möglich ist.
           </p>
           <Link href="/kontakt" className="btn-primary">
             Projekt starten

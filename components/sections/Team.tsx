@@ -7,7 +7,7 @@ import { motion, useInView } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
 
 const STATS = [
-  { value: '10+', label: 'Projekte' },
+  { value: '2', label: 'Projekte' },
   { value: '24h', label: 'Antwortzeit' },
   { value: '1', label: 'Ansprechpartner' },
 ]
@@ -68,7 +68,7 @@ export default function Team() {
             transition={{ duration: 0.5 }}
             className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-5"
           >
-            Team · Insyte
+            Hinter Insyte
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -84,8 +84,8 @@ export default function Team() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-erde text-lg leading-relaxed max-w-xl"
           >
-            Kein Callcenter, keine Weiterleitungen, keine anonymen Tickets. Bei
-            Insyte arbeitest du direkt mit der Person, die dein Projekt baut.
+            Kein Callcenter, keine Weiterleitungen. Du arbeitest direkt mit mir
+            – der Person, die dein Projekt baut.
           </motion.p>
         </div>
       </section>
@@ -125,7 +125,7 @@ export default function Team() {
               variants={fadeInUp}
               className="inline-block rounded-full bg-salbei px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gruen mb-5"
             >
-              Gründer &amp; Entwickler
+              Lernender Informatiker &amp; Entwickler
             </motion.span>
             <motion.h2
               variants={fadeInUp}
@@ -137,11 +137,11 @@ export default function Team() {
               variants={fadeInUp}
               className="text-erde text-base leading-relaxed mb-8 max-w-md"
             >
-              Ich bin Mael, Lernender Informatiker mit Fachrichtung
-              Applikationsentwicklung – aktuell bei Adnovum. Mit viel Neugier
-              sammle ich Erfahrung und Wissen und stecke meine Energie in
-              sauberen Code und durchdachte Lösungen. Und wenn ich nicht am Code
-              sitze, findet man mich auf dem Fussballplatz.
+              Ich bin Mael, Lernender Informatiker bei Adnovum in Zürich. Neben
+              der Ausbildung baue ich eigene Projekte und helfe Unternehmen und
+              Privatpersonen dabei, ihre Ideen digital umzusetzen. Ich mag
+              sauberen Code, durchdachtes Design – und erkläre Technik gerne in
+              einfacher Sprache.
             </motion.p>
 
             <motion.dl
@@ -196,12 +196,9 @@ export default function Team() {
       {/* CTA */}
       <section className="bg-wald py-24 px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-jakarta font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-white mb-5">
-            Lern mich kennen.
+          <h2 className="font-jakarta font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-white mb-9">
+            Schreib mir direkt.
           </h2>
-          <p className="text-sand/70 text-base mb-9">
-            Schreib mir – ich melde mich innerhalb von 24 Stunden.
-          </p>
           <Link href="/kontakt" className="btn-primary">
             Projekt starten
           </Link>

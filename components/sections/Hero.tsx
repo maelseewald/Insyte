@@ -10,7 +10,7 @@ const reveal = (delay: number) => ({
   transition: { duration: 0.5, ease: 'easeOut' as const, delay },
 })
 
-const STATS = ['10+ Projekte', 'Schweizweit', '1 Ansprechpartner']
+const STATS = ['2 Projekte', '24h Antwortzeit', '1 Ansprechpartner']
 
 export default function Hero() {
   return (
@@ -23,30 +23,30 @@ export default function Hero() {
           {...reveal(0.05)}
           className="text-gruen text-xs font-semibold uppercase tracking-[0.24em] mb-7"
         >
-          Web &amp; Software · Schweiz
+          Entwickler aus Zürich
         </motion.p>
 
         <motion.h1
           {...reveal(0.12)}
           className="font-jakarta font-bold text-[clamp(38px,7vw,68px)] leading-[1.04] tracking-[-0.03em] text-wald text-balance mb-8"
         >
-          Wir bringen lokale Unternehmen ins digitale Zeitalter.
+          Ich baue Websites und Software – für eigene Ideen und dein Unternehmen.
         </motion.h1>
 
         <motion.p
           {...reveal(0.22)}
           className="mx-auto max-w-xl text-erde text-lg leading-relaxed mb-10"
         >
-          Massgeschneiderte Websites und Softwarelösungen für KMUs – entwickelt
-          mit Sorgfalt, erklärt in einfacher Sprache.
+          Lernender Informatiker bei Adnovum, aktiv an eigenen Projekten – und
+          offen für Aufträge, bei denen ich wirklich helfen kann.
         </motion.p>
 
         <motion.div
           {...reveal(0.32)}
           className="flex flex-wrap justify-center gap-3"
         >
-          <Link href="/leistungen" className="btn-primary">
-            Leistungen entdecken
+          <Link href="/projekte" className="btn-primary">
+            Meine Projekte
           </Link>
           <Link href="/kontakt" className="btn-secondary">
             Kontakt aufnehmen

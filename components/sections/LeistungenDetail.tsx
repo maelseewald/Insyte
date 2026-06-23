@@ -8,13 +8,13 @@ import { fadeInUp, staggerContainer } from '@/lib/motion'
 const SERVICES = [
   {
     id: 'websites',
-    title: 'Websites',
+    title: 'Websites & Landingpages',
     description:
-      'Professionelle, schnelle Webauftritte für lokale Unternehmen – von der Landingpage bis zur Unternehmenswebsite.',
+      'Professionelle Webauftritte, die auf allen Geräten gut aussehen und bei Google gefunden werden.',
     features: [
-      'Individuelles Design, passend zu deiner Marke',
-      'Optimiert für Google (SEO) und Mobilgeräte',
-      'Schnelle Ladezeiten dank moderner Technik',
+      'Individuelles Design passend zu deiner Marke',
+      'Optimiert für Mobilgeräte und Suchmaschinen (SEO)',
+      'Schnelle Ladezeiten dank moderner Technologie',
       'Einfache Pflege – oder ich übernehme sie',
     ],
     icon: (
@@ -36,14 +36,14 @@ const SERVICES = [
   },
   {
     id: 'software',
-    title: 'Software & Apps',
+    title: 'Web-Apps & Software',
     description:
-      'Individuelle Webanwendungen und Tools, die deinen Geschäftsprozess automatisieren – keine Standardlösung von der Stange.',
+      'Individuelle Tools und Webanwendungen, die deinen Alltag vereinfachen – statt Standardsoftware, die nur halb passt.',
     features: [
       'Analyse deiner Abläufe und Anforderungen',
-      'Massgeschneiderte Web-Tools statt Standardsoftware',
+      'Massgeschneiderte Lösung statt One-size-fits-all',
       'Automatisierung wiederkehrender Aufgaben',
-      'Anbindung an deine bestehenden Systeme',
+      'Anbindung an bestehende Systeme wenn nötig',
     ],
     icon: (
       <svg
@@ -66,12 +66,12 @@ const SERVICES = [
     id: 'wartung',
     title: 'Wartung & Support',
     description:
-      'Monatliche Betreuung deiner digitalen Infrastruktur – damit du dich auf dein Kerngeschäft konzentrieren kannst.',
+      'Deine Website oder App läuft – aber wer kümmert sich um Updates, Backups und Sicherheit? Ich übernehme das.',
     features: [
       'Regelmässige Updates und Sicherheitschecks',
-      'Backups und laufendes Monitoring',
-      'Schnelle Hilfe bei Problemen',
-      'Fester Ansprechpartner – kein Ticketsystem',
+      'Automatische Backups und Monitoring',
+      'Schnelle Hilfe bei Problemen und Ausfällen',
+      'Fester Ansprechpartner – ich kenne dein Projekt',
     ],
     icon: (
       <svg
@@ -125,7 +125,7 @@ export default function LeistungenDetail() {
             transition={{ duration: 0.5 }}
             className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-5"
           >
-            Leistungen · Insyte
+            Was ich anbiete
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -133,7 +133,7 @@ export default function LeistungenDetail() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-jakarta font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl"
           >
-            Drei Wege, dein Geschäft digital weiterzubringen.
+            Websites, Software und Betreuung – aus einer Hand.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -141,8 +141,8 @@ export default function LeistungenDetail() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-erde text-lg leading-relaxed max-w-xl"
           >
-            Ein Ansprechpartner, vom ersten Konzept bis zur laufenden Betreuung.
-            Alles aus einer Hand, erklärt in einfacher Sprache.
+            Ich arbeite direkt mit dir – vom ersten Gespräch bis zur fertigen
+            Lösung. Kein Ticketsystem, kein Callcenter, eine Ansprechperson.
           </motion.p>
         </div>
       </section>

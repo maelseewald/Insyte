@@ -5,14 +5,14 @@ import Footer from '@/components/layout/Footer'
 import Team from '@/components/sections/Team'
 
 export const metadata: Metadata = {
-  title: 'Team – Insyte',
+  title: 'Über mich – Insyte',
   description:
-    'Das Team hinter Insyte: ein fester Ansprechpartner für Web- und Softwareprojekte – kein Callcenter, keine Weiterleitungen.',
+    'Mael Seewald – Lernender Informatiker aus Zürich. Ein fester Ansprechpartner für Web- und Softwareprojekte, kein Callcenter.',
   alternates: { canonical: 'https://insyte.ch/team' },
   openGraph: {
-    title: 'Team – Insyte',
+    title: 'Über mich – Insyte',
     description:
-      'Ein fester Ansprechpartner für Web- und Softwareprojekte in der Schweiz.',
+      'Mael Seewald – Lernender Informatiker aus Zürich, Web & Software.',
     url: 'https://insyte.ch/team',
     siteName: 'Insyte',
     locale: 'de_CH',

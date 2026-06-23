@@ -165,7 +165,10 @@ export default function Kontakt() {
               <p className="font-jakarta font-bold text-2xl mb-2 text-white">
                 Danke!
               </p>
-              <p>Deine Nachricht ist angekommen. Ich melde mich bald.</p>
+              <p>
+                Deine Nachricht ist angekommen! Ich melde mich innerhalb von 24
+                Stunden.
+              </p>
             </motion.div>
           ) : (
             <motion.form
@@ -227,7 +230,7 @@ export default function Kontakt() {
                   id="message"
                   required
                   rows={5}
-                  placeholder="Worum geht es bei deinem Projekt?"
+                  placeholder="Worum geht es? Kurze Beschreibung reicht."
                   value={form.message}
                   onChange={(e) =>
                     setForm((f) => ({ ...f, message: e.target.value }))
@@ -239,7 +242,7 @@ export default function Kontakt() {
               {state === 'error' && (
                 <p className="text-red-400 text-sm" role="alert">
                   {errorMsg ||
-                    'Fehler beim Senden. Bitte versuche es später erneut.'}
+                    'Etwas hat nicht geklappt – schreib mir direkt an info@insyte.ch'}
                 </p>
               )}
 
