@@ -7,7 +7,7 @@ const NAV_ITEMS = [
   { label: 'Leistungen', href: '/leistungen' },
   { label: 'Projekte', href: '/projekte' },
   { label: 'Team', href: '/team' },
-  { label: 'Kontakt', href: '/#kontakt' },
+  { label: 'Kontakt', href: '/kontakt' },
 ]
 
 export default function Navbar() {
@@ -65,7 +65,7 @@ export default function Navbar() {
         </nav>
 
         {/* Desktop CTA */}
-        <Link href="/#kontakt" className="hidden md:inline-block btn-primary">
+        <Link href="/kontakt" className="hidden md:inline-block btn-primary">
           Projekt starten
         </Link>
 
@@ -125,7 +125,7 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/#kontakt"
+            href="/kontakt"
             className="btn-primary text-center mt-2"
             onClick={() => setMenuOpen(false)}
           >

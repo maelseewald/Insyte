@@ -119,22 +119,9 @@ export default function Kontakt() {
         <div>
           <motion.p
             variants={fadeInUp}
-            className="text-salbei/60 text-xs font-semibold uppercase tracking-[0.2em] mb-4"
+            className="text-salbei/60 text-xs font-semibold uppercase tracking-[0.2em] mb-6"
           >
-            Kontakt
-          </motion.p>
-          <motion.h2
-            variants={fadeInUp}
-            className="font-jakarta font-bold text-[clamp(32px,4vw,44px)] leading-tight tracking-tight text-white mb-4"
-          >
-            Projekt starten
-          </motion.h2>
-          <motion.p
-            variants={fadeInUp}
-            className="text-sand/70 text-base leading-relaxed mb-10 max-w-sm"
-          >
-            Schreib mir – ich melde mich innerhalb von 24 Stunden. Kein
-            Verkaufsgespräch, sondern ein ehrlicher Austausch über dein Vorhaben.
+            Direkt erreichbar
           </motion.p>
 
           <ul className="space-y-5">

@@ -48,9 +48,9 @@ export default function Hero() {
           <Link href="/leistungen" className="btn-primary">
             Leistungen entdecken
           </Link>
-          <a href="#kontakt" className="btn-secondary">
+          <Link href="/kontakt" className="btn-secondary">
             Kontakt aufnehmen
-          </a>
+          </Link>
         </motion.div>
 
         <motion.div

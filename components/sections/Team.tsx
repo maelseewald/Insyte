@@ -201,7 +201,7 @@ export default function Team() {
           <p className="text-sand/70 text-base mb-9">
             Schreib mir – ich melde mich innerhalb von 24 Stunden.
           </p>
-          <Link href="/#kontakt" className="btn-primary">
+          <Link href="/kontakt" className="btn-primary">
             Projekt starten
           </Link>
         </div>

@@ -203,7 +203,7 @@ export default function LeistungenDetail() {
             Erzähl mir von deinem Vorhaben – ich melde mich innerhalb von 24
             Stunden.
           </p>
-          <Link href="/#kontakt" className="btn-primary">
+          <Link href="/kontakt" className="btn-primary">
             Projekt starten
           </Link>
         </div>
