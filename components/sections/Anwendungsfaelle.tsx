@@ -107,7 +107,7 @@ export default function Anwendungsfaelle() {
             <motion.div
               key={item.leistung}
               variants={dropIn}
-              className="group flex flex-col py-10 md:py-12 md:px-10 md:first:pl-0 md:last:pr-0"
+              className="group flex flex-col origin-top py-10 md:py-12 md:px-10 md:first:pl-0 md:last:pr-0"
             >
               <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-full bg-salbei">
                 {item.icon}

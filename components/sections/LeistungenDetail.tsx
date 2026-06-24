@@ -162,7 +162,7 @@ export default function LeistungenDetail() {
               key={service.id}
               id={service.id}
               variants={dropIn}
-              className="scroll-mt-28 flex flex-col py-12 md:px-10 md:first:pl-0 md:last:pr-0"
+              className="scroll-mt-28 flex flex-col origin-top py-12 md:px-10 md:first:pl-0 md:last:pr-0"
             >
               <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-full bg-salbei">
                 {service.icon}
