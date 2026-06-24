@@ -9,6 +9,13 @@ type FormState = 'idle' | 'loading' | 'success' | 'error'
 const INPUT_CLASS =
   'w-full bg-sand/10 border border-sand/20 rounded-lg px-4 py-3 text-sand placeholder:text-sand/40 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gruen transition-colors'
 
+const TOPICS = [
+  'Website',
+  'Web-App / Software',
+  'Wartung & Support',
+  'Allgemeine Anfrage',
+]
+
 const CONTACTS = [
   {
     label: 'E-Mail',
@@ -74,7 +81,12 @@ const CONTACTS = [
 ]
 
 export default function Kontakt() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    topic: '',
+    message: '',
+  })
   const [state, setState] = useState<FormState>('idle')
   const [errorMsg, setErrorMsg] = useState('')
 
@@ -99,7 +111,7 @@ export default function Kontakt() {
       }
 
       setState('success')
-      setForm({ name: '', email: '', message: '' })
+      setForm({ name: '', email: '', topic: '', message: '' })
     } catch (err) {
       setState('error')
       setErrorMsg(err instanceof Error ? err.message : 'Fehler beim Senden.')
@@ -217,6 +229,53 @@ export default function Kontakt() {
                   }
                   className={INPUT_CLASS}
                 />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="topic"
+                  className="block text-xs font-semibold text-sand/60 mb-1.5"
+                >
+                  Anliegen
+                </label>
+                <div className="relative">
+                  <select
+                    id="topic"
+                    required
+                    value={form.topic}
+                    onChange={(e) =>
+                      setForm((f) => ({ ...f, topic: e.target.value }))
+                    }
+                    className={`${INPUT_CLASS} appearance-none pr-10 ${
+                      form.topic ? 'text-sand' : 'text-sand/40'
+                    }`}
+                  >
+                    <option value="" disabled className="text-erde">
+                      Bitte auswählen…
+                    </option>
+                    {TOPICS.map((topic) => (
+                      <option key={topic} value={topic} className="text-erde">
+                        {topic}
+                      </option>
+                    ))}
+                  </select>
+                  {/* chevron */}
+                  <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sand/50">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                  </span>
+                </div>
               </div>
 
               <div>

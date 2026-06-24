@@ -12,9 +12,10 @@ export async function POST(req: Request) {
     )
   }
 
-  const { name, email, message } = body as {
+  const { name, email, topic, message } = body as {
     name?: string
     email?: string
+    topic?: string
     message?: string
   }
 
@@ -45,8 +46,10 @@ export async function POST(req: Request) {
       from: process.env.CONTACT_FROM ?? 'Insyte Website <noreply@insyte.ch>',
       to: process.env.CONTACT_TO ?? 'info@insyte.ch',
       replyTo: email,
-      subject: `Neue Anfrage von ${name}`,
-      text: `Name: ${name}\nE-Mail: ${email}\n\nNachricht:\n${message}`,
+      subject: topic
+        ? `Neue Anfrage (${topic}) von ${name}`
+        : `Neue Anfrage von ${name}`,
+      text: `Name: ${name}\nE-Mail: ${email}\nAnliegen: ${topic ?? '—'}\n\nNachricht:\n${message}`,
     })
 
     if (error) {
