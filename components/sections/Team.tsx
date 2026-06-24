@@ -102,19 +102,18 @@ export default function Team() {
           {/* Member card */}
           <motion.article
             variants={fadeInUp}
-            className="overflow-hidden rounded-2xl border border-leinen bg-white"
+            className="rounded-2xl border border-leinen bg-white p-7"
           >
-            <div className="relative aspect-[4/5] bg-sand">
+            <div className="relative mb-6 h-44 w-36 overflow-hidden rounded-xl bg-sand">
               <Image
                 src="/portrait.png"
                 alt="Mael Seewald, Gründer von Insyte"
                 fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-[center_20%]"
+                sizes="144px"
+                className="object-cover object-[center_18%]"
               />
             </div>
-            <div className="p-7">
-              <span className="inline-block rounded-full bg-salbei px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gruen mb-4">
+            <span className="inline-block rounded-full bg-salbei px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gruen mb-4">
                 Gründer &amp; Entwickler
               </span>
               <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald mb-3">
@@ -155,7 +154,6 @@ export default function Team() {
                   Portfolio
                 </a>
               </div>
-            </div>
           </motion.article>
 
           {/* Growing slot */}
