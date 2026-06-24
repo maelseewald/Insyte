@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
@@ -55,6 +55,7 @@ function GlobeIcon() {
 export default function Team() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const [flipped, setFlipped] = useState(false)
 
   return (
     <>
@@ -98,66 +99,109 @@ export default function Team() {
           variants={staggerContainer}
           className="mx-auto max-w-4xl grid md:grid-cols-2 gap-5"
         >
-          {/* Member card */}
+          {/* Member card (flip) */}
           <motion.article
             variants={fadeInUp}
-            className="rounded-2xl border border-leinen bg-white p-7"
+            className="[perspective:1400px]"
           >
-            <div className="flex items-start justify-between gap-5 mb-6">
-              {/* left: badge + name + links */}
-              <div>
-                <span className="inline-block rounded-full bg-salbei px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gruen mb-4">
-                  Gründer &amp; Entwickler
-                </span>
-                <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald mb-5">
-                  Mael Seewald
-                </h2>
-                <div className="flex flex-wrap gap-2.5">
-                  <a
-                    href="https://www.linkedin.com/in/maelseewald/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                    className={PILL}
-                  >
-                    <LinkedInIcon />
-                  </a>
-                  <a
-                    href="https://github.com/maelseewald"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub"
-                    className={PILL}
-                  >
-                    <GithubIcon />
-                  </a>
-                  <a
-                    href="https://mael.5eewald.ch"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Portfolio"
-                    className={PILL}
-                  >
-                    <GlobeIcon />
-                  </a>
+            <motion.div
+              className="relative min-h-[300px]"
+              style={{ transformStyle: 'preserve-3d' }}
+              animate={{ rotateY: flipped ? 180 : 0 }}
+              transition={{ duration: 0.6, ease: 'easeInOut' }}
+            >
+              {/* FRONT */}
+              <div
+                className="absolute inset-0 flex flex-col rounded-2xl border border-leinen bg-white p-7 [backface-visibility:hidden]"
+                aria-hidden={flipped}
+              >
+                <div className="flex items-start justify-between gap-5">
+                  <div>
+                    <span className="inline-block rounded-full bg-salbei px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gruen mb-4">
+                      Gründer &amp; Entwickler
+                    </span>
+                    <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald mb-5">
+                      Mael Seewald
+                    </h2>
+                    <div className="flex flex-wrap gap-2.5">
+                      <a
+                        href="https://www.linkedin.com/in/maelseewald/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                        className={PILL}
+                      >
+                        <LinkedInIcon />
+                      </a>
+                      <a
+                        href="https://github.com/maelseewald"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="GitHub"
+                        className={PILL}
+                      >
+                        <GithubIcon />
+                      </a>
+                      <a
+                        href="https://mael.5eewald.ch"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Portfolio"
+                        className={PILL}
+                      >
+                        <GlobeIcon />
+                      </a>
+                    </div>
+                  </div>
+                  <div className="relative h-36 w-28 shrink-0 overflow-hidden rounded-xl bg-sand">
+                    <Image
+                      src="/portrait.png"
+                      alt="Mael Seewald, Gründer von Insyte"
+                      fill
+                      sizes="112px"
+                      className="object-cover object-[center_18%]"
+                    />
+                  </div>
                 </div>
+
+                <button
+                  type="button"
+                  onClick={() => setFlipped(true)}
+                  className="group/flip mt-auto inline-flex items-center gap-2 self-start text-sm font-semibold text-gruen hover:brightness-110"
+                >
+                  Mehr über mich
+                  <span className="transition-transform duration-300 group-hover/flip:translate-x-1">
+                    →
+                  </span>
+                </button>
               </div>
-              {/* right: photo */}
-              <div className="relative h-36 w-28 shrink-0 overflow-hidden rounded-xl bg-sand">
-                <Image
-                  src="/portrait.png"
-                  alt="Mael Seewald, Gründer von Insyte"
-                  fill
-                  sizes="112px"
-                  className="object-cover object-[center_18%]"
-                />
+
+              {/* BACK */}
+              <div
+                className="absolute inset-0 flex flex-col rounded-2xl border border-leinen bg-white p-7 [transform:rotateY(180deg)] [backface-visibility:hidden]"
+                aria-hidden={!flipped}
+              >
+                <p className="text-gruen text-[11px] font-semibold uppercase tracking-[0.16em] mb-4">
+                  Über Mael
+                </p>
+                <p className="text-erde text-[15px] leading-relaxed">
+                  Lernender Informatiker bei Adnovum in Zürich. Kümmert sich bei
+                  Insyte um Entwicklung und Design – von der ersten Idee bis zum
+                  Launch. Mag sauberen Code, klares Design und einfache
+                  Erklärungen.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setFlipped(false)}
+                  className="group/back mt-auto inline-flex items-center gap-2 self-start text-sm font-semibold text-erde hover:text-gruen transition-colors"
+                >
+                  <span className="transition-transform duration-300 group-hover/back:-translate-x-1">
+                    ←
+                  </span>
+                  Zurück
+                </button>
               </div>
-            </div>
-            <p className="text-erde text-[15px] leading-relaxed">
-              Lernender Informatiker bei Adnovum in Zürich. Kümmert sich bei
-              Insyte um Entwicklung und Design – von der ersten Idee bis zum
-              Launch. Mag sauberen Code, klares Design und einfache Erklärungen.
-            </p>
+            </motion.div>
           </motion.article>
 
           {/* Growing slot */}
