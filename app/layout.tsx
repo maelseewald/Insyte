@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, Inter } from 'next/font/google'
+import SmoothScroll from '@/components/SmoothScroll'
 import './globals.css'
 
 const jakarta = Plus_Jakarta_Sans({
@@ -42,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="de" className={`${jakarta.variable} ${inter.variable}`}>
       <body className="bg-sand text-erde font-sans antialiased">
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   )
