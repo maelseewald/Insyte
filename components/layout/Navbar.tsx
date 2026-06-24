@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const NAV_ITEMS = [
   { label: 'Startseite', href: '/' },
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -53,16 +55,26 @@ export default function Navbar() {
           className="hidden md:flex items-center gap-8"
           aria-label="Hauptnavigation"
         >
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="group relative text-sm font-medium text-erde hover:text-gruen transition-colors duration-200"
-            >
-              {item.label}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gruen transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const active = pathname === item.href
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? 'page' : undefined}
+                className={`group relative text-sm font-medium transition-colors duration-200 ${
+                  active ? 'text-wald' : 'text-erde hover:text-gruen'
+                }`}
+              >
+                {item.label}
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-gruen transition-all duration-300 ${
+                    active ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                />
+              </Link>
+            )
+          })}
         </nav>
 
         {/* Desktop CTA */}
@@ -115,16 +127,24 @@ export default function Navbar() {
           className="md:hidden bg-sand/95 backdrop-blur-sm border-t border-leinen px-6 py-5 flex flex-col gap-4"
           aria-label="Mobile Navigation"
         >
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-erde py-1 hover:text-gruen transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const active = pathname === item.href
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? 'page' : undefined}
+                className={`w-fit py-1 text-sm font-medium transition-colors ${
+                  active
+                    ? 'text-wald underline decoration-gruen decoration-2 underline-offset-4'
+                    : 'text-erde hover:text-gruen'
+                }`}
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
           <Link
             href="/kontakt"
             className="btn-primary text-center mt-2"
