@@ -32,7 +32,7 @@ export default function UeberMich() {
             alt="Mael Seewald, Gründer von Insyte"
             fill
             sizes="112px"
-            className="object-cover object-top"
+            className="object-cover object-[center_28%]"
           />
         </motion.div>
 

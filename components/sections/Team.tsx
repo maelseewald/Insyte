@@ -61,7 +61,7 @@ export default function Team() {
     <>
       {/* Header */}
       <section className="bg-sand pt-40 pb-16 px-6">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-4xl">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -97,20 +97,20 @@ export default function Team() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
-          className="mx-auto max-w-6xl grid md:grid-cols-2 gap-5"
+          className="mx-auto max-w-4xl grid md:grid-cols-2 gap-5"
         >
           {/* Member card */}
           <motion.article
             variants={fadeInUp}
             className="overflow-hidden rounded-2xl border border-leinen bg-white"
           >
-            <div className="relative aspect-[4/3] bg-sand">
+            <div className="relative aspect-[4/5] bg-sand">
               <Image
                 src="/portrait.png"
                 alt="Mael Seewald, Gründer von Insyte"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-top"
+                className="object-cover object-[center_20%]"
               />
             </div>
             <div className="p-7">
@@ -200,7 +200,7 @@ export default function Team() {
 
       {/* Stats */}
       <section className="bg-sand py-16 px-6">
-        <div className="mx-auto max-w-6xl flex flex-wrap gap-x-16 gap-y-8 border-t border-leinen pt-10">
+        <div className="mx-auto max-w-4xl flex flex-wrap gap-x-16 gap-y-8 border-t border-leinen pt-10">
           {STATS.map((stat) => (
             <div key={stat.label}>
               <p className="font-jakarta font-bold text-[clamp(28px,3vw,36px)] leading-none text-wald">
