@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { type Project } from '@/lib/projects'
 
 const LINK_PILL =
@@ -48,25 +48,48 @@ function TimelineNav({
   projects: Project[]
   activeId: string
 }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-120px' })
+
+  // The line "runs" down; each event pops in as the line reaches it.
+  const seg = 0.32
+  const lineDuration = Math.max(0.6, projects.length * seg)
+
   return (
-    <ol className="relative">
-      {/* axis */}
-      <span
-        className="absolute left-[5px] top-3 bottom-3 w-px bg-leinen"
+    <ol ref={ref} className="relative">
+      {/* axis line draws from top to bottom */}
+      <motion.span
+        className="absolute left-[5px] top-3 bottom-3 w-px origin-top bg-leinen"
+        initial={{ scaleY: 0 }}
+        animate={inView ? { scaleY: 1 } : { scaleY: 0 }}
+        transition={{ duration: lineDuration, ease: 'easeInOut' }}
         aria-hidden="true"
       />
-      {projects.map((project) => {
+      {projects.map((project, i) => {
         const active = project.id === activeId
         return (
-          <li key={project.id} className="relative pl-9">
+          <motion.li
+            key={project.id}
+            className="relative pl-9"
+            initial={{ opacity: 0, x: -8 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -8 }}
+            transition={{ duration: 0.35, ease: 'easeOut', delay: i * seg }}
+          >
             <a href={`#${project.id}`} className="group block py-4">
-              {/* dot */}
-              <span
-                className={`absolute left-0 top-[1.6rem] h-[11px] w-[11px] -translate-y-1/2 rounded-full border transition-all duration-300 ${
+              {/* dot pops in with the line */}
+              <motion.span
+                className={`absolute left-0 top-[1.6rem] h-[11px] w-[11px] -translate-y-1/2 rounded-full border transition-colors duration-300 ${
                   active
-                    ? 'border-gruen bg-gruen scale-110'
+                    ? 'border-gruen bg-gruen'
                     : 'border-leinen bg-sand group-hover:border-gruen'
                 }`}
+                initial={{ scale: 0 }}
+                animate={inView ? { scale: 1 } : { scale: 0 }}
+                transition={{
+                  duration: 0.3,
+                  ease: 'backOut',
+                  delay: i * seg + 0.08,
+                }}
                 aria-hidden="true"
               />
               <span className="block text-[11px] uppercase tracking-[0.16em] text-erde/40 tabular-nums">
@@ -80,7 +103,7 @@ function TimelineNav({
                 {project.name}
               </span>
             </a>
-          </li>
+          </motion.li>
         )
       })}
     </ol>
