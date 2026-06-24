@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
-import ScrollProgress from '@/components/layout/ScrollProgress'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
 import Anwendungsfaelle from '@/components/sections/Anwendungsfaelle'
@@ -10,7 +9,6 @@ import UeberMich from '@/components/sections/UeberMich'
 export default function Home() {
   return (
     <>
-      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />

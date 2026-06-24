@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Navbar from '@/components/layout/Navbar'
-import ScrollProgress from '@/components/layout/ScrollProgress'
 import Footer from '@/components/layout/Footer'
 import Team from '@/components/sections/Team'
 
@@ -22,7 +21,6 @@ export const metadata: Metadata = {
 export default function TeamPage() {
   return (
     <>
-      <ScrollProgress />
       <Navbar />
       <main>
         <Team />

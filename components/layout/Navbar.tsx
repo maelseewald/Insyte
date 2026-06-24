@@ -14,11 +14,23 @@ const NAV_ITEMS = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    let lastY = window.scrollY
+    const onScroll = () => {
+      const y = window.scrollY
+      setScrolled(y > 20)
+      // Hide when scrolling down (past a small threshold), show when scrolling up.
+      if (y > lastY && y > 80) {
+        setHidden(true)
+      } else if (y < lastY) {
+        setHidden(false)
+      }
+      lastY = y
+    }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -26,6 +38,8 @@ export default function Navbar() {
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        hidden && !menuOpen ? '-translate-y-full' : 'translate-y-0'
+      } ${
         scrolled
           ? 'backdrop-blur-md bg-sand/80 border-b border-leinen'
           : 'bg-transparent'
