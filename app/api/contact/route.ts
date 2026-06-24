@@ -41,16 +41,25 @@ export async function POST(req: Request) {
 
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
-    await resend.emails.send({
-      from: 'Insyte Website <noreply@insyte.ch>',
-      to: 'info@insyte.ch',
+    const { error } = await resend.emails.send({
+      from: process.env.CONTACT_FROM ?? 'Insyte Website <noreply@insyte.ch>',
+      to: process.env.CONTACT_TO ?? 'info@insyte.ch',
       replyTo: email,
       subject: `Neue Anfrage von ${name}`,
       text: `Name: ${name}\nE-Mail: ${email}\n\nNachricht:\n${message}`,
     })
 
+    if (error) {
+      console.error('Resend error:', error)
+      return NextResponse.json(
+        { error: 'E-Mail konnte nicht gesendet werden. Bitte versuche es später.' },
+        { status: 500 }
+      )
+    }
+
     return NextResponse.json({ success: true })
-  } catch {
+  } catch (err) {
+    console.error('Contact route error:', err)
     return NextResponse.json(
       { error: 'E-Mail konnte nicht gesendet werden. Bitte versuche es später.' },
       { status: 500 }
