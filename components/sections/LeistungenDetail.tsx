@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
-import { fadeInUp, staggerContainer } from '@/lib/motion'
+import { fadeInUp, staggerContainer, dropIn } from '@/lib/motion'
 
 const SERVICES = [
   {
@@ -161,7 +161,7 @@ export default function LeistungenDetail() {
             <motion.div
               key={service.id}
               id={service.id}
-              variants={fadeInUp}
+              variants={dropIn}
               className="scroll-mt-28 flex flex-col py-12 md:px-10 md:first:pl-0 md:last:pr-0"
             >
               <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-full bg-salbei">

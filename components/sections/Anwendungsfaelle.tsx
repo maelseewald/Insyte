@@ -3,7 +3,7 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
-import { fadeInUp, staggerContainer } from '@/lib/motion'
+import { fadeInUp, staggerContainer, dropIn } from '@/lib/motion'
 
 const CASES = [
   {
@@ -99,11 +99,14 @@ export default function Anwendungsfaelle() {
           Wann wir helfen können
         </motion.h2>
 
-        <div className="grid md:grid-cols-3 border-y border-leinen divide-y md:divide-y-0 md:divide-x divide-leinen">
+        <motion.div
+          variants={staggerContainer}
+          className="grid md:grid-cols-3 border-y border-leinen divide-y md:divide-y-0 md:divide-x divide-leinen"
+        >
           {CASES.map((item) => (
             <motion.div
               key={item.leistung}
-              variants={fadeInUp}
+              variants={dropIn}
               className="group flex flex-col py-10 md:py-12 md:px-10 md:first:pl-0 md:last:pr-0"
             >
               <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-full bg-salbei">
@@ -128,7 +131,7 @@ export default function Anwendungsfaelle() {
               </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div variants={fadeInUp} className="mt-12">
           <Link
