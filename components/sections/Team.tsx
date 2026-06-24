@@ -13,7 +13,7 @@ const STATS = [
 ]
 
 const PILL =
-  'inline-flex items-center gap-2 rounded-full border border-leinen bg-white px-3.5 py-1.5 text-[13px] font-semibold text-wald transition-colors hover:border-gruen/40 hover:text-gruen'
+  'inline-flex h-10 w-10 items-center justify-center rounded-full border border-leinen bg-white transition-colors hover:border-gruen/40 hover:bg-salbei/40'
 
 function LinkedInIcon() {
   return (
@@ -32,23 +32,22 @@ function GithubIcon() {
   )
 }
 
-function GridIcon() {
+function GlobeIcon() {
   return (
     <svg
-      width="14"
-      height="14"
+      width="15"
+      height="15"
       viewBox="0 0 24 24"
       fill="none"
       stroke="#2E7D4F"
-      strokeWidth="2.2"
+      strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <rect x="3" y="3" width="7" height="7" rx="1" />
-      <rect x="14" y="3" width="7" height="7" rx="1" />
-      <rect x="3" y="14" width="7" height="7" rx="1" />
-      <rect x="14" y="14" width="7" height="7" rx="1" />
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20" />
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
     </svg>
   )
 }
@@ -113,33 +112,33 @@ export default function Team() {
                 <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald mb-5">
                   Mael Seewald
                 </h2>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2.5">
                   <a
                     href="https://www.linkedin.com/in/maelseewald/"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="LinkedIn"
                     className={PILL}
                   >
                     <LinkedInIcon />
-                    LinkedIn
                   </a>
                   <a
                     href="https://github.com/maelseewald"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="GitHub"
                     className={PILL}
                   >
                     <GithubIcon />
-                    GitHub
                   </a>
                   <a
                     href="https://mael.5eewald.ch"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Portfolio"
                     className={PILL}
                   >
-                    <GridIcon />
-                    Portfolio
+                    <GlobeIcon />
                   </a>
                 </div>
               </div>
