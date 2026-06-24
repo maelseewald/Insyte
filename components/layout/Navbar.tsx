@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const NAV_ITEMS = [
+  { label: 'Startseite', href: '/' },
   { label: 'Leistungen', href: '/leistungen' },
   { label: 'Projekte', href: '/projekte' },
   { label: 'Team', href: '/team' },
