@@ -13,6 +13,7 @@ const TOPICS = [
   'Website',
   'Web-App / Software',
   'Wartung & Support',
+  'Bewerbung / Job',
   'Allgemeine Anfrage',
 ]
 
