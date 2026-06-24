@@ -105,14 +105,43 @@ export default function Team() {
             className="rounded-2xl border border-leinen bg-white p-7"
           >
             <div className="flex items-start justify-between gap-5 mb-6">
-              {/* left: badge + name */}
+              {/* left: badge + name + links */}
               <div>
                 <span className="inline-block rounded-full bg-salbei px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gruen mb-4">
                   Gründer &amp; Entwickler
                 </span>
-                <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald">
+                <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald mb-5">
                   Mael Seewald
                 </h2>
+                <div className="flex flex-wrap gap-2">
+                  <a
+                    href="https://www.linkedin.com/in/maelseewald/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={PILL}
+                  >
+                    <LinkedInIcon />
+                    LinkedIn
+                  </a>
+                  <a
+                    href="https://github.com/maelseewald"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={PILL}
+                  >
+                    <GithubIcon />
+                    GitHub
+                  </a>
+                  <a
+                    href="https://mael.5eewald.ch"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={PILL}
+                  >
+                    <GridIcon />
+                    Portfolio
+                  </a>
+                </div>
               </div>
               {/* right: photo */}
               <div className="relative h-36 w-28 shrink-0 overflow-hidden rounded-xl bg-sand">
@@ -125,41 +154,11 @@ export default function Team() {
                 />
               </div>
             </div>
-              <p className="text-erde text-[15px] leading-relaxed mb-6">
-                Lernender Informatiker bei Adnovum in Zürich. Kümmert sich bei
-                Insyte um Entwicklung und Design – von der ersten Idee bis zum
-                Launch. Mag sauberen Code, klares Design und einfache
-                Erklärungen.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <a
-                  href="https://www.linkedin.com/in/maelseewald/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={PILL}
-                >
-                  <LinkedInIcon />
-                  LinkedIn
-                </a>
-                <a
-                  href="https://github.com/maelseewald"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={PILL}
-                >
-                  <GithubIcon />
-                  GitHub
-                </a>
-                <a
-                  href="https://mael.5eewald.ch"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={PILL}
-                >
-                  <GridIcon />
-                  Portfolio
-                </a>
-              </div>
+            <p className="text-erde text-[15px] leading-relaxed">
+              Lernender Informatiker bei Adnovum in Zürich. Kümmert sich bei
+              Insyte um Entwicklung und Design – von der ersten Idee bis zum
+              Launch. Mag sauberen Code, klares Design und einfache Erklärungen.
+            </p>
           </motion.article>
 
           {/* Growing slot */}
