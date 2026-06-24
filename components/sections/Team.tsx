@@ -104,22 +104,28 @@ export default function Team() {
             variants={fadeInUp}
             className="rounded-2xl border border-leinen bg-white p-7"
           >
-            <div className="relative mb-6 h-44 w-36 overflow-hidden rounded-xl bg-sand">
-              <Image
-                src="/portrait.png"
-                alt="Mael Seewald, Gründer von Insyte"
-                fill
-                sizes="144px"
-                className="object-cover object-[center_18%]"
-              />
+            <div className="flex items-start justify-between gap-5 mb-6">
+              {/* left: badge + name */}
+              <div>
+                <span className="inline-block rounded-full bg-salbei px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gruen mb-4">
+                  Gründer &amp; Entwickler
+                </span>
+                <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald">
+                  Mael Seewald
+                </h2>
+              </div>
+              {/* right: photo */}
+              <div className="relative h-36 w-28 shrink-0 overflow-hidden rounded-xl bg-sand">
+                <Image
+                  src="/portrait.png"
+                  alt="Mael Seewald, Gründer von Insyte"
+                  fill
+                  sizes="112px"
+                  className="object-cover object-[center_18%]"
+                />
+              </div>
             </div>
-            <span className="inline-block rounded-full bg-salbei px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gruen mb-4">
-                Gründer &amp; Entwickler
-              </span>
-              <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald mb-3">
-                Mael Seewald
-              </h2>
-              <p className="text-erde text-[15px] leading-relaxed mb-6 max-w-md">
+              <p className="text-erde text-[15px] leading-relaxed mb-6">
                 Lernender Informatiker bei Adnovum in Zürich. Kümmert sich bei
                 Insyte um Entwicklung und Design – von der ersten Idee bis zum
                 Launch. Mag sauberen Code, klares Design und einfache
