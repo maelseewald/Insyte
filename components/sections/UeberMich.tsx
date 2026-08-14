@@ -40,13 +40,13 @@ export default function UeberMich() {
         <div>
           <motion.p
             variants={fadeInUp}
-            className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-3"
+            className="label-mono text-gruen mb-3"
           >
             Hinter Insyte
           </motion.p>
           <motion.p
             variants={fadeInUp}
-            className="font-jakarta font-bold text-[clamp(22px,2.8vw,30px)] leading-snug tracking-tight text-wald mb-5 max-w-xl"
+            className="font-display font-bold text-[clamp(22px,2.8vw,30px)] leading-snug tracking-tight text-wald mb-5 max-w-xl"
           >
             Kein anonymer Anbieter – bei Insyte arbeitest du direkt mit den
             Menschen, die dein Projekt bauen. Wir hören zu, denken mit und
@@ -55,7 +55,7 @@ export default function UeberMich() {
           <motion.div variants={fadeInUp}>
             <Link
               href="/team"
-              className="group inline-flex items-center gap-2 font-jakarta font-bold text-wald hover:text-gruen transition-colors"
+              className="group inline-flex items-center gap-2 font-display font-bold text-wald hover:text-gruen transition-colors"
             >
               Unser Team
               <span className="transition-transform duration-300 group-hover:translate-x-1">

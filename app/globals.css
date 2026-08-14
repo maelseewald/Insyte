@@ -23,15 +23,121 @@ html.lenis body {
 
 @layer components {
   .btn-primary {
-    @apply bg-gruen text-white font-bold font-jakarta rounded-lg px-5 py-2.5 text-sm
+    @apply bg-gruen text-white font-bold font-display rounded-lg px-5 py-2.5 text-sm
            hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]
            transition-all duration-200 inline-block
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gruen focus-visible:ring-offset-2 focus-visible:ring-offset-sand;
   }
   .btn-secondary {
-    @apply bg-wald text-sand font-semibold font-jakarta rounded-lg px-5 py-2.5 text-sm
+    @apply bg-wald text-sand font-semibold font-display rounded-lg px-5 py-2.5 text-sm
            hover:brightness-125 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]
            transition-all duration-200 inline-block
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wald focus-visible:ring-offset-2 focus-visible:ring-offset-sand;
+  }
+}
+
+/* ---------------------------------------------------------------
+   Schreibmaschinen-Effekt (components/ui/Typewriter.tsx)
+
+   Basiszustand ist sichtbar; erst die Animation blendet das Zeichen
+   über `backwards` für die Dauer der Verzögerung aus. Fällt CSS aus,
+   steht der Text also trotzdem da.
+   --------------------------------------------------------------- */
+.ty-char {
+  position: relative;
+  animation: ty-reveal 1ms linear backwards;
+}
+
+/* Cursor reitet mit: sichtbar genau in dem Fenster zwischen diesem
+   Zeichen und dem nächsten. */
+.ty-char::after {
+  content: '';
+  position: absolute;
+  right: -0.06em;
+  top: 0.08em;
+  bottom: 0.12em;
+  width: 2px;
+  background-color: theme('colors.gruen');
+  opacity: 0;
+  animation: ty-cursor 12ms steps(1) backwards;
+  animation-delay: inherit;
+}
+
+@keyframes ty-reveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes ty-cursor {
+  from { opacity: 1; }
+  to   { opacity: 1; }
+}
+
+/* ---------------------------------------------------------------
+   Leuchtstift-Akzent (components/ui/Highlight.tsx)
+   --------------------------------------------------------------- */
+/* Der Akzent liegt nicht HINTER dem Text, er IST der Text: mit dem Stift
+   geschrieben statt mit dem Marker übermalt.
+
+   Entscheidend ist nicht die Schrift allein, sondern die haarfeine Kontur
+   in derselben Farbe. `paint-order: stroke fill` zeichnet sie unter die
+   Füllung — die Glyphen werden minimal dicker, ihre Kanten weicher, und
+   das Wort liest sich als aufgetragene Tinte statt als Schriftart. */
+.painted-word {
+  font-family: theme('fontFamily.marker');
+  font-weight: 400;
+  /* Etwas grösser als die Umgebung, sonst wirkt Permanent Marker daneben
+     zu klein — die Schrift hat eine niedrigere x-Höhe als Bricolage. */
+  font-size: 1.06em;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: theme('colors.gruen');
+  -webkit-text-stroke: 0.012em currentColor;
+  paint-order: stroke fill;
+  padding-block: 0.14em;
+  padding-inline: 0.1em;
+  display: inline-block;
+}
+
+/* Die Schräglage sitzt bewusst auf einem eigenen Element: inline-block und
+   Rotation zusammen auf einem Knoten beissen sich mit dem Zeilenumbruch. */
+.painted-tilt {
+  display: inline-block;
+  transform: rotate(-1.6deg);
+}
+
+/* Auf schmalen Spalten wird die inline-block-Box auf die verfügbare Breite
+   gestaucht: der Akzent bricht dann INNERHALB der gedrehten Box um und das
+   seitliche Padding schiebt ihn über den Rand — horizontales Scrollen.
+   Dort fliesst er stattdessen normal mit; die Schräglage ist in einer
+   schmalen Spalte ohnehin mehr Störung als Akzent. */
+@media (max-width: 640px) {
+  .painted-tilt {
+    display: inline;
+    transform: none;
+  }
+  .painted-word {
+    display: inline;
+    padding-inline: 0.04em;
+  }
+}
+
+/* Eyebrow-Labels — ersetzt das zuvor uneinheitliche
+   `text-xs font-semibold uppercase tracking-[0.16em…0.24em]`. */
+.label-mono {
+  font-family: theme('fontFamily.mono');
+  font-weight: 500;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+/* Ohne Bewegung: alles sofort im Endzustand, kein Tippen. */
+@media (prefers-reduced-motion: reduce) {
+  .ty-char {
+    animation: none;
+  }
+  .ty-char::after {
+    content: none;
   }
 }

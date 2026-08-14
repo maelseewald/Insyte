@@ -17,9 +17,14 @@ const config: Config = {
         white:  '#FFFFFF',
       },
       fontFamily: {
-        jakarta: ['var(--font-jakarta)', 'sans-serif'],
+        // Display: Bricolage Grotesque (Variable Font, 200–800)
+        display: ['var(--font-display)', 'sans-serif'],
         inter:   ['var(--font-inter)', 'sans-serif'],
         sans:    ['var(--font-inter)', 'sans-serif'],
+        // Labels/Eyebrows
+        mono:    ['var(--font-mono)', 'ui-monospace', 'monospace'],
+        // Marker-Akzent — fällt auf die Display-Schrift zurück, nicht auf System-Sans
+        marker:  ['var(--font-marker)', 'var(--font-display)', 'sans-serif'],
       },
       fontSize: {
         'display': ['56px', { lineHeight: '1.05', letterSpacing: '-0.02em' }],

@@ -29,20 +29,20 @@ export default function Portfolio() {
           <div>
             <motion.p
               variants={fadeInUp}
-              className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-4"
+              className="label-mono text-gruen mb-4"
             >
               Unsere Projekte
             </motion.p>
             <motion.h2
               variants={fadeInUp}
-              className="font-jakarta font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald"
+              className="font-display font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald"
             >
               Was wir gebaut haben
             </motion.h2>
           </div>
           <motion.span
             variants={fadeInUp}
-            className="hidden sm:block font-jakarta font-bold text-leinen text-sm tabular-nums"
+            className="hidden sm:block font-display font-bold text-leinen text-sm tabular-nums"
           >
             Zeitachse
           </motion.span>
@@ -53,7 +53,7 @@ export default function Portfolio() {
         <div className="mt-12">
           <Link
             href="/projekte"
-            className="group inline-flex items-center gap-2 font-jakarta font-bold text-wald hover:text-gruen transition-colors"
+            className="group inline-flex items-center gap-2 font-display font-bold text-wald hover:text-gruen transition-colors"
           >
             Alle Projekte ansehen
             <span className="transition-transform duration-300 group-hover:translate-x-1">

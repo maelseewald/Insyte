@@ -132,7 +132,7 @@ export default function Kontakt() {
         <div>
           <motion.p
             variants={fadeInUp}
-            className="text-salbei/60 text-xs font-semibold uppercase tracking-[0.2em] mb-6"
+            className="label-mono text-salbei/60 mb-6"
           >
             Direkt erreichbar
           </motion.p>
@@ -148,7 +148,7 @@ export default function Kontakt() {
                   {item.icon}
                 </span>
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.16em] text-sand/40">
+                  <p className="label-mono text-sand/40">
                     {item.label}
                   </p>
                   {item.href ? (
@@ -175,7 +175,7 @@ export default function Kontakt() {
               animate={{ opacity: 1, y: 0 }}
               className="flex h-full flex-col justify-center rounded-xl border border-sand/15 bg-sand/[0.04] p-10 text-center text-salbei"
             >
-              <p className="font-jakarta font-bold text-2xl mb-2 text-white">
+              <p className="font-display font-bold text-2xl mb-2 text-white">
                 Danke!
               </p>
               <p>

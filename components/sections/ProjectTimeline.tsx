@@ -92,11 +92,11 @@ function TimelineNav({
                 }}
                 aria-hidden="true"
               />
-              <span className="block text-[11px] uppercase tracking-[0.16em] text-erde/40 tabular-nums">
+              <span className="label-mono block text-erde/40 tabular-nums">
                 {project.year}
               </span>
               <span
-                className={`block font-jakarta font-bold leading-tight tracking-tight transition-colors duration-300 ${
+                className={`block font-display font-bold leading-tight tracking-tight transition-colors duration-300 ${
                   active ? 'text-wald' : 'text-erde/40 group-hover:text-erde'
                 }`}
               >
@@ -138,15 +138,15 @@ function DetailBlock({
       }`}
     >
       <div className="flex items-baseline gap-4 mb-3">
-        <span className="font-jakarta font-bold text-[clamp(44px,7vw,76px)] leading-none tabular-nums text-leinen">
+        <span className="font-display font-bold text-[clamp(44px,7vw,76px)] leading-none tabular-nums text-leinen">
           {project.year}
         </span>
-        <span className="text-gruen text-[11px] font-semibold uppercase tracking-[0.18em]">
+        <span className="label-mono text-gruen">
           {project.category}
         </span>
       </div>
 
-      <h3 className="font-jakarta font-bold text-[clamp(28px,3.6vw,42px)] leading-tight tracking-tight text-wald mb-2">
+      <h3 className="font-display font-bold text-[clamp(28px,3.6vw,42px)] leading-tight tracking-tight text-wald mb-2">
         {project.name}
       </h3>
       <p className="text-erde text-base mb-5">{project.type}</p>
@@ -156,13 +156,13 @@ function DetailBlock({
       </p>
 
       {project.result && (
-        <p className="mt-5 max-w-xl font-jakarta font-bold text-wald leading-snug">
+        <p className="mt-5 max-w-xl font-display font-bold text-wald leading-snug">
           {project.result}
         </p>
       )}
 
       <div className="mt-7">
-        <span className="text-[11px] uppercase tracking-[0.16em] text-erde/50">
+        <span className="label-mono text-erde/50">
           {project.tags.join(' · ')}
         </span>
       </div>
@@ -211,7 +211,7 @@ export default function ProjectTimeline({
       {/* Left: sticky nav */}
       <div className="hidden md:block">
         <div className="sticky top-28">
-          <p className="mb-6 text-[11px] uppercase tracking-[0.2em] text-erde/40">
+          <p className="label-mono mb-6 text-erde/40">
             Zeitachse
           </p>
           <TimelineNav projects={projects} activeId={activeId} />

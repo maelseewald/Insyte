@@ -66,7 +66,7 @@ export default function Team() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-5"
+            className="label-mono text-gruen mb-5"
           >
             Unser Team
           </motion.p>
@@ -74,7 +74,7 @@ export default function Team() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-jakarta font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl"
+            className="font-display font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl"
           >
             Die Menschen hinter Insyte.
           </motion.h1>
@@ -117,10 +117,10 @@ export default function Team() {
               >
                 <div className="flex items-start justify-between gap-5">
                   <div>
-                    <span className="inline-block rounded-full bg-salbei px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-gruen mb-4">
+                    <span className="label-mono inline-block rounded-full bg-salbei px-3 py-1 text-gruen mb-4">
                       Gründer &amp; Entwickler
                     </span>
-                    <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald mb-5">
+                    <h2 className="font-display font-bold text-[26px] leading-tight tracking-tight text-wald mb-5">
                       Mael Seewald
                     </h2>
                     <div className="flex flex-wrap gap-2.5">
@@ -181,7 +181,7 @@ export default function Team() {
                 className="absolute inset-0 flex flex-col rounded-2xl border border-leinen bg-white p-7 [transform:rotateY(180deg)] [backface-visibility:hidden]"
                 aria-hidden={!flipped}
               >
-                <p className="text-gruen text-[11px] font-semibold uppercase tracking-[0.16em] mb-4">
+                <p className="label-mono text-gruen mb-4">
                   Über Mael
                 </p>
                 <p className="text-erde text-[15px] leading-relaxed">
@@ -224,7 +224,7 @@ export default function Team() {
                 <path d="M12 5v14M5 12h14" />
               </svg>
             </span>
-            <h3 className="font-jakarta font-bold text-xl text-wald mb-3">
+            <h3 className="font-display font-bold text-xl text-wald mb-3">
               Wir wachsen
             </h3>
             <p className="text-erde text-sm leading-relaxed max-w-xs mb-6">
@@ -233,7 +233,7 @@ export default function Team() {
             </p>
             <Link
               href="/kontakt"
-              className="group inline-flex items-center gap-2 font-jakarta font-bold text-gruen hover:brightness-110 transition"
+              className="group inline-flex items-center gap-2 font-display font-bold text-gruen hover:brightness-110 transition"
             >
               Mitmachen?
               <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -249,10 +249,10 @@ export default function Team() {
         <div className="mx-auto max-w-4xl flex flex-wrap gap-x-16 gap-y-8 border-t border-leinen pt-10">
           {STATS.map((stat) => (
             <div key={stat.label}>
-              <p className="font-jakarta font-bold text-[clamp(28px,3vw,36px)] leading-none text-wald">
+              <p className="font-display font-bold text-[clamp(28px,3vw,36px)] leading-none text-wald">
                 {stat.value}
               </p>
-              <p className="mt-2 text-[11px] uppercase tracking-[0.16em] text-erde/50">
+              <p className="label-mono mt-2 text-erde/50">
                 {stat.label}
               </p>
             </div>
@@ -263,7 +263,7 @@ export default function Team() {
       {/* CTA */}
       <section className="bg-wald py-24 px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-jakarta font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-white mb-9">
+          <h2 className="font-display font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-white mb-9">
             Schreib uns direkt.
           </h2>
           <Link href="/kontakt" className="btn-primary">

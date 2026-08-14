@@ -16,7 +16,7 @@ export default function Datenschutz() {
         >
           ← Zurück
         </Link>
-        <h1 className="font-jakarta font-bold text-[40px] tracking-tight text-wald mb-8">
+        <h1 className="font-display font-bold text-[clamp(28px,7vw,40px)] tracking-tight text-wald text-balance mb-8">
           Datenschutzerklärung
         </h1>
         <div className="text-erde text-base leading-relaxed space-y-4">
@@ -30,7 +30,7 @@ export default function Datenschutz() {
             </a>
           </p>
 
-          <h2 className="font-jakarta font-bold text-xl text-wald pt-4">
+          <h2 className="font-display font-bold text-xl text-wald pt-4">
             1. Kontaktformular
           </h2>
           <p>
@@ -41,7 +41,7 @@ export default function Datenschutz() {
             (resend.com).
           </p>
 
-          <h2 className="font-jakarta font-bold text-xl text-wald pt-4">
+          <h2 className="font-display font-bold text-xl text-wald pt-4">
             2. Hosting
           </h2>
           <p>
@@ -51,7 +51,7 @@ export default function Datenschutz() {
             Vercel.
           </p>
 
-          <h2 className="font-jakarta font-bold text-xl text-wald pt-4">
+          <h2 className="font-display font-bold text-xl text-wald pt-4">
             3. Deine Rechte
           </h2>
           <p>

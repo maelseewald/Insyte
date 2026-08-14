@@ -16,7 +16,7 @@ export default function Impressum() {
         >
           ← Zurück
         </Link>
-        <h1 className="font-jakarta font-bold text-[40px] tracking-tight text-wald mb-8">
+        <h1 className="font-display font-bold text-[clamp(28px,7vw,40px)] tracking-tight text-wald text-balance mb-8">
           Impressum
         </h1>
         <div className="text-erde text-base leading-relaxed space-y-4">

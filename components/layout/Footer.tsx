@@ -15,7 +15,7 @@ export default function Footer() {
               <circle cx="11" cy="11" r="9.5" stroke="white" strokeWidth="2.2" />
               <circle cx="11" cy="11" r="3.5" fill="#2E7D4F" />
             </svg>
-            <span className="font-jakarta font-bold text-lg text-white leading-none">
+            <span className="font-display font-bold text-lg text-white leading-none">
               insyte<span className="text-gruen">.</span>
             </span>
           </div>

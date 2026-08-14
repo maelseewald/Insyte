@@ -11,7 +11,8 @@ export default function SmoothScroll({
     <ReactLenis
       root
       options={{
-        lerp: 0.1,
+        // Höher = Scroll folgt direkter. Bei 0.1 lief die Seite spürbar nach.
+        lerp: 0.14,
         smoothWheel: true,
         // Smooth-scroll in-page anchor links (#kontakt, timeline jumps, …)
         anchors: true,

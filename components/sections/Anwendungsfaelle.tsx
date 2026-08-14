@@ -94,7 +94,7 @@ export default function Anwendungsfaelle() {
       >
         <motion.h2
           variants={fadeInUp}
-          className="font-jakarta font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald mb-16 max-w-2xl"
+          className="font-display font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald mb-16 max-w-2xl"
         >
           Wann wir helfen können
         </motion.h2>
@@ -113,7 +113,7 @@ export default function Anwendungsfaelle() {
                 {item.icon}
               </div>
 
-              <h3 className="font-jakarta font-bold text-[22px] leading-snug tracking-tight text-wald mb-3">
+              <h3 className="font-display font-bold text-[22px] leading-snug tracking-tight text-wald mb-3">
                 {item.problem}
               </h3>
               <p className="text-erde text-[15px] leading-relaxed mb-8">
@@ -122,7 +122,7 @@ export default function Anwendungsfaelle() {
 
               <Link
                 href={item.href}
-                className="mt-auto inline-flex items-center gap-2 font-jakarta font-bold text-gruen hover:brightness-110 transition"
+                className="mt-auto inline-flex items-center gap-2 font-display font-bold text-gruen hover:brightness-110 transition"
               >
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                   →

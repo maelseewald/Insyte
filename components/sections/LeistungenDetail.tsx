@@ -123,7 +123,7 @@ export default function LeistungenDetail() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-gruen text-xs font-semibold uppercase tracking-[0.2em] mb-5"
+            className="label-mono text-gruen mb-5"
           >
             Was wir anbieten
           </motion.p>
@@ -131,7 +131,7 @@ export default function LeistungenDetail() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-jakarta font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl"
+            className="font-display font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl"
           >
             Websites, Software und Betreuung – aus einer Hand.
           </motion.h1>
@@ -168,14 +168,14 @@ export default function LeistungenDetail() {
                 {service.icon}
               </div>
 
-              <h2 className="font-jakarta font-bold text-[26px] leading-tight tracking-tight text-wald mb-4">
+              <h2 className="font-display font-bold text-[26px] leading-tight tracking-tight text-wald mb-4">
                 {service.title}
               </h2>
               <p className="text-erde text-[15px] leading-relaxed mb-8">
                 {service.description}
               </p>
 
-              <p className="text-gruen text-[11px] font-semibold uppercase tracking-[0.18em] mb-4">
+              <p className="label-mono text-gruen mb-4">
                 Das ist dabei
               </p>
               <ul className="space-y-3">
@@ -197,7 +197,7 @@ export default function LeistungenDetail() {
       {/* CTA */}
       <section className="bg-wald py-24 px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-jakarta font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-white mb-5">
+          <h2 className="font-display font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-white mb-5">
             Klingt nach dem, was du suchst?
           </h2>
           <p className="text-sand/70 text-base mb-9">

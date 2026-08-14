@@ -59,7 +59,7 @@ export default function Navbar() {
             <circle cx="11" cy="11" r="9.5" stroke="#2E7D4F" strokeWidth="2.2" />
             <circle cx="11" cy="11" r="3.5" fill="#2E7D4F" />
           </svg>
-          <span className="font-jakarta font-bold text-xl text-wald leading-none">
+          <span className="font-display font-bold text-xl text-wald leading-none">
             insyte<span className="text-gruen">.</span>
           </span>
         </Link>
