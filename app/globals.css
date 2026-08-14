@@ -346,7 +346,7 @@ html.lenis body {
   /* Bewusst vw statt %: eine prozentuale flex-basis misst sich an der
      Inhaltsbox der Spur, die das Polster unten selbst verkleinert — das
      ergäbe eine Rückkopplung, in der die Karten immer aufs Minimum fallen. */
-  --card: clamp(260px, 64vw, 720px);
+  --card: clamp(240px, 48vw, 560px);
   display: flex;
   gap: 1.25rem;
   padding-inline: calc((100% - var(--card)) / 2);
