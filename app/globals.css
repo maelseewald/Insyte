@@ -406,7 +406,8 @@ html.lenis body {
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
-  border-radius: 0.5rem;
+  /* Scharfe Ecken: die Massmarke drumherum hat ebenfalls keine, eine
+     abgerundete Fläche darin sähe daneben aus. */
 }
 
 .wm-flaeche {
