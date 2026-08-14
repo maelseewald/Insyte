@@ -367,6 +367,32 @@ html.lenis body {
   text-decoration: none;
 }
 
+/* Massmarke an der Oberkante: zeigt schon vor dem Überfahren, wie breit
+   die Fläche ist, die gleich hochfährt. Liegt bewusst unter der Fläche
+   (::before zählt als erstes Kind, die Maske kommt später im DOM) und
+   wird beim Hochfahren verdeckt. */
+.wm-item::before,
+.wm-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wm-item::before {
+  height: 1px;
+  background-color: theme('colors.wald / 16%');
+}
+
+.wm-item::after {
+  height: 9px;
+  border-left: 1px solid theme('colors.wald / 30%');
+  border-right: 1px solid theme('colors.wald / 30%');
+}
+
 .wm-maske {
   position: absolute;
   inset: 0;
@@ -476,7 +502,9 @@ html.lenis body {
     min-height: 0;
     gap: 0.9rem;
   }
-  .wm-maske {
+  .wm-maske,
+  .wm-item::before,
+  .wm-item::after {
     display: none;
   }
 }
