@@ -10,6 +10,9 @@ const config: Config = {
       colors: {
         wald:   '#1A2616',
         gruen:  '#2E7D4F',
+        // Hover-Stufe für Flächen in Grün. Kontrast zu Weiss steigt dabei
+        // von 5,05:1 auf 6,6:1 — der Hover wird also auch lesbarer.
+        'gruen-dunkel': '#276942',
         salbei: '#D6EDE0',
         sand:   '#F6F3EE',
         erde:   '#4A4438',

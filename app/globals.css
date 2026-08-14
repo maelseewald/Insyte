@@ -21,18 +21,65 @@ html.lenis body {
   overflow: hidden;
 }
 
+/* Buttons nach dem Vorbild von velour-art.com: beim Hover bewegt sich
+   nichts. Kein Anheben, kein Skalieren, kein Helligkeitsfilter — nur ein
+   Farbwechsel über 150ms. Das federnde Hüpfen aus `transition-all` plus
+   translate plus scale war der Grund, warum sie unruhig wirkten.
+
+   Der sekundäre Button kehrt sich beim Hover vollständig um (Rahmen wird
+   deckend, Fläche füllt, Text invertiert) statt nur aufzuhellen. */
 @layer components {
   .btn-primary {
-    @apply bg-gruen text-white font-bold font-display rounded-lg px-5 py-2.5 text-sm
-           hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]
-           transition-all duration-200 inline-block
+    @apply inline-flex items-center justify-center rounded-lg
+           bg-gruen px-7 py-4 text-sm font-medium text-white
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gruen focus-visible:ring-offset-2 focus-visible:ring-offset-sand;
+    background-image: linear-gradient(
+      theme('colors.gruen-dunkel'),
+      theme('colors.gruen-dunkel')
+    );
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% 0%;
+    transition: background-size 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                color 0.2s ease-out;
   }
+  .btn-primary:hover {
+    background-size: 100% 100%;
+  }
+
   .btn-secondary {
-    @apply bg-wald text-sand font-semibold font-display rounded-lg px-5 py-2.5 text-sm
-           hover:brightness-125 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]
-           transition-all duration-200 inline-block
+    @apply inline-flex items-center justify-center rounded-lg
+           border border-wald/25 px-7 py-4 text-sm font-medium text-wald
            focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-wald focus-visible:ring-offset-2 focus-visible:ring-offset-sand;
+    background-image: linear-gradient(
+      theme('colors.wald'),
+      theme('colors.wald')
+    );
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% 0%;
+    /* Der Textwechsel bekommt etwas Verzug, damit er kippt, wenn die
+       Füllung schon oben ist — sonst wird die Schrift hell, bevor der
+       Hintergrund dunkel genug ist, und ist kurz kaum lesbar. */
+    transition: background-size 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                color 0.18s ease-out 0.1s,
+                border-color 0.2s ease-out;
+  }
+  .btn-secondary:hover {
+    background-size: 100% 100%;
+    @apply border-wald text-sand;
+  }
+
+  /* Ohne Bewegung: der Farbwechsel passiert, aber ohne Auffahren. */
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary,
+    .btn-secondary {
+      transition-duration: 0.15s, 0.15s, 0.15s;
+    }
+    .btn-primary:hover,
+    .btn-secondary:hover {
+      background-size: 100% 100%;
+    }
   }
 }
 
