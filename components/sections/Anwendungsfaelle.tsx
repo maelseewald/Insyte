@@ -4,7 +4,6 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
-import Carousel from '@/components/ui/Carousel'
 
 const CASES = [
   {
@@ -12,6 +11,12 @@ const CASES = [
     description:
       'Ein alter Auftritt wirkt unprofessionell und kostet dich potenzielle Kunden.',
     leistung: 'Website',
+    punkte: [
+      'Individuelles Design passend zu deiner Marke',
+      'Optimiert für Mobilgeräte und Suchmaschinen',
+      'Schnelle Ladezeiten dank moderner Technologie',
+    ],
+    cta: 'Mehr zu Websites',
     href: '/leistungen#websites',
     icon: (
       <svg
@@ -35,6 +40,12 @@ const CASES = [
     description:
       'Wiederkehrende Aufgaben lassen sich mit den richtigen Tools automatisieren.',
     leistung: 'Web-App / Software',
+    punkte: [
+      'Analyse deiner Abläufe und Anforderungen',
+      'Massgeschneiderte Lösung statt Standardsoftware',
+      'Automatisierung wiederkehrender Aufgaben',
+    ],
+    cta: 'Mehr zu Software',
     href: '/leistungen#software',
     icon: (
       <svg
@@ -58,6 +69,12 @@ const CASES = [
     description:
       'Veraltete Software und fehlende Backups sind ein unnötiges Risiko.',
     leistung: 'Wartung & Support',
+    punkte: [
+      'Regelmässige Updates und Sicherheitschecks',
+      'Automatische Backups und Monitoring',
+      'Schnelle Hilfe bei Problemen und Ausfällen',
+    ],
+    cta: 'Mehr zu Wartung',
     href: '/leistungen#wartung',
     icon: (
       <svg
@@ -100,37 +117,48 @@ export default function Anwendungsfaelle() {
           Wann wir helfen können
         </motion.h2>
 
-        <motion.div variants={fadeInUp}>
-          <Carousel label="Anwendungsfälle">
-            {CASES.map((item) => (
-              <article
-                key={item.leistung}
-                className="group flex flex-col rounded-lg border border-leinen p-8"
-              >
-                <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-full bg-salbei">
-                  {item.icon}
-                </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {CASES.map((item) => (
+            <motion.article
+              key={item.leistung}
+              variants={fadeInUp}
+              className="flex flex-col rounded-lg border border-leinen p-8"
+            >
+              <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-lg bg-salbei">
+                {item.icon}
+              </div>
 
-                <h3 className="font-display font-bold text-[22px] leading-snug tracking-tight text-wald mb-3">
-                  {item.problem}
-                </h3>
-                <p className="text-erde text-[15px] leading-relaxed mb-8">
-                  {item.description}
-                </p>
+              <h3 className="font-display font-bold text-[22px] leading-snug tracking-tight text-wald mb-3">
+                {item.problem}
+              </h3>
+              <p className="text-erde text-[15px] leading-relaxed mb-8">
+                {item.description}
+              </p>
 
-                <Link
-                  href={item.href}
-                  className="mt-auto inline-flex items-center gap-2 font-display font-bold text-gruen transition-colors hover:text-gruen-dunkel"
-                >
-                  {item.leistung}
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </Link>
-              </article>
-            ))}
-          </Carousel>
-        </motion.div>
+              {/* mt-auto schiebt Liste und Button nach unten, damit die
+                  Buttons über alle drei Karten auf einer Linie stehen —
+                  auch wenn die Texte unterschiedlich lang sind. */}
+              <ul className="mt-auto space-y-3 border-t border-leinen pt-7">
+                {item.punkte.map((punkt) => (
+                  <li
+                    key={punkt}
+                    className="flex items-start gap-3 text-erde text-[14px] leading-relaxed"
+                  >
+                    <Haken />
+                    {punkt}
+                  </li>
+                ))}
+              </ul>
+
+              <Link href={item.href} className="btn-primary mt-8 w-full">
+                {item.cta}
+                <span aria-hidden="true" className="ml-2">
+                  →
+                </span>
+              </Link>
+            </motion.article>
+          ))}
+        </div>
 
         <motion.div variants={fadeInUp} className="mt-12">
           <Link
@@ -145,5 +173,24 @@ export default function Anwendungsfaelle() {
         </motion.div>
       </motion.div>
     </section>
+  )
+}
+
+function Haken() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#2E7D4F"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="mt-1 shrink-0"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
   )
 }
