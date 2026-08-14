@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
-import Anwendungsfaelle from '@/components/sections/Anwendungsfaelle'
 import LeistungenWortmarken from '@/components/sections/LeistungenWortmarken'
 import Portfolio from '@/components/sections/Portfolio'
 import UeberMich from '@/components/sections/UeberMich'
@@ -13,7 +12,6 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Anwendungsfaelle />
         <LeistungenWortmarken />
         <Portfolio />
         <UeberMich />

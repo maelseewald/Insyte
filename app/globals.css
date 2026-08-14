@@ -341,12 +341,14 @@ html.lenis body {
    einer Maske mit overflow:hidden und wird darin von unten nach oben
    geschoben; beim Verlassen fährt sie denselben Weg zurück.
    --------------------------------------------------------------- */
+/* Raster statt Flex: drei gleiche Spalten können nicht umbrechen. Mit
+   Mindestbreiten im Flex-Layout überstieg die Zeile den Container um
+   wenige Pixel und die dritte Wortmarke rutschte in eine zweite Zeile. */
 .wm-reihe {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  gap: 2.5rem;
+  gap: 1.5rem;
 }
 
 /* Das Element ist so gross wie die Fläche dahinter — sonst reagiert nur
@@ -359,8 +361,9 @@ html.lenis body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-width: clamp(220px, 26vw, 360px);
-  min-height: clamp(260px, 28vw, 380px);
+  /* Breite gibt die Rasterspalte vor; nur die Höhe wird gesetzt. */
+  min-width: 0;
+  min-height: clamp(320px, 34vw, 490px);
   text-decoration: none;
 }
 
@@ -443,8 +446,8 @@ html.lenis body {
    schlicht und die Flächen bleiben weg. */
 @media (hover: none), (max-width: 767px) {
   .wm-reihe {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
+    justify-items: start;
     gap: 1.75rem;
   }
   .wm-item {
