@@ -3,7 +3,8 @@
 import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
-import { fadeInUp, staggerContainer, dropIn } from '@/lib/motion'
+import { fadeInUp, staggerContainer } from '@/lib/motion'
+import Carousel from '@/components/ui/Carousel'
 
 const CASES = [
   {
@@ -99,38 +100,36 @@ export default function Anwendungsfaelle() {
           Wann wir helfen können
         </motion.h2>
 
-        <motion.div
-          variants={staggerContainer}
-          className="grid md:grid-cols-3 border-y border-leinen divide-y md:divide-y-0 md:divide-x divide-leinen"
-        >
-          {CASES.map((item) => (
-            <motion.div
-              key={item.leistung}
-              variants={dropIn}
-              className="group flex flex-col origin-top py-10 md:py-12 md:px-10 md:first:pl-0 md:last:pr-0"
-            >
-              <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-full bg-salbei">
-                {item.icon}
-              </div>
-
-              <h3 className="font-display font-bold text-[22px] leading-snug tracking-tight text-wald mb-3">
-                {item.problem}
-              </h3>
-              <p className="text-erde text-[15px] leading-relaxed mb-8">
-                {item.description}
-              </p>
-
-              <Link
-                href={item.href}
-                className="mt-auto inline-flex items-center gap-2 font-display font-bold text-gruen hover:brightness-110 transition"
+        <motion.div variants={fadeInUp}>
+          <Carousel label="Anwendungsfälle">
+            {CASES.map((item) => (
+              <article
+                key={item.leistung}
+                className="group flex flex-col rounded-lg border border-leinen p-8"
               >
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  →
-                </span>
-                {item.leistung}
-              </Link>
-            </motion.div>
-          ))}
+                <div className="mb-7 flex h-12 w-12 items-center justify-center rounded-full bg-salbei">
+                  {item.icon}
+                </div>
+
+                <h3 className="font-display font-bold text-[22px] leading-snug tracking-tight text-wald mb-3">
+                  {item.problem}
+                </h3>
+                <p className="text-erde text-[15px] leading-relaxed mb-8">
+                  {item.description}
+                </p>
+
+                <Link
+                  href={item.href}
+                  className="mt-auto inline-flex items-center gap-2 font-display font-bold text-gruen transition-colors hover:text-gruen-dunkel"
+                >
+                  {item.leistung}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">
+                    →
+                  </span>
+                </Link>
+              </article>
+            ))}
+          </Carousel>
         </motion.div>
 
         <motion.div variants={fadeInUp} className="mt-12">

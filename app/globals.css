@@ -331,3 +331,99 @@ html.lenis body {
   .win { animation: none }
   .win-caret { animation: none }
 }
+
+/* ---------------------------------------------------------------
+   Karussell (components/ui/Carousel.tsx)
+
+   Natives CSS Scroll-Snap statt Library. Die Karten sind breiter als
+   ein Drittel der Spur, damit die nächste immer angeschnitten ist —
+   das ist der Hinweis, dass es weitergeht.
+   --------------------------------------------------------------- */
+.snap-row {
+  /* Die aktive Karte steht mittig, die Nachbarn schauen links und rechts
+     an. Das seitliche Polster ist genau der halbe Rest der Spur — nur so
+     kann auch die erste und letzte Karte die Mitte erreichen. */
+  /* Bewusst vw statt %: eine prozentuale flex-basis misst sich an der
+     Inhaltsbox der Spur, die das Polster unten selbst verkleinert — das
+     ergäbe eine Rückkopplung, in der die Karten immer aufs Minimum fallen. */
+  --card: clamp(260px, 64vw, 720px);
+  display: flex;
+  gap: 1.25rem;
+  padding-inline: calc((100% - var(--card)) / 2);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* Scrollbar weg, ohne die Bedienbarkeit zu verlieren: gewischt und
+     getastet wird weiterhin, es fehlt nur der Balken. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.snap-row::-webkit-scrollbar {
+  display: none;
+}
+
+.snap-row > * {
+  flex: 0 0 var(--card);
+  scroll-snap-align: center;
+  /* Die Nachbarn treten zurück, damit klar ist, welche Karte dran ist. */
+  opacity: 0.45;
+  transition: opacity 0.35s ease-out;
+}
+
+.snap-row > *.is-current {
+  opacity: 1;
+}
+
+.snap-row:focus-visible {
+  outline: 2px solid theme('colors.gruen');
+  outline-offset: 6px;
+  border-radius: 0.5rem;
+}
+
+.car-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid theme('colors.wald / 20%');
+  border-radius: 999px;
+  color: theme('colors.wald');
+  transition: color 0.18s ease-out, border-color 0.18s ease-out,
+              background-color 0.18s ease-out, opacity 0.18s ease-out;
+}
+
+.car-btn:hover:not(:disabled) {
+  border-color: theme('colors.wald');
+  background-color: theme('colors.wald');
+  color: theme('colors.sand');
+}
+
+.car-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.car-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px theme('colors.sand'), 0 0 0 4px theme('colors.gruen');
+}
+
+.car-progress {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.car-progress span {
+  width: 1.4rem;
+  height: 2px;
+  border-radius: 999px;
+  background-color: theme('colors.wald / 18%');
+  transition: background-color 0.25s ease-out, width 0.25s ease-out;
+}
+
+.car-progress span.is-active {
+  width: 2.4rem;
+  background-color: theme('colors.gruen');
+}
