@@ -332,3 +332,136 @@ html.lenis body {
   .win-caret { animation: none }
 }
 
+
+/* ---------------------------------------------------------------
+   Leistungen als Wortmarken
+   (components/sections/LeistungenWortmarken.tsx)
+
+   Rein über :hover gelöst — kein State, kein JS. Die Fläche sitzt in
+   einer Maske mit overflow:hidden und wird darin von unten nach oben
+   geschoben; beim Verlassen fährt sie denselben Weg zurück.
+   --------------------------------------------------------------- */
+.wm-reihe {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+/* Das Element ist so gross wie die Fläche dahinter — sonst reagiert nur
+   der Text selbst auf den Zeiger, und die Fläche fährt schon wieder
+   runter, sobald man zwischen die Buchstaben gerät. */
+.wm-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: clamp(220px, 26vw, 360px);
+  min-height: clamp(260px, 28vw, 380px);
+  text-decoration: none;
+}
+
+.wm-maske {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 0.5rem;
+}
+
+.wm-flaeche {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background-color: theme('colors.wald');
+  transform: translateY(100%);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wm-item:hover .wm-flaeche,
+.wm-item:focus-visible .wm-flaeche {
+  transform: translateY(0);
+}
+
+.wm-flaeche svg {
+  width: 62%;
+  height: auto;
+}
+
+.wm-nummer,
+.wm-wort {
+  position: relative;
+  z-index: 1;
+  transition: color 0.35s ease-out, opacity 0.35s ease-out;
+}
+
+.wm-nummer {
+  color: theme('colors.gruen');
+}
+
+.wm-wort {
+  font-family: theme('fontFamily.display');
+  font-weight: 800;
+  font-size: clamp(26px, 4vw, 52px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: theme('colors.wald');
+  white-space: nowrap;
+}
+
+/* Das gehoverte Wort steht auf der dunklen Fläche und muss hell werden. */
+.wm-item:hover .wm-wort,
+.wm-item:focus-visible .wm-wort {
+  color: theme('colors.sand');
+}
+
+.wm-item:hover .wm-nummer,
+.wm-item:focus-visible .wm-nummer {
+  color: theme('colors.salbei');
+}
+
+/* Die übrigen Wörter treten zurück, solange eines gehovert wird. */
+.wm-reihe:hover .wm-item:not(:hover) .wm-wort,
+.wm-reihe:hover .wm-item:not(:hover) .wm-nummer {
+  opacity: 0.3;
+}
+
+.wm-item:focus-visible {
+  outline: 2px solid theme('colors.gruen');
+  outline-offset: 10px;
+  border-radius: 0.25rem;
+}
+
+/* Ohne Zeigegerät gibt es kein Hover — dort bleibt die Wortzeile
+   schlicht und die Flächen bleiben weg. */
+@media (hover: none), (max-width: 767px) {
+  .wm-reihe {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.75rem;
+  }
+  .wm-item {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-start;
+    min-width: 0;
+    min-height: 0;
+    gap: 0.9rem;
+  }
+  .wm-maske {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wm-flaeche {
+    transition: none;
+  }
+}
