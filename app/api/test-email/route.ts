@@ -1,8 +1,10 @@
 import { Resend } from 'resend'
 import { NextResponse } from 'next/server'
 
-// Für Cloudflare Pages (@cloudflare/next-on-pages) erforderlich.
-export const runtime = 'edge'
+// Kein `runtime = 'edge'`: resend zieht `@react-email/render` als optionale
+// Peer-Dependency über einen dynamischen Import. Im Edge-Runtime lässt
+// webpack das nicht ungelöst durch und der Build bricht ab. Node-Runtime
+// (wie in app/api/contact/route.ts) behandelt es als blosse Warnung.
 
 // Dev-only Hilfsroute, um den Resend-Versand zu testen.
 // Aufruf: `npm run dev`, dann http://localhost:3000/api/test-email öffnen.
