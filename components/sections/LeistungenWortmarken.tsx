@@ -18,6 +18,10 @@ export default function LeistungenWortmarken() {
   return (
     <section className="relative overflow-hidden border-t border-leinen bg-sand py-28 px-6">
       <div className="mx-auto max-w-6xl">
+        <h2 className="font-display font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald mb-16">
+          Leistungen
+        </h2>
+
         <div className="wm-reihe">
           {LEISTUNGEN.map((l) => (
             <Link key={l.wort} href={l.href} className="wm-item">
@@ -26,13 +30,15 @@ export default function LeistungenWortmarken() {
               <span className="wm-maske" aria-hidden="true">
                 <span className="wm-flaeche">{l.zeichnung}</span>
               </span>
-              <span className="wm-nummer label-mono">{l.nummer}</span>
-              <span className="wm-wort">{l.wort}</span>
+              {/* Nummer und Wort als ein Block, damit sie beim Überfahren
+                  gemeinsam nach oben rutschen und über dem Symbol landen. */}
+              <span className="wm-text">
+                <span className="wm-nummer label-mono">{l.nummer}</span>
+                <span className="wm-wort">{l.wort}</span>
+              </span>
             </Link>
           ))}
         </div>
-
-        <p className="label-mono relative z-10 mt-16 text-center text-erde/50">Leistungen /</p>
       </div>
     </section>
   )
