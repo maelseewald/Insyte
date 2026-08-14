@@ -20,8 +20,6 @@ const HEADLINE: TypewriterSegment[] = [
   { text: 'zum Leben', painted: true, typed: true },
 ]
 
-const STATS = ['2 Projekte', '24h Antwortzeit', 'Aus Zürich']
-
 export default function Hero() {
   return (
     <section
@@ -63,24 +61,6 @@ export default function Hero() {
             <Link href="/kontakt" className="btn-secondary">
               Kontakt aufnehmen
             </Link>
-          </motion.div>
-
-          <motion.div
-            {...reveal(0.22)}
-            className="mx-auto mt-10 flex max-w-lg flex-wrap items-center justify-center gap-x-4 gap-y-2 border-t border-leinen pt-7 lg:mx-0 lg:justify-start"
-          >
-            {STATS.map((stat, i) => (
-              <span key={stat} className="flex items-center gap-4">
-                <span className="font-display font-bold text-sm text-wald">
-                  {stat}
-                </span>
-                {i < STATS.length - 1 && (
-                  <span className="text-leinen select-none" aria-hidden="true">
-                    ·
-                  </span>
-                )}
-              </span>
-            ))}
           </motion.div>
         </div>
 
