@@ -33,29 +33,44 @@ Hex-Werte direkt im Markup.
 
 ## 2. Typografie
 
-Zwei Schriften, geladen via `next/font/google` in `app/layout.tsx`.
+Vier Schriften für vier Rollen, geladen via `next/font/google` in `app/layout.tsx`.
 
 | Rolle | Font | Gewicht | Tailwind |
 |-------|------|---------|----------|
-| Display / Headlines | Plus Jakarta Sans | 700 | `font-jakarta font-bold` |
-| Fliesstext / UI | Inter | 400 / 500 / 600 | `font-sans` (Default) |
+| Display / Headlines | Bricolage Grotesque | 700 | `font-display font-bold` |
+| Fliesstext / UI | Inter | 400 / 500 | `font-sans` (Default) |
+| Labels / Eyebrows | JetBrains Mono | 500 | `.label-mono` |
+| Marker-Akzent | Permanent Marker | 400 | `.painted-word` |
 
-**Skala** (fluid, per `clamp` – nicht die festen `fontSize`-Tokens für Headlines nutzen):
+**Es gibt genau drei Gewichte:** 400 Fliesstext, 500 Labels und Buttons,
+700 Überschriften. Kein `font-semibold`, kein 800.
 
-| Element | Klassen |
-|---------|---------|
-| H1 (Hero) | `text-[clamp(38px,7vw,68px)] leading-[1.04] tracking-[-0.03em]` |
-| H2 (Sektion) | `text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight` |
-| H3 (Karte) | `text-[22px] leading-snug tracking-tight` |
-| Fliesstext gross | `text-lg leading-relaxed` |
-| Fliesstext | `text-[15px] leading-relaxed` |
-| Eyebrow / Label | `text-xs font-semibold uppercase tracking-[0.24em] text-gruen` |
+**Skala** – benannte Tokens aus `tailwind.config.ts`. Zeilenhöhe und Laufweite
+stecken im Token, **nie einzeln danebensetzen**:
+
+| Token | Grösse | Rolle |
+|-------|--------|-------|
+| `text-h1` | `clamp(34px, 5vw, 60px)` | Seitentitel, Hero |
+| `text-h2` | `clamp(28px, 3.6vw, 44px)` | Sektionsüberschrift |
+| `text-h3` | `clamp(22px, 2.4vw, 30px)` | Karten- und Eintragsüberschrift |
+| `text-h4` | `20px` | kleinste Überschrift, Wortmarke Navigation |
+| `text-stat` | `clamp(44px, 7vw, 76px)` | grosse Jahreszahl im Zeitstrahl |
+| `text-lg` / `text-base` / `text-sm` / `text-xs` | 18 / 16 / 14 / 12px | Fliesstext und UI |
 
 **Regeln**
-- Headlines: immer `font-jakarta font-bold`, negatives Tracking, Farbe `text-wald`.
+- Die Stufe folgt dem Tag: `<h2>` bekommt `text-h2`. Keine freien `clamp()`-Werte
+  und keine `text-[NNpx]`-Einzelfälle mehr.
+- `leading-*` und `tracking-*` **nicht** zusätzlich auf Überschriften setzen –
+  beides kommt aus dem Token.
+- Headlines: `font-display font-bold`, Farbe `text-wald`.
 - Fliesstext: `text-erde`, Zeilenhöhe `leading-relaxed`.
 - Lange Headlines mit `text-balance` umbrechen.
-- Eyebrow steht über der H1/H2, `gruen`, versal, weit gesperrt.
+- Eyebrow steht über der Überschrift: `.label-mono text-gruen`.
+
+**Einzige Ausnahme:** Impressum und Datenschutz laufen durchgängig eine Stufe
+kleiner (`<h1>` mit `text-h2`, `<h2>` mit `text-h3`). Grund: „Datenschutz-
+erklärung" ist ein unteilbares Wort und läuft in h1-Grösse auf dem Handy über
+den Rand.
 
 ---
 
@@ -69,12 +84,15 @@ inline nachbauen – diese Klassen verwenden.
 .btn-secondary  → bg-wald   text-sand   (sekundär)
 ```
 
-Beide: `font-jakarta`, `rounded-lg px-5 py-2.5 text-sm`, Hover hebt leicht an
-(`-translate-y-0.5`) und hellt auf, Active drückt zusammen (`scale-[0.97]`),
-sichtbarer Fokus-Ring in `gruen`/`wald`.
+Beide: `rounded-lg px-7 py-4 text-sm font-medium` in der Textschrift.
+Beim Hover bewegt sich **nichts** – kein Anheben, kein Skalieren, kein
+Helligkeitsfilter. Stattdessen füllt sich der Button von unten nach oben
+(`background-size` 0 % → 100 % über 0,32 s). Sichtbarer Fokus-Ring in
+`gruen`/`wald`.
 
-**Text-Links / Pfeil-Links** (statt Button): `font-jakarta font-bold text-gruen`
-mit Pfeil `→`, der bei `group-hover` per `translate-x-1` nachrückt.
+**Text-Links / Pfeil-Links** (statt Button): `font-display font-bold text-gruen`
+mit Pfeil `→` **hinter** dem Label, der bei `group-hover` per `translate-x-1`
+nachrückt.
 
 ---
 

@@ -154,12 +154,12 @@ export default function Kontakt() {
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="text-gruen text-[15px] font-medium hover:brightness-110 transition"
+                      className="text-gruen text-sm font-medium hover:brightness-110 transition"
                     >
                       {item.value}
                     </a>
                   ) : (
-                    <p className="text-sand text-[15px]">{item.value}</p>
+                    <p className="text-sand text-sm">{item.value}</p>
                   )}
                 </div>
               </motion.li>
@@ -175,7 +175,7 @@ export default function Kontakt() {
               animate={{ opacity: 1, y: 0 }}
               className="flex h-full flex-col justify-center rounded-xl border border-sand/15 bg-sand/[0.04] p-10 text-center text-salbei"
             >
-              <p className="font-display font-bold text-2xl mb-2 text-white">
+              <p className="font-display font-bold text-h3 mb-2 text-white">
                 Danke!
               </p>
               <p>
@@ -193,7 +193,7 @@ export default function Kontakt() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-xs font-semibold text-sand/60 mb-1.5"
+                  className="block text-xs font-medium text-sand/60 mb-1.5"
                 >
                   Name
                 </label>
@@ -214,7 +214,7 @@ export default function Kontakt() {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-xs font-semibold text-sand/60 mb-1.5"
+                  className="block text-xs font-medium text-sand/60 mb-1.5"
                 >
                   E-Mail
                 </label>
@@ -235,7 +235,7 @@ export default function Kontakt() {
               <div>
                 <label
                   htmlFor="topic"
-                  className="block text-xs font-semibold text-sand/60 mb-1.5"
+                  className="block text-xs font-medium text-sand/60 mb-1.5"
                 >
                   Anliegen
                 </label>
@@ -282,7 +282,7 @@ export default function Kontakt() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-xs font-semibold text-sand/60 mb-1.5"
+                  className="block text-xs font-medium text-sand/60 mb-1.5"
                 >
                   Nachricht
                 </label>

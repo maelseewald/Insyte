@@ -35,7 +35,7 @@ export default function Portfolio() {
             </motion.p>
             <motion.h2
               variants={fadeInUp}
-              className="font-display font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald"
+              className="font-display font-bold text-h2 text-wald"
             >
               Was wir gebaut haben
             </motion.h2>

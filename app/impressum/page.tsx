@@ -16,7 +16,10 @@ export default function Impressum() {
         >
           ← Zurück
         </Link>
-        <h1 className="font-display font-bold text-[clamp(28px,7vw,40px)] tracking-tight text-wald text-balance mb-8">
+        {/* Rechtsseiten laufen bewusst eine Stufe kleiner: "Datenschutz-
+            erklärung" ist ein unteilbares Wort und würde in h1-Grösse auf
+            dem Handy über den Rand laufen. */}
+        <h1 className="font-display font-bold text-h2 text-wald text-balance mb-8">
           Impressum
         </h1>
         <div className="text-erde text-base leading-relaxed space-y-4">

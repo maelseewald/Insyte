@@ -30,7 +30,7 @@ export default function KontaktPage() {
             <p className="label-mono text-gruen mb-5">
               Kontakt
             </p>
-            <h1 className="font-display font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl">
+            <h1 className="font-display font-bold text-h1 text-wald mb-7 max-w-3xl">
               Lass uns über dein Projekt reden.
             </h1>
             <p className="text-erde text-lg leading-relaxed max-w-xl">

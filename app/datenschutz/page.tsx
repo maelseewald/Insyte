@@ -16,7 +16,10 @@ export default function Datenschutz() {
         >
           ← Zurück
         </Link>
-        <h1 className="font-display font-bold text-[clamp(28px,7vw,40px)] tracking-tight text-wald text-balance mb-8">
+        {/* Rechtsseiten laufen bewusst eine Stufe kleiner: "Datenschutz-
+            erklärung" ist ein unteilbares Wort und würde in h1-Grösse auf
+            dem Handy über den Rand laufen. */}
+        <h1 className="font-display font-bold text-h2 text-wald text-balance mb-8">
           Datenschutzerklärung
         </h1>
         <div className="text-erde text-base leading-relaxed space-y-4">
@@ -30,7 +33,7 @@ export default function Datenschutz() {
             </a>
           </p>
 
-          <h2 className="font-display font-bold text-xl text-wald pt-4">
+          <h2 className="font-display font-bold text-h3 text-wald pt-4">
             1. Kontaktformular
           </h2>
           <p>
@@ -41,7 +44,7 @@ export default function Datenschutz() {
             (resend.com).
           </p>
 
-          <h2 className="font-display font-bold text-xl text-wald pt-4">
+          <h2 className="font-display font-bold text-h3 text-wald pt-4">
             2. Hosting
           </h2>
           <p>
@@ -51,7 +54,7 @@ export default function Datenschutz() {
             Vercel.
           </p>
 
-          <h2 className="font-display font-bold text-xl text-wald pt-4">
+          <h2 className="font-display font-bold text-h3 text-wald pt-4">
             3. Deine Rechte
           </h2>
           <p>

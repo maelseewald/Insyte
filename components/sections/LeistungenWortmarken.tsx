@@ -18,7 +18,7 @@ export default function LeistungenWortmarken() {
   return (
     <section className="relative overflow-hidden border-t border-leinen bg-sand py-28 px-6">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-display font-bold text-[clamp(32px,4vw,46px)] leading-[1.08] tracking-tight text-wald mb-16">
+        <h2 className="font-display font-bold text-h2 text-wald mb-16">
           Leistungen
         </h2>
 

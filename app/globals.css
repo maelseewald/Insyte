@@ -461,11 +461,10 @@ html.lenis body {
 }
 
 .wm-wort {
+  /* Hängt am h1-Token statt an eigenen Werten — vorher war das die einzige
+     Stelle der Seite mit Gewicht 800 und einer Grösse ausserhalb der Skala. */
+  @apply text-h1 font-bold;
   font-family: theme('fontFamily.display');
-  font-weight: 800;
-  font-size: clamp(26px, 4vw, 52px);
-  line-height: 1;
-  letter-spacing: -0.02em;
   text-transform: uppercase;
   color: theme('colors.wald');
   white-space: nowrap;

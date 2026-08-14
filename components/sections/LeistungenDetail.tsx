@@ -131,7 +131,7 @@ export default function LeistungenDetail() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl"
+            className="font-display font-bold text-h1 text-wald mb-7 max-w-3xl"
           >
             Websites, Software und Betreuung – aus einer Hand.
           </motion.h1>
@@ -168,10 +168,10 @@ export default function LeistungenDetail() {
                 {service.icon}
               </div>
 
-              <h2 className="font-display font-bold text-[26px] leading-tight tracking-tight text-wald mb-4">
+              <h2 className="font-display font-bold text-h2 text-wald mb-4">
                 {service.title}
               </h2>
-              <p className="text-erde text-[15px] leading-relaxed mb-8">
+              <p className="text-erde text-sm leading-relaxed mb-8">
                 {service.description}
               </p>
 
@@ -182,7 +182,7 @@ export default function LeistungenDetail() {
                 {service.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-start gap-3 text-erde text-[15px] leading-relaxed"
+                    className="flex items-start gap-3 text-erde text-sm leading-relaxed"
                   >
                     <CheckIcon />
                     {feature}
@@ -197,7 +197,7 @@ export default function LeistungenDetail() {
       {/* CTA */}
       <section className="bg-wald py-24 px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-white mb-5">
+          <h2 className="font-display font-bold text-h2 text-white mb-5">
             Klingt nach dem, was du suchst?
           </h2>
           <p className="text-sand/70 text-base mb-9">

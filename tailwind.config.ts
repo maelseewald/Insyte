@@ -29,10 +29,23 @@ const config: Config = {
         // Marker-Akzent — fällt auf die Display-Schrift zurück, nicht auf System-Sans
         marker:  ['var(--font-marker)', 'var(--font-display)', 'sans-serif'],
       },
+      // Eine Skala für die ganze Seite. Zeilenhöhe und Laufweite stecken im
+      // Token, damit sie nicht an jeder Fundstelle einzeln gesetzt werden —
+      // genau daraus waren vorher neun leicht verschiedene clamp()-Varianten
+      // für vier Überschriftenebenen entstanden.
       fontSize: {
-        'display': ['56px', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
-        'heading':  ['40px', { lineHeight: '1.1',  letterSpacing: '-0.02em' }],
-        'subhead':  ['24px', { lineHeight: '1.3',  letterSpacing: '-0.02em' }],
+        xs:   ['0.75rem',  { lineHeight: '1.5' }],
+        sm:   ['0.875rem', { lineHeight: '1.6' }],
+        base: ['1rem',     { lineHeight: '1.65' }],
+        lg:   ['1.125rem', { lineHeight: '1.65' }],
+
+        h4: ['1.25rem', { lineHeight: '1.35', letterSpacing: '-0.015em' }],
+        h3: ['clamp(22px, 2.4vw, 30px)', { lineHeight: '1.25', letterSpacing: '-0.02em' }],
+        h2: ['clamp(28px, 3.6vw, 44px)', { lineHeight: '1.1',  letterSpacing: '-0.025em' }],
+        h1: ['clamp(34px, 5vw, 60px)',   { lineHeight: '1.05', letterSpacing: '-0.03em' }],
+
+        // Sonderfall: die grosse Jahreszahl im Zeitstrahl.
+        stat: ['clamp(44px, 7vw, 76px)', { lineHeight: '1', letterSpacing: '-0.03em' }],
       },
     },
   },

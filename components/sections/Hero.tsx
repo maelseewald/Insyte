@@ -38,7 +38,7 @@ export default function Hero() {
               sonst wäre er schon sichtbar, bevor er geschrieben wird. */}
           <motion.h1
             {...reveal(0.07)}
-            className="font-display font-bold text-[clamp(40px,5vw,64px)] leading-[1.04] tracking-[-0.03em] text-wald text-balance mb-8"
+            className="font-display font-bold text-h1 text-wald text-balance mb-8"
           >
             <Typewriter segments={HEADLINE} startDelay={0.42} step={0.06} />
           </motion.h1>

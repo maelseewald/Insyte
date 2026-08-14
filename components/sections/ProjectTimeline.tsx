@@ -5,7 +5,7 @@ import { motion, useInView } from 'framer-motion'
 import { type Project } from '@/lib/projects'
 
 const LINK_PILL =
-  'inline-flex items-center gap-2 rounded-full border border-leinen bg-white px-4 py-2 text-sm font-semibold text-wald transition-colors hover:border-gruen/40 hover:text-gruen'
+  'inline-flex items-center gap-2 rounded-full border border-leinen bg-white px-4 py-2 text-sm font-medium text-wald transition-colors hover:border-gruen/40 hover:text-gruen'
 
 function ExternalIcon() {
   return (
@@ -138,7 +138,7 @@ function DetailBlock({
       }`}
     >
       <div className="flex items-baseline gap-4 mb-3">
-        <span className="font-display font-bold text-[clamp(44px,7vw,76px)] leading-none tabular-nums text-leinen">
+        <span className="font-display font-bold text-stat tabular-nums text-leinen">
           {project.year}
         </span>
         <span className="label-mono text-gruen">
@@ -146,7 +146,7 @@ function DetailBlock({
         </span>
       </div>
 
-      <h3 className="font-display font-bold text-[clamp(28px,3.6vw,42px)] leading-tight tracking-tight text-wald mb-2">
+      <h3 className="font-display font-bold text-h3 text-wald mb-2">
         {project.name}
       </h3>
       <p className="text-erde text-base mb-5">{project.type}</p>

@@ -46,7 +46,7 @@ export default function UeberMich() {
           </motion.p>
           <motion.p
             variants={fadeInUp}
-            className="font-display font-bold text-[clamp(22px,2.8vw,30px)] leading-snug tracking-tight text-wald mb-5 max-w-xl"
+            className="font-display font-bold text-h3 text-wald mb-5 max-w-xl"
           >
             Kein anonymer Anbieter – bei Insyte arbeitest du direkt mit den
             Menschen, die dein Projekt bauen. Wir hören zu, denken mit und

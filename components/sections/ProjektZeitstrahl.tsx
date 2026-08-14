@@ -23,7 +23,7 @@ export default function ProjektZeitstrahl() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display font-bold text-[clamp(36px,5.5vw,60px)] leading-[1.04] tracking-tight text-wald mb-7 max-w-3xl"
+            className="font-display font-bold text-h1 text-wald mb-7 max-w-3xl"
           >
             Was wir bisher gebaut haben.
           </motion.h1>
@@ -49,7 +49,7 @@ export default function ProjektZeitstrahl() {
       {/* CTA */}
       <section className="bg-wald py-24 px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display font-bold text-[clamp(28px,3.4vw,40px)] leading-tight tracking-tight text-white mb-5">
+          <h2 className="font-display font-bold text-h2 text-white mb-5">
             Dein Projekt als Nächstes?
           </h2>
           <p className="text-sand/70 text-base mb-9">
