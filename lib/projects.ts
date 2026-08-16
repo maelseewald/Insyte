@@ -18,6 +18,19 @@ export type Project = {
 
 const ALL: Project[] = [
   {
+    id: 'smallbrawl',
+    name: 'SmallBrawl',
+    type: 'Browser-Game',
+    category: 'Software',
+    year: '2026',
+    date: '2026-08',
+    tags: ['TypeScript', 'Vite', 'Multiplayer'],
+    description:
+      'Ein Multiplayer-Spiel im Browser, gedacht fürs Handy im Querformat: rollende Maschinen auf grünem Feld, zwei bis zehn auf einer Karte. Gewonnen wird über Können, nicht über Geld – Skins verändern nur das Aussehen.',
+    liveUrl: 'https://smallbrawl.insyte.ch',
+    repoUrl: 'https://github.com/maelseewald/SmallBrawl',
+  },
+  {
     id: 'paninicheck',
     name: 'PaniniCheck',
     type: 'Web-App',
@@ -27,7 +40,6 @@ const ALL: Project[] = [
     tags: ['Next.js', 'Web-App', 'TypeScript'],
     description:
       'Web-App rund um Panini-Sammelbilder – damit behältst du den Überblick über deine Sammlung und siehst, welche Bilder dir noch fehlen.',
-    liveUrl: 'https://paninicheck.insyte.ch/login',
     repoUrl: 'https://github.com/maelseewald/paninicheck',
   },
   {
