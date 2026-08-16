@@ -522,3 +522,414 @@ html.lenis body {
     transition: none;
   }
 }
+
+
+
+/* ---------------------------------------------------------------
+   Brief-Szene im Kontakt (components/kontakt/*)
+
+   Ablauf, und zwar in dieser Reihenfolge, weil ein Couvert vorne
+   keine Öffnung hat:
+
+     1. Vorderseite — Absender, Empfänger, Betreff, kein Dreieck.
+     2. Die Karte dreht sich auf die Rückseite.
+     3. Dort klappt die Lasche auf.
+     4. Der Brief fährt darunter hervor.
+     … beim Senden rückwärts, danach der Stempel.
+
+   Die Lasche kippt über `scaleY` um ihre Oberkante statt über
+   `rotateX`: die Rückseite muss ihren Teilbaum flach halten, damit
+   `backface-visibility` sie als Ganzes verbirgt — eine 3D-Drehung
+   im Innern verhinderte genau das. Bei einer flachen Form ist ein
+   negatives `scaleY` um die Kante ohnehin dasselbe Bild.
+
+   Zwei Materialien aus der Palette: `leinen` fürs Couvert, `sand`
+   fürs Briefpapier. Zwei Schriften mit Bedeutung: die Adresse in
+   Permanent Marker (ein Couvert beschriftet man von Hand), der
+   Brieftext in JetBrains Mono (den tippt man) — dieselbe Monospace,
+   die im Hero schon die Terminal-Bildsprache trägt.
+
+   Alle Innenmasse hängen über `cqw` an der Bühnenbreite, damit die
+   Szene von 320px bis 480px dieselben Proportionen behält.
+   --------------------------------------------------------------- */
+.bs-buehne {
+  container-type: inline-size;
+  position: relative;
+  width: 100%;
+  max-width: 30rem;
+  /* Hoch genug für den ausgefahrenen Brief und die offene Lasche. */
+  aspect-ratio: 10 / 12;
+  perspective: 1600px;
+}
+
+/* Brief und Couvert liegen in je einem Fach über der ganzen Bühne und
+   zentrieren ihr Kind. Bewegt wird das Fach, nicht das Kind — beide
+   haben denselben Mittelpunkt, also ist das dasselbe, spart aber eine
+   Schachtelungsebene. */
+.bs-fach {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.bs-karte {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.5;
+  transform-style: preserve-3d;
+  font-size: clamp(11.5px, 3.5cqw, 15px);
+}
+
+/* Kein `overflow` und kein `border-radius` hier: die aufgeklappte
+   Lasche ragt über die Oberkante hinaus und würde sonst abgeschnitten.
+   Beides sitzt stattdessen auf den Papierflächen darin. */
+.bs-seite {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.bs-seite--hinten {
+  transform: rotateY(180deg);
+}
+
+/* Gemeinsames Papier für Vorder- und Rückseite. */
+.cv,
+.cvh {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  background-color: theme('colors.leinen');
+  box-shadow:
+    0 1px 0 theme('colors.white / 45%') inset,
+    0 26px 50px -28px theme('colors.wald / 70%');
+}
+
+/* --- Vorderseite: die Adresse ------------------------------------ */
+.cv {
+  padding: 1.5em 1.7em;
+  /* Ein Hauch Verlauf statt Textur — das Papier bekommt eine
+     Lichtrichtung, ohne dass eine zweite Fläche nötig wird. */
+  background-image: linear-gradient(
+    160deg,
+    theme('colors.white / 22%'),
+    theme('colors.wald / 4%')
+  );
+  color: theme('colors.erde');
+}
+
+.cv-absender {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28em;
+  width: 52%;
+}
+
+/* Briefmarke. Perforation als gestrichelter Rahmen — eine echte
+   Zahnung wäre hier Dekor ohne Aussage. */
+.cv-marke {
+  position: absolute;
+  top: 1.4em;
+  right: 1.6em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.4em;
+  height: 6.4em;
+  border: 1.5px dashed theme('colors.gruen / 45%');
+  border-radius: 0.15rem;
+  background-color: theme('colors.salbei / 45%');
+  font-family: theme('fontFamily.display');
+  font-weight: 700;
+  font-size: 0.9em;
+  letter-spacing: -0.02em;
+  color: theme('colors.gruen');
+}
+
+.cv-empfaenger {
+  position: absolute;
+  left: 38%;
+  top: 47%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  font-family: theme('fontFamily.marker');
+  font-size: 1.15em;
+  line-height: 1.45;
+  color: theme('colors.wald');
+}
+
+.cv-vermerk {
+  position: absolute;
+  left: 1.7em;
+  bottom: 1.5em;
+  width: 58%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.28em;
+}
+
+/* Handschrift und ihre Leerform. Die leere Zeile ist eine gestrichelte
+   Linie in Schriftgrösse — dadurch springt beim Tippen nichts. */
+.cv-hand {
+  font-family: theme('fontFamily.marker');
+  font-size: 1.05em;
+  line-height: 1.4;
+  color: theme('colors.wald');
+  overflow-wrap: anywhere;
+}
+
+.cv-leer {
+  height: 1.47em;
+  border-bottom: 1.5px dashed theme('colors.erde / 28%');
+}
+
+.cv-label {
+  font-family: theme('fontFamily.mono');
+  font-size: 0.68em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: theme('colors.erde / 45%');
+}
+
+/* Stempel. Schief wie ein Abdruck, und unten rechts — die einzige
+   Ecke, die weder Absender noch Marke, Empfänger oder Betreff
+   belegt. Er schlägt auf statt einzublenden. */
+.cv-stempel {
+  position: absolute;
+  right: 1.6em;
+  bottom: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15em;
+  padding: 0.5em 0.9em;
+  border: 2px solid theme('colors.gruen / 75%');
+  border-radius: 0.2rem;
+  transform: rotate(-9deg);
+  font-family: theme('fontFamily.mono');
+  font-weight: 500;
+  color: theme('colors.gruen');
+  animation: cv-stempeln 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.25) backwards;
+}
+
+@keyframes cv-stempeln {
+  from {
+    opacity: 0;
+    transform: rotate(-17deg) scale(1.9);
+  }
+  60% {
+    opacity: 1;
+    transform: rotate(-6deg) scale(0.93);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(-9deg) scale(1);
+  }
+}
+
+.cv-stempel-wort {
+  font-size: 0.95em;
+  letter-spacing: 0.16em;
+}
+
+.cv-stempel-datum {
+  font-size: 0.62em;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+/* --- Rückseite: Faltung und Lasche ------------------------------- */
+/* Hier steht nichts geschrieben, also darf die Faltung ausführlich
+   sein — genau das, was auf der Adressseite gestört hat. */
+.cvh {
+  background-image: linear-gradient(
+    160deg,
+    theme('colors.white / 18%'),
+    theme('colors.wald / 6%')
+  );
+}
+
+/* Eingeschlagene Seitenkeile */
+.cvh::before,
+.cvh::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: theme('colors.wald / 5%');
+}
+
+.cvh::before {
+  clip-path: polygon(0 0, 26% 50%, 0 100%);
+}
+
+.cvh::after {
+  clip-path: polygon(100% 0, 74% 50%, 100% 100%);
+}
+
+/* Untere Klappe — die Tasche, in der der Brief steckt. */
+.cvh-boden {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 56%;
+  background-color: theme('colors.wald / 4%');
+  clip-path: polygon(0 24%, 50% 0, 100% 24%, 100% 100%, 0 100%);
+}
+
+/* Die Lasche. Geschlossen liegt sie auf der Rückseite, geöffnet kippt
+   sie über die Oberkante nach hinten weg. Sie ist Geschwister der
+   Papierfläche, nicht ihr Kind — sonst schnitte deren `overflow` sie
+   im geöffneten Zustand ab. */
+.cvh-lasche {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 48%;
+  transform-origin: top center;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background-color: theme('colors.leinen');
+  background-image: linear-gradient(
+    theme('colors.wald / 3%'),
+    theme('colors.wald / 15%')
+  );
+}
+
+/* --- Der Brief --------------------------------------------------- */
+.bf {
+  position: relative;
+  width: 76%;
+  aspect-ratio: 1 / 1.34;
+  padding: 2.1em 2em 2.8em;
+  border-radius: 0.2rem;
+  background-color: theme('colors.sand');
+  box-shadow: 0 30px 56px -30px theme('colors.wald / 75%');
+  font-size: clamp(12px, 3.6cqw, 15px);
+  color: theme('colors.erde');
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Querfalz auf einem Drittel — das Blatt war gefaltet im Couvert. */
+.bf-falz {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 34%;
+  height: 1px;
+  background-color: theme('colors.wald / 8%');
+  box-shadow: 0 1px 0 theme('colors.white / 70%');
+}
+
+.bf-datum {
+  align-self: flex-end;
+  font-family: theme('fontFamily.mono');
+  font-size: 0.7em;
+  letter-spacing: 0.06em;
+  color: theme('colors.erde / 55%');
+}
+
+.bf-anrede {
+  margin-top: 1.6em;
+  font-family: theme('fontFamily.mono');
+  font-size: 0.86em;
+  color: theme('colors.wald');
+}
+
+.bf-text {
+  margin-top: 0.9em;
+  font-family: theme('fontFamily.mono');
+  font-size: 0.84em;
+  line-height: 1.85;
+  color: theme('colors.erde');
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  line-clamp: 8;
+  overflow: hidden;
+}
+
+/* Leerform des Brieftexts: Zeilen im Zeilenabstand des echten Texts. */
+.bf-linien {
+  margin-top: 1.45em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.bf-linie {
+  height: 1px;
+  background-color: theme('colors.erde / 16%');
+}
+
+.bf-signatur {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+}
+
+.bf-gruss {
+  font-family: theme('fontFamily.mono');
+  font-size: 0.72em;
+  color: theme('colors.erde / 60%');
+}
+
+.bf-name {
+  font-family: theme('fontFamily.marker');
+  font-size: 1.22em;
+  color: theme('colors.wald');
+  overflow-wrap: anywhere;
+}
+
+/* --- Umschalter -------------------------------------------------- */
+.bs-schalter {
+  display: inline-flex;
+  gap: 1.4rem;
+}
+
+.bs-schalter button {
+  position: relative;
+  padding-bottom: 0.3rem;
+  color: theme('colors.sand / 45%');
+  transition: color 0.15s ease;
+}
+
+.bs-schalter button:hover {
+  color: theme('colors.sand / 75%');
+}
+
+.bs-schalter button[aria-selected='true'] {
+  color: theme('colors.salbei');
+}
+
+.bs-schalter button[aria-selected='true']::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background-color: theme('colors.gruen');
+}
+
+/* Ohne Bewegung: kein Drehen, kein Fahren, kein Aufschlag. Die
+   Zustände wechseln trotzdem, nur ohne Weg dazwischen. */
+@media (prefers-reduced-motion: reduce) {
+  .bs-buehne {
+    perspective: none;
+  }
+  .cv-stempel {
+    animation: none;
+  }
+}

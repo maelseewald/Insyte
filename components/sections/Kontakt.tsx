@@ -1,8 +1,12 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
+import BriefSzene, {
+  SENDE_ABLAUF,
+  type Phase,
+} from '@/components/kontakt/BriefSzene'
 
 type FormState = 'idle' | 'loading' | 'success' | 'error'
 
@@ -17,70 +21,6 @@ const TOPICS = [
   'Allgemeine Anfrage',
 ]
 
-const CONTACTS = [
-  {
-    label: 'E-Mail',
-    value: 'info@insyte.ch',
-    href: 'mailto:info@insyte.ch',
-    icon: (
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#2E7D4F"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="m22 7-10 6L2 7" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Antwortzeit',
-    value: 'Innerhalb von 24 Stunden',
-    icon: (
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#2E7D4F"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3 2" />
-      </svg>
-    ),
-  },
-  {
-    label: 'Ansprechpartner',
-    value: 'Persönlich – kein Callcenter',
-    icon: (
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="#2E7D4F"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M20 21a8 8 0 0 0-16 0" />
-        <circle cx="12" cy="7" r="4" />
-      </svg>
-    ),
-  },
-]
-
 export default function Kontakt() {
   const [form, setForm] = useState({
     name: '',
@@ -90,9 +30,34 @@ export default function Kontakt() {
   })
   const [state, setState] = useState<FormState>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  // Was die Szene links gerade zeigt. Der Fokus im Formular steuert
+  // sie: Absenderfelder zeigen das Couvert, die Nachricht den Brief.
+  const [phase, setPhase] = useState<Phase>('couvert')
+  // Zweite Stufe des Sendens: das Formular ist weg, der Brief steht
+  // allein in der Mitte. Getrennt von `phase`, weil es später
+  // einsetzt — mitten in der Drehung.
+  const [alleinstehend, setAlleinstehend] = useState(false)
+  // Höhe des Rasters im Moment des Absendens. Ohne sie schrumpft der
+  // Abschnitt, sobald das Formular verschwindet, und die Seite ruckt
+  // unter dem Finger nach oben.
+  const [hoehe, setHoehe] = useState<number>()
 
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const ohneBewegung = useReducedMotion() ?? false
+
+  const gesendet = state === 'success'
+
+  useEffect(() => {
+    if (!gesendet) return
+    if (ohneBewegung) {
+      setAlleinstehend(true)
+      return
+    }
+    // Der Umzug in die Mitte läuft mit der Schlussdrehung mit.
+    const t = setTimeout(() => setAlleinstehend(true), SENDE_ABLAUF.umzug * 1000)
+    return () => clearTimeout(t)
+  }, [gesendet, ohneBewegung])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -111,8 +76,11 @@ export default function Kontakt() {
         throw new Error(data.error ?? 'Unbekannter Fehler.')
       }
 
+      // Erst jetzt versiegeln — bei einem Fehler bliebe das Couvert
+      // sonst zu, obwohl nichts angekommen ist.
+      setHoehe(ref.current?.offsetHeight)
       setState('success')
-      setForm({ name: '', email: '', topic: '', message: '' })
+      setPhase('gesendet')
     } catch (err) {
       setState('error')
       setErrorMsg(err instanceof Error ? err.message : 'Fehler beim Senden.')
@@ -126,195 +94,208 @@ export default function Kontakt() {
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
         variants={staggerContainer}
-        className="mx-auto grid max-w-5xl gap-12 md:grid-cols-2 md:gap-16"
+        style={{ minHeight: hoehe }}
+        className={`mx-auto grid max-w-5xl gap-14 md:gap-16 ${
+          alleinstehend ? 'place-items-center' : 'items-start md:grid-cols-2'
+        }`}
       >
-        {/* Left: invitation + contact details */}
-        <div>
-          <motion.p
-            variants={fadeInUp}
-            className="label-mono text-salbei/60 mb-6"
+        {/* Links — nach dem Senden allein in der Mitte: das Couvert,
+            das mitschreibt */}
+        <motion.div
+          variants={fadeInUp}
+          className={
+            alleinstehend
+              ? 'flex w-full flex-col items-center'
+              : 'md:sticky md:top-28'
+          }
+        >
+          {/* `layout="position"` schiebt die Szene von der linken Spalte
+              in die Mitte, ohne sie dabei zu verzerren — die Breite darf
+              springen, die Position nicht.
+
+              `w-full max-w-[30rem]` ist nicht Kosmetik: die Bühne ist
+              `width: 100%`, und sobald die Spalte oben auf zentriertes
+              Flex umschaltet, zöge sich dieser Wrapper sonst auf seinen
+              Inhalt zusammen — 100% von „so breit wie der Inhalt" löst
+              sich zu 0 auf und das Couvert verschwindet. */}
+          <motion.div
+            layout="position"
+            className="w-full max-w-[30rem]"
+            transition={
+              ohneBewegung
+                ? { duration: 0 }
+                : { duration: 0.7, ease: [0.4, 0, 0.2, 1] }
+            }
           >
-            Direkt erreichbar
-          </motion.p>
+            <BriefSzene
+              phase={phase}
+              onPhase={setPhase}
+              name={form.name}
+              email={form.email}
+              betreff={form.topic}
+              nachricht={form.message}
+            />
+          </motion.div>
 
-          <ul className="space-y-5">
-            {CONTACTS.map((item) => (
-              <motion.li
-                key={item.label}
-                variants={fadeInUp}
-                className="flex items-center gap-4"
-              >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-salbei">
-                  {item.icon}
-                </span>
-                <div>
-                  <p className="label-mono text-sand/40">
-                    {item.label}
-                  </p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      className="text-gruen text-sm font-medium hover:brightness-110 transition"
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <p className="text-sand text-sm">{item.value}</p>
-                  )}
-                </div>
-              </motion.li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Right: form */}
-        <div>
-          {state === 'success' ? (
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex h-full flex-col justify-center rounded-xl border border-sand/15 bg-sand/[0.04] p-10 text-center text-salbei"
-            >
-              <p className="font-display font-bold text-h3 mb-2 text-white">
-                Danke!
-              </p>
-              <p>
-                Deine Nachricht ist angekommen! Wir melden uns innerhalb von 24
-                Stunden.
-              </p>
-            </motion.div>
-          ) : (
-            <motion.form
-              variants={fadeInUp}
-              onSubmit={handleSubmit}
-              className="space-y-4"
-              noValidate
-            >
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-xs font-medium text-sand/60 mb-1.5"
-                >
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  required
-                  autoComplete="name"
-                  placeholder="Dein Name"
-                  value={form.name}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, name: e.target.value }))
-                  }
-                  className={INPUT_CLASS}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-xs font-medium text-sand/60 mb-1.5"
-                >
-                  E-Mail
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  required
-                  autoComplete="email"
-                  placeholder="deine@email.ch"
-                  value={form.email}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, email: e.target.value }))
-                  }
-                  className={INPUT_CLASS}
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="topic"
-                  className="block text-xs font-medium text-sand/60 mb-1.5"
-                >
-                  Anliegen
-                </label>
-                <div className="relative">
-                  <select
-                    id="topic"
-                    required
-                    value={form.topic}
-                    onChange={(e) =>
-                      setForm((f) => ({ ...f, topic: e.target.value }))
-                    }
-                    className={`${INPUT_CLASS} appearance-none pr-10 ${
-                      form.topic ? 'text-sand' : 'text-sand/40'
-                    }`}
-                  >
-                    <option value="" disabled className="text-erde">
-                      Bitte auswählen…
-                    </option>
-                    {TOPICS.map((topic) => (
-                      <option key={topic} value={topic} className="text-erde">
-                        {topic}
-                      </option>
-                    ))}
-                  </select>
-                  {/* chevron */}
-                  <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sand/50">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-xs font-medium text-sand/60 mb-1.5"
-                >
-                  Nachricht
-                </label>
-                <textarea
-                  id="message"
-                  required
-                  rows={5}
-                  placeholder="Worum geht es? Kurze Beschreibung reicht."
-                  value={form.message}
-                  onChange={(e) =>
-                    setForm((f) => ({ ...f, message: e.target.value }))
-                  }
-                  className={`${INPUT_CLASS} resize-none`}
-                />
-              </div>
-
-              {state === 'error' && (
-                <p className="text-red-400 text-sm" role="alert">
-                  {errorMsg ||
-                    'Etwas hat nicht geklappt – schreib uns direkt an info@insyte.ch'}
-                </p>
-              )}
-
-              <button
-                type="submit"
-                disabled={state === 'loading'}
-                className="btn-primary w-full text-center py-3.5 disabled:opacity-60"
-              >
-                {state === 'loading' ? 'Wird gesendet…' : 'Nachricht senden'}
-              </button>
-            </motion.form>
+          {gesendet && (
+            <p role="status" className="mt-10 max-w-sm text-center text-salbei">
+              Unterwegs. Wir antworten innerhalb von 24 Stunden.
+            </p>
           )}
+        </motion.div>
+
+        {/* Rechts: das Formular. Blendet beim Senden weg und fällt eine
+            Sekunde später per `hidden` aus dem Raster — dann rückt der
+            Brief nach.
+
+            Bewusst `hidden` statt Ausbauen: nähme man die Spalte aus dem
+            DOM, änderte sich die Kinderzahl des Stagger-Containers und
+            framer liesse die Einblendung der linken Spalte neu laufen —
+            ein Flackern genau in dem Moment, in dem der Brief ruhig in
+            die Mitte ziehen soll. */}
+        <div
+          className={`transition-opacity duration-500 ${
+            alleinstehend
+              ? 'hidden'
+              : gesendet
+                ? 'pointer-events-none opacity-0'
+                : 'opacity-100'
+          }`}
+        >
+          <motion.form
+            variants={fadeInUp}
+            onSubmit={handleSubmit}
+            className="space-y-4"
+            noValidate
+          >
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-xs font-medium text-sand/60 mb-1.5"
+              >
+                Name
+              </label>
+              <input
+                id="name"
+                type="text"
+                required
+                autoComplete="name"
+                placeholder="Dein Name"
+                value={form.name}
+                onFocus={() => setPhase('couvert')}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, name: e.target.value }))
+                }
+                className={INPUT_CLASS}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-xs font-medium text-sand/60 mb-1.5"
+              >
+                E-Mail
+              </label>
+              <input
+                id="email"
+                type="email"
+                required
+                autoComplete="email"
+                placeholder="deine@email.ch"
+                value={form.email}
+                onFocus={() => setPhase('couvert')}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, email: e.target.value }))
+                }
+                className={INPUT_CLASS}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="topic"
+                className="block text-xs font-medium text-sand/60 mb-1.5"
+              >
+                Anliegen
+              </label>
+              <div className="relative">
+                <select
+                  id="topic"
+                  required
+                  value={form.topic}
+                  onFocus={() => setPhase('couvert')}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, topic: e.target.value }))
+                  }
+                  className={`${INPUT_CLASS} appearance-none pr-10 ${
+                    form.topic ? 'text-sand' : 'text-sand/40'
+                  }`}
+                >
+                  <option value="" disabled className="text-erde">
+                    Bitte auswählen…
+                  </option>
+                  {TOPICS.map((topic) => (
+                    <option key={topic} value={topic} className="text-erde">
+                      {topic}
+                    </option>
+                  ))}
+                </select>
+                {/* chevron */}
+                <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-sand/50">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="message"
+                className="block text-xs font-medium text-sand/60 mb-1.5"
+              >
+                Nachricht
+              </label>
+              <textarea
+                id="message"
+                required
+                rows={5}
+                placeholder="Worum geht es? Kurze Beschreibung reicht."
+                value={form.message}
+                onFocus={() => setPhase('brief')}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, message: e.target.value }))
+                }
+                className={`${INPUT_CLASS} resize-none`}
+              />
+            </div>
+
+            {state === 'error' && (
+              <p className="text-red-400 text-sm" role="alert">
+                {errorMsg ||
+                  'Etwas hat nicht geklappt – schreib uns direkt an info@insyte.ch'}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={state === 'loading'}
+              className="btn-primary w-full text-center py-3.5 disabled:opacity-60"
+            >
+              {state === 'loading' ? 'Wird gesendet…' : 'Brief abschicken'}
+            </button>
+          </motion.form>
         </div>
       </motion.div>
     </section>
