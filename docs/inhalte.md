@@ -222,8 +222,11 @@ Absender-Domain. Absender aktuell: `noreply@insyte.ch`.
 ## 8. Rechtliches (Pflicht in CH)
 
 ### 8.1 Impressum — `app/impressum/page.tsx`
-Aktuell Platzhalter. Du brauchst: **vollständiger Name, Adresse (Strasse, PLZ,
-Ort), E-Mail**, ggf. Telefon. (Für Einzelpersonen kein HR-Eintrag nötig.)
+**Ausgefüllt.** Abschnitte: Kontaktadresse · Verantwortliche Person ·
+Haftungsausschluss · Haftung für Links · Urheberrecht. Genannt ist Mael Seewald
+als natürliche Person – kein HR-Eintrag, keine UID, weil hinter «Insyte» keine
+Gesellschaft steht. Sobald ein Einzelunternehmen eingetragen wird, kommen
+Firmenname und UID dazu.
 
 ### 8.2 Datenschutz — `app/datenschutz/page.tsx`
 Aktuell Platzhalter. Mindestens: **wer du bist, welche Daten das Kontaktformular

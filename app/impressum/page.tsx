@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Impressum() {
   return (
-    <main className="min-h-screen bg-sand px-6 py-24">
+    <main className="min-h-screen bg-sand px-6 py-20 md:py-24">
       <div className="mx-auto max-w-2xl">
         <Link
           href="/"
@@ -19,11 +19,16 @@ export default function Impressum() {
         {/* Rechtsseiten laufen bewusst eine Stufe kleiner: "Datenschutz-
             erklärung" ist ein unteilbares Wort und würde in h1-Grösse auf
             dem Handy über den Rand laufen. */}
-        <h1 className="font-display font-bold text-h2 text-wald text-balance mb-8">
+        <h1 className="font-display font-bold text-h2 text-wald text-balance mb-3">
           Impressum
         </h1>
+        <p className="label-mono text-erde/50 mb-8">
+          Angaben gemäss Art. 3 Abs. 1 lit. b UWG
+        </p>
         <div className="text-erde text-base leading-relaxed space-y-4">
-          <p>Verantwortlich für den Inhalt dieser Website:</p>
+          <h2 className="font-display font-bold text-h3 text-wald">
+            Kontaktadresse
+          </h2>
           <p>
             <strong>Mael Seewald</strong>
             <br />
@@ -34,14 +39,67 @@ export default function Impressum() {
             Schweiz
           </p>
           <p>
-            E-Mail:{' '}
             <a href="mailto:info@insyte.ch" className="text-gruen">
               info@insyte.ch
             </a>
           </p>
-          <p className="text-sm text-erde/60">
-            Diese Website ist ein privates Angebot von Mael Seewald. Es besteht
-            kein Handelsregistereintrag.
+
+          <h2 className="font-display font-bold text-h3 text-wald pt-4">
+            Verantwortliche Person
+          </h2>
+          <p>
+            «Insyte» ist die Bezeichnung, unter der Mael Seewald Web- und
+            Softwareprojekte umsetzt. Dahinter steht keine Gesellschaft,
+            sondern eine natürliche Person: Verantwortlich für diese Website
+            und alle darüber angebotenen Leistungen ist Mael Seewald
+            persönlich. Es besteht kein Eintrag im Handelsregister und keine
+            Unternehmens-Identifikationsnummer (UID).
+          </p>
+
+          <h2 className="font-display font-bold text-h3 text-wald pt-4">
+            Haftungsausschluss
+          </h2>
+          <p>
+            Die Inhalte dieser Website werden mit Sorgfalt erstellt. Für ihre
+            Richtigkeit, Vollständigkeit und Aktualität wird dennoch keine
+            Gewähr übernommen. Haftungsansprüche gegen Mael Seewald für
+            Schäden materieller oder immaterieller Art, die aus dem Zugriff
+            auf diese Website, aus ihrer Nutzung oder Nichtnutzung oder aus
+            technischen Störungen entstehen, sind ausgeschlossen. Inhalte
+            können jederzeit und ohne Ankündigung geändert oder entfernt
+            werden.
+          </p>
+
+          <h2 className="font-display font-bold text-h3 text-wald pt-4">
+            Haftung für Links
+          </h2>
+          <p>
+            Diese Website verweist an einzelnen Stellen auf Websites Dritter.
+            Deren Inhalte liegen ausserhalb meines Einflussbereichs, weshalb
+            dafür keine Verantwortung übernommen wird. Massgebend sind allein
+            die Bedingungen der jeweiligen Anbieter; der Zugriff auf solche
+            Seiten erfolgt auf eigene Verantwortung.
+          </p>
+
+          <h2 className="font-display font-bold text-h3 text-wald pt-4">
+            Urheberrecht
+          </h2>
+          <p>
+            Texte, Bilder, Grafiken, Quellcode und übrige Dateien auf dieser
+            Website sind urheberrechtlich geschützt und gehören Mael Seewald,
+            soweit nicht ausdrücklich eine andere Rechteinhaberin oder ein
+            anderer Rechteinhaber genannt ist. Jede Verwendung ausserhalb der
+            gesetzlich erlaubten Fälle – insbesondere Vervielfältigung,
+            Bearbeitung und Weiterverbreitung – bedarf der vorgängigen
+            schriftlichen Zustimmung.
+          </p>
+
+          <p className="text-sm text-erde/60 pt-2">
+            Fragen zu diesen Angaben? Schreib an{' '}
+            <a href="mailto:info@insyte.ch" className="text-gruen">
+              info@insyte.ch
+            </a>
+            .
           </p>
         </div>
       </div>
