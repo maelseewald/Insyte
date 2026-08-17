@@ -493,14 +493,19 @@ html.lenis body {
   border-radius: 0.25rem;
 }
 
-/* Ohne Zeigegerät gibt es kein Hover — dort bleibt die Wortzeile
-   schlicht und die Flächen bleiben weg. */
+/* Ohne Zeigegerät gibt es kein Hover. Die Fläche, die auf dem Desktop
+   hinter dem Wort hochfährt, lässt sich dort nicht auslösen — statt sie
+   nur abzuschalten und drei Wörter im Leeren stehen zu lassen, wird die
+   Reihe zur Liste: die Trennlinien übernehmen, was oben die Massmarken um
+   jede Fläche tun, und der Pfeil ist derselbe wie bei jedem anderen
+   Textlink der Seite. */
 @media (hover: none), (max-width: 767px) {
   .wm-reihe {
     grid-template-columns: 1fr;
-    justify-items: start;
-    gap: 1.75rem;
+    gap: 0;
+    border-top: 1px solid theme('colors.leinen');
   }
+
   .wm-item {
     flex-direction: row;
     align-items: baseline;
@@ -508,11 +513,35 @@ html.lenis body {
     min-width: 0;
     min-height: 0;
     gap: 0.9rem;
+    /* Die ganze Zeile ist die Trefferfläche — knapp 70px hoch. */
+    padding: 1.15rem 0;
+    border-bottom: 1px solid theme('colors.leinen');
   }
+
+  /* Nummer und Wort auf eine Grundlinie. Als Spalte hing die Nummer
+     mittig über dem Wort und sah aus wie ein Versehen. */
+  .wm-text {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.7rem;
+  }
+
   .wm-maske,
-  .wm-item::before,
-  .wm-item::after {
+  .wm-item::before {
     display: none;
+  }
+
+  /* Aus dem Eckrahmen wird der Pfeil am rechten Rand. */
+  .wm-item::after {
+    content: '→';
+    position: static;
+    inset: auto;
+    margin-left: auto;
+    background-image: none;
+    font-family: theme('fontFamily.display');
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: theme('colors.gruen');
   }
 }
 
