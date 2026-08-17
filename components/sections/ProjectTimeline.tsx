@@ -130,11 +130,15 @@ function DetailBlock({
   }, [inView, project.id, onActive])
 
   return (
+    /* Das Abdunkeln der inaktiven Einträge setzt die Zeitachse daneben
+       voraus, die zeigt, wo man gerade ist. Die gibt es erst ab `md`; auf
+       dem Handy stünden sonst zwei Drittel des Textes auf 30 % Deckkraft,
+       ohne dass irgendetwas erklärt, warum. */
     <article
       ref={ref}
       id={project.id}
-      className={`scroll-mt-28 flex flex-col justify-center border-t border-leinen py-12 transition-opacity duration-500 ${blockClass} ${
-        isActive ? 'opacity-100' : 'opacity-30'
+      className={`scroll-mt-28 flex flex-col justify-center border-t border-leinen py-10 md:py-12 md:transition-opacity md:duration-500 ${blockClass} ${
+        isActive ? 'opacity-100' : 'md:opacity-30'
       }`}
     >
       <div className="flex items-baseline gap-4 mb-3">
@@ -199,7 +203,10 @@ function DetailBlock({
 
 export default function ProjectTimeline({
   projects,
-  blockClass = 'min-h-[70vh]',
+  // Mindesthöhe erst ab `md`: auf dem Desktop hält sie einen Eintrag im
+  // Blickfeld, während die Zeitachse mitwandert. Auf dem Handy erzeugt
+  // sie nur Leerraum unter drei Zeilen Text.
+  blockClass = 'md:min-h-[70vh]',
 }: {
   projects: Project[]
   blockClass?: string

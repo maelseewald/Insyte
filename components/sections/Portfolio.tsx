@@ -16,7 +16,7 @@ export default function Portfolio() {
   return (
     <section
       id="portfolio"
-      className="scroll-mt-16 bg-white py-28 px-6 border-t border-leinen"
+      className="scroll-mt-16 bg-white py-20 md:py-28 px-6 border-t border-leinen"
     >
       <div className="mx-auto max-w-6xl">
         <motion.div
@@ -24,7 +24,7 @@ export default function Portfolio() {
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           variants={staggerContainer}
-          className="flex items-end justify-between mb-16"
+          className="flex items-end justify-between mb-10 md:mb-16"
         >
           <div>
             <motion.p
@@ -48,7 +48,7 @@ export default function Portfolio() {
           </motion.span>
         </motion.div>
 
-        <ProjectTimeline projects={PROJECTS} blockClass="min-h-[52vh]" />
+        <ProjectTimeline projects={PROJECTS} blockClass="md:min-h-[52vh]" />
 
         <div className="mt-12">
           <Link

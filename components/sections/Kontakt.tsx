@@ -88,7 +88,7 @@ export default function Kontakt() {
   }
 
   return (
-    <section id="kontakt" className="bg-wald py-24 px-6">
+    <section id="kontakt" className="bg-wald py-16 md:py-24 px-6">
       <motion.div
         ref={ref}
         initial="hidden"

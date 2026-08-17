@@ -13,7 +13,7 @@ export default function UeberMich() {
   return (
     <section
       id="ueber-mich"
-      className="bg-sand py-20 px-6 border-t border-leinen"
+      className="bg-sand py-16 md:py-20 px-6 border-t border-leinen"
     >
       <motion.div
         ref={ref}

@@ -22,9 +22,13 @@ const HEADLINE: TypewriterSegment[] = [
 
 export default function Hero() {
   return (
+    /* `svh` statt `vh`: auf dem Handy rechnet `100vh` die ein- und
+       ausfahrende Browserleiste nicht mit, der Hero ragt damit beim Laden
+       unter den Bildschirmrand. `100svh` nimmt die kleinste Variante und
+       passt in beiden Zuständen. */
     <section
       id="hero"
-      className="relative min-h-screen bg-sand flex items-center px-6 pt-28 pb-16"
+      className="relative min-h-svh bg-sand flex items-center px-6 pt-28 pb-16"
     >
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[48fr_52fr] lg:gap-10">
         {/* Textspalte — linksbündig ab lg, darunter zentriert */}

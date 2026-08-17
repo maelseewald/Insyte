@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Datenschutz() {
   return (
-    <main className="min-h-screen bg-sand px-6 py-24">
+    <main className="min-h-screen bg-sand px-6 py-20 md:py-24">
       <div className="mx-auto max-w-2xl">
         <Link
           href="/"

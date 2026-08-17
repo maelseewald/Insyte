@@ -16,9 +16,9 @@ const LEISTUNGEN = [
 
 export default function LeistungenWortmarken() {
   return (
-    <section className="relative overflow-hidden border-t border-leinen bg-sand py-28 px-6">
+    <section className="relative overflow-hidden border-t border-leinen bg-sand py-20 md:py-28 px-6">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-display font-bold text-h2 text-wald mb-16">
+        <h2 className="font-display font-bold text-h2 text-wald mb-10 md:mb-16">
           Leistungen
         </h2>
 

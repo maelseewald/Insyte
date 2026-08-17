@@ -60,7 +60,7 @@ export default function Team() {
   return (
     <>
       {/* Header */}
-      <section className="bg-sand pt-40 pb-16 px-6">
+      <section className="bg-sand pt-28 pb-12 md:pt-40 md:pb-16 px-6">
         <div className="mx-auto max-w-4xl">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -261,7 +261,7 @@ export default function Team() {
       </section>
 
       {/* CTA */}
-      <section className="bg-wald py-24 px-6">
+      <section className="bg-wald py-16 md:py-24 px-6">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="font-display font-bold text-h2 text-white mb-9">
             Schreib uns direkt.

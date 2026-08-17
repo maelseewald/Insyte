@@ -17,7 +17,7 @@ export default function Home() {
         <UeberMich />
 
         {/* Closing CTA */}
-        <section className="bg-wald py-24 px-6">
+        <section className="bg-wald py-16 md:py-24 px-6">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-display font-bold text-h2 text-white mb-5">
               Hast du ein Projekt im Kopf?
