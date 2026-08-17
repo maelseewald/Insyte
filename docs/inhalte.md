@@ -51,7 +51,8 @@ Dateien: `components/layout/Navbar.tsx`, `components/layout/Footer.tsx`
 | Nav-Button | „Projekt starten" | passt |
 | Footer-Tagline | „Digitale Lösungen. Lokale Wirkung." | = Claim |
 | Footer-Copyright | „© 2025 Insyte – Alle Rechte vorbehalten" | **Jahr auf 2026 aktualisieren** |
-| Social-Links | LinkedIn, GitHub (maelseewald), Portfolio (mael.5eewald.ch) | bestätigt |
+| Social-Links Footer | LinkedIn (Firmenseite `company/insyte-ch`), Instagram (`insyte_ch`), GitHub (maelseewald) | Firmen-Profile |
+| Social-Links Team-Karte | LinkedIn (`in/maelseewald`), GitHub (maelseewald), Portfolio (mael.5eewald.ch) | persönliche Profile |
 
 ---
 
