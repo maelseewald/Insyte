@@ -96,9 +96,11 @@ export default function Navbar() {
           Projekt starten
         </Link>
 
-        {/* Mobile hamburger */}
+        {/* Mobile hamburger — p-2.5 statt p-1: mit dem 24px-Symbol ergibt
+            das eine Trefferfläche von 44px, die Untergrenze für einen
+            Daumen. Der negative Rand hält die Optik am alten Platz. */}
         <button
-          className="md:hidden text-wald p-1"
+          className="md:hidden text-wald p-2.5 -mr-2.5"
           onClick={() => setMenuOpen((o) => !o)}
           aria-label={menuOpen ? 'Menü schliessen' : 'Menü öffnen'}
           aria-expanded={menuOpen}
@@ -138,7 +140,11 @@ export default function Navbar() {
       {/* Mobile slide-down menu */}
       {menuOpen && (
         <nav
-          className="md:hidden bg-sand/95 backdrop-blur-sm border-t border-leinen px-6 py-5 flex flex-col gap-4"
+          // Deckend, nicht `bg-sand/95 backdrop-blur-sm`: das Weichzeichnen
+          // greift innerhalb der Kopfzeile nicht, die selbst schon eines
+          // setzt — der Seiteninhalt las sich dadurch mitten durch die
+          // Menüpunkte hindurch.
+          className="md:hidden bg-sand border-t border-leinen px-6 py-4 flex flex-col gap-1 shadow-[0_18px_28px_-24px_rgba(26,38,22,0.5)]"
           aria-label="Mobile Navigation"
         >
           {NAV_ITEMS.map((item) => {
@@ -148,7 +154,10 @@ export default function Navbar() {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? 'page' : undefined}
-                className={`w-fit py-1 text-sm font-medium transition-colors ${
+                // Die ganze Zeile ist die Trefferfläche, nicht nur das
+                // Wort: `w-fit py-1` ergab 30px hohe Ziele, die auf dem
+                // Handy schwer zu treffen sind.
+                className={`block py-3 text-base font-medium transition-colors ${
                   active
                     ? 'text-wald underline decoration-gruen decoration-2 underline-offset-4'
                     : 'text-erde hover:text-gruen'
