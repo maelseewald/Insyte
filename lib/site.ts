@@ -1,12 +1,15 @@
 /**
- * Eine Quelle für die Domain. Vorher stand `https://insyte.ch` an sieben
- * Stellen im Code – während der Server auf `https://www.insyte.ch` umleitete.
- * Die Canonicals zeigten damit auf eine URL, die weiterleitet.
+ * Eine Quelle für die Domain. Vorher stand sie an sieben Stellen im Code –
+ * und zeigte auf eine Variante, die der Server weiterleitete. Die Canonicals
+ * verwiesen damit auf eine URL, die es so nicht ausliefert.
  *
- * Massgebend ist die Variante, die Vercel tatsächlich ausliefert: www.
- * Wird das Redirect je umgedreht, ändert sich nur diese Zeile.
+ * Gewollt ist die Domain ohne www.
+ *
+ * WICHTIG: Diese Zeile muss zur Primärdomain in Vercel passen. Steht dort www
+ * als primär, leitet der Server auf www um – und der Fehler von vorher wäre
+ * zurück. Beides gehört zusammen umgestellt.
  */
-export const SITE_URL = 'https://www.insyte.ch'
+export const SITE_URL = 'https://insyte.ch'
 
 /** Absolute URL für Canonicals und `og:url`. Pfad mit führendem Slash. */
 export function url(path = ''): string {

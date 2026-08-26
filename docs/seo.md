@@ -1,7 +1,7 @@
 # Insyte – SEO
 
 Stand: 26.08.2026. Grundlage ist der Code und die Live-Seite unter
-`www.insyte.ch`. Teil 1 hält fest, was umgesetzt ist und warum – Teil 2, was
+`insyte.ch`. Teil 1 hält fest, was umgesetzt ist und warum – Teil 2, was
 offen bleibt.
 
 ---
@@ -10,18 +10,24 @@ offen bleibt.
 
 ### Eine Domain statt zwei
 
-`insyte.ch` antwortete mit `308 → https://www.insyte.ch/`, während alle
-Canonicals auf die **Nicht-www**-Variante zeigten. Damit verwies die Seite auf
+`insyte.ch` antwortete mit `308 → https://insyte.ch/`, während alle
+Canonicals auf die Nicht-www-Variante zeigten. Damit verwies die Seite auf
 eine Adresse, die sofort weiterleitet – Ranking-Signale verteilten sich auf
 zwei Domains statt sich zu bündeln.
 
-Die Domain steht jetzt einmal in `lib/site.ts` und wird überall von dort
-gezogen. Wird das Redirect je umgedreht, ändert sich genau eine Zeile.
+Gewollt ist **`insyte.ch` ohne www**. Die Domain steht jetzt einmal in
+`lib/site.ts` und wird überall von dort gezogen – Canonicals, `og:url`,
+Sitemap, robots.txt, JSON-LD und OG-Bild.
 
 ```ts
-export const SITE_URL = 'https://www.insyte.ch'
+export const SITE_URL = 'https://insyte.ch'
 export function url(path = ''): string { … }
 ```
+
+> ⚠️ **Diese Zeile und die Primärdomain in Vercel gehören zusammen.**
+> Vercel leitet aktuell noch `insyte.ch → www.insyte.ch` um. Solange das so
+> ist, zeigen die Canonicals wieder auf eine weiterleitende Adresse – derselbe
+> Fehler, nur spiegelverkehrt. **Zuerst in Vercel umstellen, dann deployen.**
 
 ### Canonicals auf den Rechtsseiten
 
@@ -46,8 +52,8 @@ Beide lieferten **404**. Jetzt erzeugt aus `app/robots.ts` und
 ```
 User-Agent: *
 Allow: /
-Host: https://www.insyte.ch
-Sitemap: https://www.insyte.ch/sitemap.xml
+Host: https://insyte.ch
+Sitemap: https://insyte.ch/sitemap.xml
 ```
 
 Die Sitemap listet acht URLs und zieht die Projekte aus `lib/projects.ts` –
@@ -208,9 +214,9 @@ Schweizer Startup-Verzeichnisse, LinkedIn-Unternehmensseite, GitHub-Profil.
 ## Nach dem Deploy prüfen
 
 ```bash
-curl -s https://www.insyte.ch/robots.txt
-curl -s https://www.insyte.ch/sitemap.xml
-curl -s https://www.insyte.ch/ | grep -o 'rel="canonical" href="[^"]*"'
+curl -s https://insyte.ch/robots.txt
+curl -s https://insyte.ch/sitemap.xml
+curl -s https://insyte.ch/ | grep -o 'rel="canonical" href="[^"]*"'
 ```
 
 Dazu im Browser:
