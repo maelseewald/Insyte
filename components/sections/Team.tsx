@@ -120,9 +120,9 @@ export default function Team() {
                     <span className="label-mono inline-block rounded-full bg-salbei px-3 py-1 text-gruen mb-4">
                       Gründer &amp; Entwickler
                     </span>
-                    <h3 className="font-display font-bold text-h3 text-wald mb-5">
+                    <h2 className="font-display font-bold text-h3 text-wald mb-5">
                       Mael Seewald
-                    </h3>
+                    </h2>
                     <div className="flex flex-wrap gap-2.5">
                       <a
                         href="https://www.linkedin.com/in/maelseewald/"
@@ -224,9 +224,9 @@ export default function Team() {
                 <path d="M12 5v14M5 12h14" />
               </svg>
             </span>
-            <h3 className="font-display font-bold text-h3 text-wald mb-3">
+            <h2 className="font-display font-bold text-h3 text-wald mb-3">
               Wir wachsen
-            </h3>
+            </h2>
             <p className="text-erde text-sm leading-relaxed max-w-xs mb-6">
               Insyte ist heute ein eingespieltes Ein-Personen-Team – und offen
               für die richtigen Köpfe.

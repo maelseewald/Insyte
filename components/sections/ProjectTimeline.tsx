@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { type Project } from '@/lib/projects'
 
@@ -150,8 +151,15 @@ function DetailBlock({
         </span>
       </div>
 
+      {/* Verlinkt auf die Detailseite: sonst wäre sie nur über die Sitemap
+          erreichbar und bekäme keinerlei internes Linkgewicht. */}
       <h3 className="font-display font-bold text-h3 text-wald mb-2">
-        {project.name}
+        <Link
+          href={`/projekte/${project.id}`}
+          className="hover:text-gruen transition-colors"
+        >
+          {project.name}
+        </Link>
       </h3>
       <p className="text-erde text-base mb-5">{project.type}</p>
 

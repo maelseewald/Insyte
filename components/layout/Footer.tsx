@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { BUSINESS } from '@/lib/site'
+
 export default function Footer() {
   return (
     <footer className="bg-wald border-t border-white/5 px-6 py-10">
@@ -22,6 +25,19 @@ export default function Footer() {
           <p className="text-sand/50 text-xs">
             Code. Projekte. Lösungen.
           </p>
+          {/* Adresse sichtbar auf jeder Seite, nicht nur im Impressum: Google
+              gleicht Name/Adresse mit dem Business-Profil und Verzeichnissen
+              ab. Das `address`-Element macht den Bezug auch semantisch klar. */}
+          <address className="text-sand/40 text-xs not-italic mt-2 leading-relaxed">
+            {BUSINESS.street}, {BUSINESS.postalCode} {BUSINESS.city}
+            <br />
+            <a
+              href={`mailto:${BUSINESS.email}`}
+              className="hover:text-sand/70 transition-colors"
+            >
+              {BUSINESS.email}
+            </a>
+          </address>
         </div>
 
         {/* Links */}
@@ -29,18 +45,18 @@ export default function Footer() {
           className="flex items-center gap-5"
           aria-label="Footer Navigation"
         >
-          <a
+          <Link
             href="/impressum"
             className="text-sand/50 text-xs hover:text-sand/80 transition-colors"
           >
             Impressum
-          </a>
-          <a
+          </Link>
+          <Link
             href="/datenschutz"
             className="text-sand/50 text-xs hover:text-sand/80 transition-colors"
           >
             Datenschutz
-          </a>
+          </Link>
           <a
             href="https://www.linkedin.com/company/insyte-ch/"
             target="_blank"

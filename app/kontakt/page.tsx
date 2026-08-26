@@ -1,18 +1,19 @@
 import type { Metadata } from 'next'
+import { url } from '@/lib/site'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Kontakt from '@/components/sections/Kontakt'
 
 export const metadata: Metadata = {
-  title: 'Kontakt – Insyte',
+  title: 'Kontakt – Webentwickler Zürich | Insyte',
   description:
     'Projekt starten mit Insyte – schreib mir, ich melde mich innerhalb von 24 Stunden. Ein fester Ansprechpartner, kein Callcenter.',
-  alternates: { canonical: 'https://insyte.ch/kontakt' },
+  alternates: { canonical: url('/kontakt') },
   openGraph: {
     title: 'Kontakt – Insyte',
     description:
       'Projekt starten mit Insyte – Antwort innerhalb von 24 Stunden.',
-    url: 'https://insyte.ch/kontakt',
+    url: url('/kontakt'),
     siteName: 'Insyte',
     locale: 'de_CH',
     type: 'website',

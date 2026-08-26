@@ -64,3 +64,10 @@ export const projectsByNewest: Project[] = [...ALL].sort((a, b) =>
 /** The newest N projects (for the homepage teaser). */
 export const latestProjects = (n: number): Project[] =>
   projectsByNewest.slice(0, n)
+
+/** Ein Projekt über seine ID – für die Detailseiten unter /projekte/[id]. */
+export const projectById = (id: string): Project | undefined =>
+  ALL.find((project) => project.id === id)
+
+/** Alle IDs – Grundlage für generateStaticParams und die Sitemap. */
+export const projectIds = (): string[] => ALL.map((project) => project.id)

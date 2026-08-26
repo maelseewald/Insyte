@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
+import { url } from '@/lib/site'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Impressum – Insyte',
+  // Eigener Canonical, sonst wird der der Startseite geerbt – und mit
+  // ihm könnte das noindex unten auf die Startseite durchschlagen.
+  alternates: { canonical: url('/impressum') },
   robots: { index: false, follow: false },
 }
 
