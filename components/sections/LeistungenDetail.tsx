@@ -4,18 +4,30 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '@/lib/motion'
+import { leistungBySlug, preisText, type Leistung } from '@/lib/leistungen'
+
+/** Die Leistung mit dem tiefsten Einstiegspreis. Ohne Preis zählt zuletzt. */
+function guenstigste(slugs: string[]): Leistung {
+  const alle = slugs.map((slug) => leistungBySlug(slug)!)
+  return alle.reduce((a, b) => {
+    if (a.preisAb === null) return b
+    if (b.preisAb === null) return a
+    return b.preisAb < a.preisAb ? b : a
+  })
+}
 
 const SERVICES = [
   {
-    id: 'websites',
-    title: 'Websites & Landingpages',
+    id: 'bauen',
+    detailSlugs: ['webdesign-zuerich', 'webentwicklung', 'individuelle-software'],
+    title: 'Websites, Web-Apps & Software',
     description:
-      'Professionelle Webauftritte, die auf allen Geräten gut aussehen und bei Google gefunden werden.',
+      'Vom Webauftritt über das Kundenportal bis zum internen Werkzeug. Individuell gebaut statt aus dem Baukasten, im Browser statt im App Store. Websites bilden den Einstieg, Anwendungen und Software liegen darüber.',
     features: [
       'Individuelles Design passend zu deiner Marke',
-      'Optimiert für Mobilgeräte und Suchmaschinen (SEO)',
-      'Schnelle Ladezeiten dank moderner Technologie',
-      'Einfache Pflege – oder wir übernehmen sie',
+      'Optimiert für Mobilgeräte und Suchmaschinen',
+      'Web-Apps und Portale ohne Installation',
+      'Massgeschneiderte Lösung statt One-size-fits-all',
     ],
     icon: (
       <svg
@@ -35,15 +47,16 @@ const SERVICES = [
     ),
   },
   {
-    id: 'software',
-    title: 'Web-Apps & Software',
+    id: 'seo',
+    detailSlugs: ['seo-zuerich'],
+    title: 'SEO',
     description:
-      'Individuelle Tools und Webanwendungen, die deinen Alltag vereinfachen – statt Standardsoftware, die nur halb passt.',
+      'Eine Website nützt wenig, wenn sie niemand sieht. Wir bringen die Technik in Ordnung und arbeiten an dem, was danach zählt.',
     features: [
-      'Analyse deiner Abläufe und Anforderungen',
-      'Massgeschneiderte Lösung statt One-size-fits-all',
-      'Automatisierung wiederkehrender Aufgaben',
-      'Anbindung an bestehende Systeme wenn nötig',
+      'Technische Analyse mit Aufwand pro Punkt',
+      'Sitemap, Canonicals und strukturierte Daten',
+      'Search Console und Google-Business-Profil',
+      'Inhalte, die auf echte Suchbegriffe zielen',
     ],
     icon: (
       <svg
@@ -57,21 +70,22 @@ const SERVICES = [
         strokeLinejoin="round"
         aria-hidden="true"
       >
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
+        <circle cx="11" cy="11" r="7" />
+        <path d="M20 20l-4.35-4.35" />
       </svg>
     ),
   },
   {
     id: 'wartung',
-    title: 'Wartung & Support',
+    detailSlugs: ['wartung-support'],
+    title: 'Hosting & Wartung',
     description:
-      'Deine Website oder App läuft – aber wer kümmert sich um Updates, Backups und Sicherheit? Wir übernehmen das.',
+      'Deine Website läuft. Aber wer kümmert sich um Hosting, Updates und Sicherheit? Wir übernehmen das, inklusive einer Stunde Arbeit im Monat.',
     features: [
-      'Regelmässige Updates und Sicherheitschecks',
+      'Hosting und regelmässige Sicherheitsupdates',
+      'Eine Stunde Arbeit pro Monat inklusive',
       'Automatische Backups und Monitoring',
-      'Schnelle Hilfe bei Problemen und Ausfällen',
-      'Fester Ansprechpartner – wir kennen dein Projekt',
+      'Fester Ansprechpartner, wir kennen dein Projekt',
     ],
     icon: (
       <svg
@@ -133,7 +147,7 @@ export default function LeistungenDetail() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-display font-bold text-h1 text-wald mb-7 max-w-3xl"
           >
-            Websites, Software und Betreuung – aus einer Hand.
+            Websites, Software und Betreuung, alles aus einer Hand.
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -141,7 +155,7 @@ export default function LeistungenDetail() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-erde text-lg leading-relaxed max-w-xl"
           >
-            Wir arbeiten direkt mit dir – vom ersten Gespräch bis zur fertigen
+            Wir arbeiten direkt mit dir, vom ersten Gespräch bis zur fertigen
             Lösung. Kein Ticketsystem, kein Callcenter, eine feste
             Ansprechperson.
           </motion.p>
@@ -189,6 +203,51 @@ export default function LeistungenDetail() {
                   </li>
                 ))}
               </ul>
+
+              {/* Führt auf die Detailseite. Sitzt am Kartenende, damit die
+                  drei Spalten trotz unterschiedlich langer Listen auf einer
+                  Linie abschliessen. */}
+              {/* Preis pro Paket. Die drei Bau-Leistungen teilen sich
+                  einen Einstiegspreis, darum steht er einmal über den
+                  Links statt an jedem einzeln. */}
+              {/* Deckt die Karte mehrere Leistungen ab, gilt der günstigste
+                  Einstieg. Bewusst berechnet statt der erste im Array: Sonst
+                  hinge die Angabe an der Reihenfolge und wäre irgendwann
+                  still falsch. */}
+              <p className="label-mono text-gruen mt-auto pt-8">
+                {preisText(guenstigste(service.detailSlugs))}
+              </p>
+
+              <div className="pt-4 flex flex-col gap-2.5">
+                {service.detailSlugs.map((slug) => {
+                  const leistung = leistungBySlug(slug)
+                  if (!leistung) return null
+                  const einzeln = service.detailSlugs.length === 1
+                  return (
+                    <Link
+                      key={slug}
+                      href={`/leistungen/${slug}`}
+                      className="group inline-flex items-center gap-2 text-sm font-medium text-gruen"
+                    >
+                      {einzeln ? 'Mehr dazu' : leistung.name}
+                      <svg
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                        className="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transform-none"
+                      >
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                      </svg>
+                    </Link>
+                  )
+                })}
+              </div>
             </motion.div>
           ))}
         </motion.div>
@@ -201,7 +260,7 @@ export default function LeistungenDetail() {
             Klingt nach dem, was du suchst?
           </h2>
           <p className="text-sand/70 text-base mb-9">
-            Erzähl uns von deinem Vorhaben – wir melden uns innerhalb von 24
+            Erzähl uns von deinem Vorhaben, wir melden uns innerhalb von 24
             Stunden.
           </p>
           <Link href="/kontakt" className="btn-primary">

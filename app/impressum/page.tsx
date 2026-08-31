@@ -3,7 +3,7 @@ import { url } from '@/lib/site'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Impressum – Insyte',
+  title: 'Impressum von Insyte',
   // Eigener Canonical, sonst wird der der Startseite geerbt – und mit
   // ihm könnte das noindex unten auf die Startseite durchschlagen.
   alternates: { canonical: url('/impressum') },
@@ -93,8 +93,8 @@ export default function Impressum() {
             Website sind urheberrechtlich geschützt und gehören Mael Seewald,
             soweit nicht ausdrücklich eine andere Rechteinhaberin oder ein
             anderer Rechteinhaber genannt ist. Jede Verwendung ausserhalb der
-            gesetzlich erlaubten Fälle – insbesondere Vervielfältigung,
-            Bearbeitung und Weiterverbreitung – bedarf der vorgängigen
+            gesetzlich erlaubten Fälle (insbesondere Vervielfältigung,
+            Bearbeitung und Weiterverbreitung) bedarf der vorgängigen
             schriftlichen Zustimmung.
           </p>
 

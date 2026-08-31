@@ -5,14 +5,14 @@ import Footer from '@/components/layout/Footer'
 import Kontakt from '@/components/sections/Kontakt'
 
 export const metadata: Metadata = {
-  title: 'Kontakt – Webentwickler Zürich | Insyte',
+  title: 'Kontakt zum Webentwickler in Zürich | Insyte',
   description:
-    'Projekt starten mit Insyte – schreib mir, ich melde mich innerhalb von 24 Stunden. Ein fester Ansprechpartner, kein Callcenter.',
+    'Projekt starten mit Insyte: schreib mir, ich melde mich innerhalb von 24 Stunden. Ein fester Ansprechpartner, kein Callcenter.',
   alternates: { canonical: url('/kontakt') },
   openGraph: {
-    title: 'Kontakt – Insyte',
+    title: 'Kontakt zu Insyte',
     description:
-      'Projekt starten mit Insyte – Antwort innerhalb von 24 Stunden.',
+      'Projekt starten mit Insyte, Antwort innerhalb von 24 Stunden.',
     url: url('/kontakt'),
     siteName: 'Insyte',
     locale: 'de_CH',
@@ -35,7 +35,7 @@ export default function KontaktPage() {
               Lass uns über dein Projekt reden.
             </h1>
             <p className="text-erde text-lg leading-relaxed max-w-xl">
-              Schreib uns – wir melden uns innerhalb von 24 Stunden. Kein
+              Schreib uns, wir melden uns innerhalb von 24 Stunden. Kein
               Verkaufsgespräch, kein Druck. Nur ein ehrliches Gespräch darüber,
               ob und wie wir helfen können.
             </p>

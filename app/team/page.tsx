@@ -5,13 +5,13 @@ import Footer from '@/components/layout/Footer'
 import Team from '@/components/sections/Team'
 
 export const metadata: Metadata = {
-  title: 'Über Insyte – Web-Entwickler in Zürich | Insyte',
+  title: 'Über Insyte, Web-Entwickler in Zürich | Insyte',
   description:
-    'Das Team hinter Insyte – Web & Software aus Zürich. Ein fester Ansprechpartner, kein Callcenter.',
+    'Das Team hinter Insyte: Web und Software aus Zürich. Ein fester Ansprechpartner, kein Callcenter.',
   alternates: { canonical: url('/team') },
   openGraph: {
-    title: 'Team – Insyte',
-    description: 'Das Team hinter Insyte – Web & Software aus Zürich.',
+    title: 'Das Team von Insyte',
+    description: 'Das Team hinter Insyte: Web und Software aus Zürich.',
     url: url('/team'),
     siteName: 'Insyte',
     locale: 'de_CH',

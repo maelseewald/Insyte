@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { BUSINESS } from '@/lib/site'
+import { standorte } from '@/lib/standorte'
 
 export default function Footer() {
   return (
@@ -45,6 +46,12 @@ export default function Footer() {
           className="flex items-center gap-5"
           aria-label="Footer Navigation"
         >
+          <Link
+            href="/faq"
+            className="text-sand/50 text-xs hover:text-sand/80 transition-colors"
+          >
+            FAQ
+          </Link>
           <Link
             href="/impressum"
             className="text-sand/50 text-xs hover:text-sand/80 transition-colors"
@@ -113,8 +120,28 @@ export default function Footer() {
 
         {/* Copyright */}
         <p className="text-sand/40 text-xs">
-          © 2026 Insyte – Mael Seewald. Alle Rechte vorbehalten.
+          © 2026 Insyte, Mael Seewald. Alle Rechte vorbehalten.
         </p>
+      </div>
+
+      {/* Zweite Reihe für die Landingpages. Im Footer, weil Links von jeder
+          Seite aus stärker wirken als von einer einzelnen. Bewusst abgesetzt
+          statt in die Hauptnavigation gedrängt. */}
+      <div className="mx-auto mt-8 max-w-6xl border-t border-white/5 pt-6">
+        <nav
+          className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 md:justify-start"
+          aria-label="Standorte und Schwerpunkte"
+        >
+          {standorte.map((standort) => (
+            <Link
+              key={standort.slug}
+              href={`/${standort.slug}`}
+              className="text-sand/40 text-xs hover:text-sand/70 transition-colors"
+            >
+              {standort.eyebrow}
+            </Link>
+          ))}
+        </nav>
       </div>
     </footer>
   )

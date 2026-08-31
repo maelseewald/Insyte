@@ -14,20 +14,44 @@ export function generateStaticParams() {
   return projectIds().map((id) => ({ id }))
 }
 
+/**
+ * Google schneidet Meta-Descriptions bei etwa 155 Zeichen ab. Hart auf 155 zu
+ * kuerzen trennt aber mitten im Wort, im Suchergebnis stand dann ein
+ * Satzfragment («Gewonnen wird ueber Koennen, nicht»). Darum bis zur letzten
+ * Satzgrenze davor kuerzen, und nur wenn es keine gibt, bis zum letzten
+ * Wortende mit Auslassungszeichen.
+ */
+function kuerzen(text: string, max = 155): string {
+  if (text.length <= max) return text
+
+  const ausschnitt = text.slice(0, max)
+  const satzende = Math.max(
+    ausschnitt.lastIndexOf('. '),
+    ausschnitt.lastIndexOf('! '),
+    ausschnitt.lastIndexOf('? ')
+  )
+  // Nur wenn dabei noch genug Text uebrig bleibt, sonst wird die Description
+  // unnoetig kurz und sagt weniger, als sie duerfte.
+  if (satzende > max * 0.6) return ausschnitt.slice(0, satzende + 1)
+
+  const wortende = ausschnitt.lastIndexOf(' ')
+  return ausschnitt.slice(0, wortende).trimEnd() + '\u2026'
+}
+
 export function generateMetadata({ params }: Props): Metadata {
   const projekt = projectById(params.id)
   if (!projekt) return {}
 
-  const titel = `${projekt.name} – ${projekt.type} | Insyte`
+  const titel = `${projekt.name}: ${projekt.type} | Insyte`
   const pfad = `/projekte/${projekt.id}`
 
   return {
     title: titel,
-    description: projekt.description.slice(0, 155),
+    description: kuerzen(projekt.description),
     alternates: { canonical: url(pfad) },
     openGraph: {
       title: titel,
-      description: projekt.description.slice(0, 155),
+      description: kuerzen(projekt.description),
       url: url(pfad),
       siteName: 'Insyte',
       locale: 'de_CH',
@@ -147,6 +171,29 @@ export default function ProjektDetail({ params }: Props) {
           </div>
         </section>
 
+        {/* Die lange Fassung. Erst hier, damit der Kopf mit Kurzfassung und
+            Links kompakt bleibt und man nicht daran vorbeiscrollen muss. */}
+        {projekt.story && projekt.story.length > 0 && (
+          <section className="bg-sand border-t border-leinen py-14 md:py-16 px-6">
+            <div className="mx-auto max-w-3xl flex flex-col gap-12">
+              {projekt.story.map((abschnitt) => (
+                <div key={abschnitt.titel}>
+                  <h2 className="font-display font-bold text-h2 text-wald mb-5">
+                    {abschnitt.titel}
+                  </h2>
+                  <div className="flex flex-col gap-5">
+                    {abschnitt.text.map((absatz, i) => (
+                      <p key={i} className="text-erde text-base leading-relaxed">
+                        {absatz}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* Interne Verlinkung: hält Besucher und Crawler in Bewegung */}
         {weitere.length > 0 && (
           <section className="bg-sand border-t border-leinen py-14 px-6">
@@ -179,7 +226,7 @@ export default function ProjektDetail({ params }: Props) {
               Etwas Ähnliches im Kopf?
             </h2>
             <p className="text-sand/70 text-base mb-9">
-              Schreib uns – wir schauen es uns an und melden uns innerhalb von
+              Schreib uns, wir schauen es uns an und melden uns innerhalb von
               24 Stunden.
             </p>
             <Link href="/kontakt" className="btn-primary">

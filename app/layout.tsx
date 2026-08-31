@@ -37,14 +37,14 @@ const marker = Permanent_Marker({
 })
 
 export const metadata: Metadata = {
-  title: 'Webentwicklung Zürich – Websites & Software für KMU | Insyte',
+  title: 'Webagentur Zürich: Websites, Software und SEO | Insyte',
   description:
-    'Wir bauen Websites, Web-Apps und digitale Lösungen – eigene Produkte und massgeschneiderte Projekte für dein Unternehmen. Aus Zürich.',
+    'Webagentur aus Zürich für KMU in der ganzen Schweiz: Websites, Web-Apps, individuelle Software, SEO und Wartung. Ein fester Ansprechpartner.',
   metadataBase: new URL(SITE_URL),
   openGraph: {
-    title: 'Webentwicklung Zürich – Websites & Software für KMU | Insyte',
+    title: 'Webagentur Zürich: Websites, Software und SEO | Insyte',
     description:
-      'Websites, Web-Apps und Software – eigene Produkte und Projekte für dein Unternehmen. Zürich.',
+      'Webagentur aus Zürich für KMU in der ganzen Schweiz: Websites, Software, SEO und Wartung.',
     url: SITE_URL,
     siteName: 'Insyte',
     locale: 'de_CH',
@@ -52,7 +52,11 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image' },
   alternates: { canonical: SITE_URL },
-  robots: { index: true, follow: true },
+  // Kein `robots` hier: Indexieren ist ohnehin der Standard, das Tag war
+  // wirkungslos. Schlimmer noch, es wurde an die 404-Seite vererbt und stand
+  // dort im Widerspruch zu dem `noindex`, das Next.js dafür selbst setzt.
+  // Seiten, die nicht indexiert werden sollen (Impressum, Datenschutz),
+  // setzen ihr `robots` weiterhin selbst.
 }
 
 /**
@@ -73,7 +77,7 @@ const organizationSchema = {
   url: SITE_URL,
   email: BUSINESS.email,
   description:
-    'Websites, Web-Apps und individuelle Softwarelösungen für KMU in Zürich und der Schweiz.',
+    'Webagentur in Zürich für KMU in der ganzen Schweiz: Websites, Web-Apps, individuelle Software, Suchmaschinenoptimierung sowie Hosting und Wartung.',
   address: {
     '@type': 'PostalAddress',
     streetAddress: BUSINESS.street,
@@ -85,6 +89,14 @@ const organizationSchema = {
   areaServed: { '@type': 'Country', name: 'Schweiz' },
   founder: { '@type': 'Person', name: 'Mael Seewald' },
   knowsLanguage: ['de-CH', 'en'],
+  /* Der Kartenlink verbindet die Adresse mit Google Maps. Ersetzt kein
+     Business-Profil, hilft aber beim Abgleich der Angaben. */
+  hasMap: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    `${BUSINESS.street}, ${BUSINESS.postalCode} ${BUSINESS.city}`,
+  )}`,
+  image: `${SITE_URL}/opengraph-image`,
+  logo: `${SITE_URL}/icon.svg`,
+  priceRange: 'ab CHF 1500',
   sameAs: [...BUSINESS.sameAs],
 }
 

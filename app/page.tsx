@@ -23,7 +23,7 @@ export default function Home() {
               Hast du ein Projekt im Kopf?
             </h2>
             <p className="text-sand/70 text-base mb-9">
-              Schreib uns – wir schauen es uns an und melden uns innerhalb von
+              Schreib uns, wir schauen es uns an und melden uns innerhalb von
               24 Stunden.
             </p>
             <Link href="/kontakt" className="btn-primary">

@@ -186,7 +186,7 @@ export default function Team() {
                 </p>
                 <p className="text-erde text-sm leading-relaxed">
                   Lernender Informatiker bei Adnovum in Zürich. Kümmert sich bei
-                  Insyte um Entwicklung und Design – von der ersten Idee bis zum
+                  Insyte um Entwicklung und Design, von der ersten Idee bis zum
                   Launch. Mag sauberen Code, klares Design und einfache
                   Erklärungen.
                 </p>
@@ -228,7 +228,7 @@ export default function Team() {
               Wir wachsen
             </h2>
             <p className="text-erde text-sm leading-relaxed max-w-xs mb-6">
-              Insyte ist heute ein eingespieltes Ein-Personen-Team – und offen
+              Insyte ist heute ein eingespieltes Ein-Personen-Team und offen
               für die richtigen Köpfe.
             </p>
             <Link

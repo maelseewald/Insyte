@@ -33,7 +33,7 @@ export default function ProjektZeitstrahl() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-erde text-lg leading-relaxed max-w-xl"
           >
-            Eigene Produkte und erste Aufträge – hier siehst du, woran wir
+            Eigene Produkte und erste Aufträge. Hier siehst du, woran wir
             arbeiten.
           </motion.p>
         </div>
@@ -53,7 +53,7 @@ export default function ProjektZeitstrahl() {
             Dein Projekt als Nächstes?
           </h2>
           <p className="text-sand/70 text-base mb-9">
-            Wir sind offen für Aufträge – schreib uns und wir schauen gemeinsam,
+            Wir sind offen für Aufträge. Schreib uns, und wir schauen gemeinsam,
             was möglich ist.
           </p>
           <Link href="/kontakt" className="btn-primary">

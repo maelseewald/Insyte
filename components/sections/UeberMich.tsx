@@ -48,7 +48,7 @@ export default function UeberMich() {
             variants={fadeInUp}
             className="font-display font-bold text-h3 text-wald mb-5 max-w-xl"
           >
-            Kein anonymer Anbieter – bei Insyte arbeitest du direkt mit den
+            Kein anonymer Anbieter: bei Insyte arbeitest du direkt mit den
             Menschen, die dein Projekt bauen. Wir hören zu, denken mit und
             erklären Technik in einfacher Sprache.
           </motion.p>

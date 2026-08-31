@@ -169,6 +169,116 @@ html.lenis body {
   }
 }
 
+/* Gestrichelte Verbindung im Ablauf: markiert einen Schritt, der nicht zum
+   Auftrag gehört. Als Farbverlauf statt `border-dashed`, weil eine 1px
+   schmale Spalte sonst je nach Browser gar keinen Strich zeichnet. */
+.ablauf-gestrichelt {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    currentColor 0 5px,
+    transparent 5px 10px
+  );
+}
+
+/* Ausklappbare Frage-Antwort-Blöcke (FAQ).
+
+   Bewusst natives <details>/<summary> statt einer React-Komponente: Die
+   Seite bleibt eine Server-Komponente, die Tastaturbedienung kommt vom
+   Browser, und der Antworttext steht auch im zugeklappten Zustand im HTML.
+   Das Letzte ist die Bedingung dafür, dass die FAQPage-Auszeichnung gilt —
+   Antworten, die erst per JavaScript entstehen, zählen für Google nicht.
+
+   Die Höhe eines <details> lässt sich nicht animieren; darum bewegt sich
+   nur das Zeichen rechts, und die Antwort blendet beim Öffnen kurz ein. */
+.faq-item {
+  border-bottom: 1px solid theme('colors.leinen');
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.35rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: theme('fontFamily.display');
+  font-weight: 700;
+  font-size: theme('fontSize.h4');
+  line-height: 1.35;
+  color: theme('colors.wald');
+  transition: color 0.2s ease;
+}
+
+/* Das Standard-Dreieck weg — in beiden Engines. */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary:hover {
+  color: theme('colors.gruen');
+}
+
+.faq-item summary:focus-visible {
+  outline: 2px solid theme('colors.gruen');
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Plus, das zum Minus wird. Zwei Striche statt eines Icons, damit sich der
+   waagerechte drehen kann, ohne dass ein zweites Element nötig ist. */
+.faq-zeichen {
+  position: relative;
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.3rem;
+}
+
+.faq-zeichen::before,
+.faq-zeichen::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 2px;
+  background: theme('colors.gruen');
+  border-radius: 2px;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-zeichen::after {
+  transform: rotate(90deg);
+}
+
+.faq-item[open] .faq-zeichen::after {
+  transform: rotate(0deg);
+}
+
+.faq-antwort {
+  padding-bottom: 1.5rem;
+  max-width: 60ch;
+  color: theme('colors.erde');
+  line-height: 1.7;
+  animation: faq-auf 0.28s ease both;
+}
+
+@keyframes faq-auf {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-zeichen::before,
+  .faq-zeichen::after {
+    transition: none;
+  }
+  .faq-antwort {
+    animation: none;
+  }
+}
+
 /* Eyebrow-Labels — ersetzt das zuvor uneinheitliche
    `text-xs font-semibold uppercase tracking-[0.16em…0.24em]`. */
 .label-mono {

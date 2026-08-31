@@ -7,10 +7,10 @@ import ProjektZeitstrahl from '@/components/sections/ProjektZeitstrahl'
 export const metadata: Metadata = {
   title: 'Referenzen: Websites & Software-Projekte | Insyte',
   description:
-    'Ausgewählte Web- und Softwareprojekte für KMUs in der Schweiz – Websites, Onlineshops, Buchungssysteme und individuelle Tools.',
+    'Ausgewählte Web- und Softwareprojekte für KMUs in der Schweiz: Websites, Onlineshops, Buchungssysteme und individuelle Tools.',
   alternates: { canonical: url('/projekte') },
   openGraph: {
-    title: 'Projekte – Insyte',
+    title: 'Projekte von Insyte',
     description:
       'Ausgewählte Web- und Softwareprojekte für KMUs in der Schweiz.',
     url: url('/projekte'),

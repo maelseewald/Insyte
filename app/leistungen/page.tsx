@@ -7,10 +7,10 @@ import LeistungenDetail from '@/components/sections/LeistungenDetail'
 export const metadata: Metadata = {
   title: 'Webdesign, Software & Wartung für KMU in Zürich | Insyte',
   description:
-    'Websites, individuelle Softwarelösungen und laufende Wartung für KMUs in der Schweiz – alles aus einer Hand, mit einem festen Ansprechpartner.',
+    'Websites, individuelle Softwarelösungen und laufende Wartung für KMUs in der Schweiz. Alles aus einer Hand, mit einem festen Ansprechpartner.',
   alternates: { canonical: url('/leistungen') },
   openGraph: {
-    title: 'Leistungen – Insyte',
+    title: 'Leistungen bei Insyte',
     description:
       'Websites, individuelle Softwarelösungen und laufende Wartung für KMUs in der Schweiz.',
     url: url('/leistungen'),

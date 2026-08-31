@@ -3,7 +3,7 @@ import { url } from '@/lib/site'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Datenschutz – Insyte',
+  title: 'Datenschutzerklärung von Insyte',
   // Eigener Canonical, sonst wird der der Startseite geerbt – und mit
   // ihm könnte das noindex unten auf die Startseite durchschlagen.
   alternates: { canonical: url('/datenschutz') },

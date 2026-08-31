@@ -284,7 +284,7 @@ export default function Kontakt() {
             {state === 'error' && (
               <p className="text-red-400 text-sm" role="alert">
                 {errorMsg ||
-                  'Etwas hat nicht geklappt – schreib uns direkt an info@insyte.ch'}
+                  'Etwas hat nicht geklappt. Schreib uns direkt an info@insyte.ch'}
               </p>
             )}
 
