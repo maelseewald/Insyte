@@ -46,6 +46,10 @@ export default function Impressum() {
             <a href="mailto:info@insyte.ch" className="text-gruen">
               info@insyte.ch
             </a>
+            <br />
+            <a href="tel:+41782093113" className="text-gruen">
+              078 209 31 13
+            </a>
           </p>
 
           <h2 className="font-display font-bold text-h3 text-wald pt-4">

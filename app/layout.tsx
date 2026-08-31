@@ -76,6 +76,7 @@ const organizationSchema = {
   legalName: BUSINESS.legalName,
   url: SITE_URL,
   email: BUSINESS.email,
+  telephone: BUSINESS.phone,
   description:
     'Webagentur in Zürich für KMU in der ganzen Schweiz: Websites, Web-Apps, individuelle Software, Suchmaschinenoptimierung sowie Hosting und Wartung.',
   address: {
@@ -85,6 +86,11 @@ const organizationSchema = {
     addressLocality: BUSINESS.city,
     addressRegion: BUSINESS.region,
     addressCountry: BUSINESS.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: BUSINESS.latitude,
+    longitude: BUSINESS.longitude,
   },
   areaServed: { '@type': 'Country', name: 'Schweiz' },
   founder: { '@type': 'Person', name: 'Mael Seewald' },

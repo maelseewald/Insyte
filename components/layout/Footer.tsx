@@ -38,6 +38,13 @@ export default function Footer() {
             >
               {BUSINESS.email}
             </a>
+            <br />
+            <a
+              href={`tel:${BUSINESS.phone}`}
+              className="hover:text-sand/70 transition-colors"
+            >
+              {BUSINESS.phoneDisplay}
+            </a>
           </address>
         </div>
 

@@ -25,11 +25,23 @@ export const BUSINESS = {
   name: 'Insyte',
   legalName: 'Mael Seewald',
   email: 'info@insyte.ch',
+  /* Zwei Formen derselben Nummer: `phone` für `tel:`-Links und JSON-LD, wo
+     die internationale Schreibweise erwartet wird, `phoneDisplay` für den
+     sichtbaren Text. Eine Nummer, die als Text anders aussieht als im Link,
+     wäre für den Abgleich mit dem Business-Profil schädlich. */
+  phone: '+41782093113',
+  phoneDisplay: '078 209 31 13',
   street: 'Segantinistrasse 200',
   postalCode: '8049',
   city: 'Zürich',
   region: 'ZH',
   country: 'CH',
+  /* Exakte Koordinaten des Standorts, aus Google Maps abgelesen. Ungefähre
+     Werte wären schlechter als keine: Sie streuen das lokale Signal, statt
+     es zu bündeln. Sechs Nachkommastellen sind rund zehn Zentimeter genau,
+     mehr trägt keine zusätzliche Information. */
+  latitude: 47.408861,
+  longitude: 8.489773,
   sameAs: [
     'https://www.linkedin.com/company/insyte-ch/',
     'https://www.instagram.com/insyte_ch/',
