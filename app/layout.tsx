@@ -39,12 +39,12 @@ const marker = Permanent_Marker({
 export const metadata: Metadata = {
   title: 'Webagentur Zürich: Websites, Software und SEO | Insyte',
   description:
-    'Webagentur aus Zürich für KMU in der ganzen Schweiz: Websites, Web-Apps, individuelle Software, SEO und Wartung. Ein fester Ansprechpartner.',
+    'Insyte ist eine Webagentur aus Zürich für moderne Websites, Webentwicklung und individuelle Softwarelösungen für KMU, Vereine und Unternehmen in der ganzen Schweiz.',
   metadataBase: new URL(SITE_URL),
   openGraph: {
     title: 'Webagentur Zürich: Websites, Software und SEO | Insyte',
     description:
-      'Webagentur aus Zürich für KMU in der ganzen Schweiz: Websites, Software, SEO und Wartung.',
+      'Insyte ist eine Webagentur aus Zürich für moderne Websites, Webentwicklung und individuelle Softwarelösungen für KMU, Vereine und Unternehmen.',
     url: SITE_URL,
     siteName: 'Insyte',
     locale: 'de_CH',
