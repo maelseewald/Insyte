@@ -51,7 +51,7 @@ export default function Hero() {
             {...reveal(0.12)}
             className="mx-auto max-w-xl text-erde text-lg leading-relaxed mb-10 lg:mx-0"
           >
-            Eine junge Webagentur aus Zürich. Wir entwickeln eigene Produkte und
+            Eine junge Webagentur aus Zürich. Wir entwickeln eigene Produkte
             und helfen Unternehmen, ihre Ideen digital umzusetzen.
           </motion.p>
 
