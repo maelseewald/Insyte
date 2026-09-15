@@ -357,7 +357,7 @@ html.lenis body {
   margin-left: 0.45rem;
   font-size: 9.5px;
   letter-spacing: 0.08em;
-  color: theme('colors.erde / 55%');
+  color: theme('colors.erde / 80%');
 }
 
 .win-body {
@@ -379,13 +379,15 @@ html.lenis body {
 .win-body .ind-2 { padding-left: 2.4ch }
 .win-body .ind-3 { padding-left: 3.6ch }
 
-/* Terminal- und Syntaxfarben — bewusst nur aus der Palette */
+/* Terminal- und Syntaxfarben — bewusst nur aus der Palette.
+   Deckkraft bei erde auf 80% statt vorher 45/55%: darunter reisst der
+   Kontrast zum hellen Fenster-Hintergrund unter 4.5:1 (WCAG AA). */
 .c-prompt { color: theme('colors.gruen'); font-weight: 500 }
 .c-ok     { color: theme('colors.gruen') }
-.c-dim    { color: theme('colors.erde / 45%') }
+.c-dim    { color: theme('colors.erde / 80%') }
 .c-key    { color: theme('colors.gruen') }
 .c-fn     { color: theme('colors.wald'); font-weight: 500 }
-.c-tag    { color: theme('colors.erde / 55%') }
+.c-tag    { color: theme('colors.erde / 80%') }
 .c-attr   { color: theme('colors.wald') }
 .c-str    { color: theme('colors.gruen / 85%') }
 

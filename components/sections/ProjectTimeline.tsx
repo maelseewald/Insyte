@@ -93,12 +93,12 @@ function TimelineNav({
                 }}
                 aria-hidden="true"
               />
-              <span className="label-mono block text-erde/40 tabular-nums">
+              <span className="label-mono block text-erde/80 tabular-nums">
                 {project.year}
               </span>
               <span
                 className={`block font-display font-bold leading-tight tracking-tight transition-colors duration-300 ${
-                  active ? 'text-wald' : 'text-erde/40 group-hover:text-erde'
+                  active ? 'text-wald' : 'text-erde/80 group-hover:text-erde'
                 }`}
               >
                 {project.name}
@@ -143,10 +143,16 @@ function DetailBlock({
       }`}
     >
       <div className="flex items-baseline gap-4 mb-3">
-        <span className="font-display font-bold text-stat tabular-nums text-leinen">
+        {/* Bewusst blass als Hintergrund-Akzent, kein lesbarer Wert: die
+            Jahreszahl steht darum zusätzlich unsichtbar im Label daneben. */}
+        <span
+          className="font-display font-bold text-stat tabular-nums text-leinen"
+          aria-hidden="true"
+        >
           {project.year}
         </span>
         <span className="label-mono text-gruen">
+          <span className="sr-only">{project.year}, </span>
           {project.category}
         </span>
       </div>
@@ -174,7 +180,7 @@ function DetailBlock({
       )}
 
       <div className="mt-7">
-        <span className="label-mono text-erde/50">
+        <span className="label-mono text-erde/80">
           {project.tags.join(' · ')}
         </span>
       </div>
@@ -187,6 +193,7 @@ function DetailBlock({
               target="_blank"
               rel="noopener noreferrer"
               className={LINK_PILL}
+              aria-label={`Website von ${project.name} ansehen`}
             >
               <ExternalIcon />
               Website ansehen
@@ -226,7 +233,7 @@ export default function ProjectTimeline({
       {/* Left: sticky nav */}
       <div className="hidden md:block">
         <div className="sticky top-28">
-          <p className="label-mono mb-6 text-erde/40">
+          <p className="label-mono mb-6 text-erde/80">
             Zeitachse
           </p>
           <TimelineNav projects={projects} activeId={activeId} />

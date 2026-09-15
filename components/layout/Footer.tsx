@@ -29,19 +29,19 @@ export default function Footer() {
           {/* Adresse sichtbar auf jeder Seite, nicht nur im Impressum: Google
               gleicht Name/Adresse mit dem Business-Profil und Verzeichnissen
               ab. Das `address`-Element macht den Bezug auch semantisch klar. */}
-          <address className="text-sand/40 text-xs not-italic mt-2 leading-relaxed">
+          <address className="text-sand/60 text-xs not-italic mt-2 leading-relaxed">
             {BUSINESS.street}, {BUSINESS.postalCode} {BUSINESS.city}
             <br />
             <a
               href={`mailto:${BUSINESS.email}`}
-              className="hover:text-sand/70 transition-colors"
+              className="inline-block py-1 hover:text-sand/80 transition-colors"
             >
               {BUSINESS.email}
             </a>
             <br />
             <a
               href={`tel:${BUSINESS.phone}`}
-              className="hover:text-sand/70 transition-colors"
+              className="inline-block py-1 hover:text-sand/80 transition-colors"
             >
               {BUSINESS.phoneDisplay}
             </a>
@@ -126,7 +126,7 @@ export default function Footer() {
         </nav>
 
         {/* Copyright */}
-        <p className="text-sand/40 text-xs">
+        <p className="text-sand/60 text-xs">
           © 2026 Insyte, Mael Seewald. Alle Rechte vorbehalten.
         </p>
       </div>
@@ -143,7 +143,7 @@ export default function Footer() {
             <Link
               key={standort.slug}
               href={`/${standort.slug}`}
-              className="text-sand/40 text-xs hover:text-sand/70 transition-colors"
+              className="text-sand/60 text-xs hover:text-sand/80 transition-colors"
             >
               {standort.eyebrow}
             </Link>
